@@ -1,0 +1,46 @@
+export const stud = {
+  name: 'stud',
+  title: 'Производитель',
+  type: 'document',
+  fields: [
+    { name: 'name', title: 'Полное имя (с приставкой)', type: 'string', validation: (r) => r.required() },
+    { name: 'call', title: 'Домашняя кличка', type: 'string' },
+    {
+      name: 'slug',
+      title: 'Адрес страницы (slug)',
+      type: 'slug',
+      options: { source: 'call', maxLength: 60 },
+    },
+    {
+      name: 'role',
+      title: 'Роль',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Производитель', value: 'Производитель' },
+          { title: 'Производительница', value: 'Производительница' },
+        ],
+        layout: 'radio',
+      },
+    },
+    { name: 'color', title: 'Окрас', type: 'string' },
+    { name: 'weight', title: 'Вес', type: 'string' },
+    { name: 'titles', title: 'Титулы', type: 'string' },
+    {
+      name: 'tests',
+      title: 'Тесты здоровья',
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    {
+      name: 'images',
+      title: 'Фотографии',
+      type: 'array',
+      of: [{ type: 'image', options: { hotspot: true } }],
+    },
+    { name: 'order', title: 'Порядок сортировки', type: 'number', initialValue: 0 },
+  ],
+  preview: {
+    select: { title: 'call', subtitle: 'role', media: 'images.0' },
+  },
+}
