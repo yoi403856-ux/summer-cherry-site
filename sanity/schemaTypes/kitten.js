@@ -1,3 +1,20 @@
+const RU = {
+  а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'e', ж: 'zh', з: 'z',
+  и: 'i', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p', р: 'r',
+  с: 's', т: 't', у: 'u', ф: 'f', х: 'h', ц: 'c', ч: 'ch', ш: 'sh', щ: 'sch',
+  ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu', я: 'ya',
+}
+export function slugify(input) {
+  return input
+    .toLowerCase()
+    .split('')
+    .map((ch) => (ch in RU ? RU[ch] : ch))
+    .join('')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60)
+}
+
 export const kitten = {
   name: 'kitten',
   title: 'Котёнок',
@@ -8,7 +25,7 @@ export const kitten = {
       name: 'slug',
       title: 'Адрес страницы (slug)',
       type: 'slug',
-      options: { source: 'name', maxLength: 60 },
+      options: { source: 'name', maxLength: 60, slugify },
       validation: (r) => r.required(),
     },
     { name: 'litter', title: 'Помёт', type: 'string' },

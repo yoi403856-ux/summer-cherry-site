@@ -1,3 +1,5 @@
+import { slugify } from './kitten'
+
 export const stud = {
   name: 'stud',
   title: 'Производитель',
@@ -9,7 +11,7 @@ export const stud = {
       name: 'slug',
       title: 'Адрес страницы (slug)',
       type: 'slug',
-      options: { source: 'call', maxLength: 60 },
+      options: { source: 'call', maxLength: 60, slugify },
     },
     {
       name: 'role',

@@ -5,6 +5,7 @@ import { getKittens } from '@/lib/api'
 import { urlForImage } from '@/sanity/image'
 
 export const metadata = { title: 'Котята — Summer Cherry' }
+export const revalidate = 60
 
 export default async function KittensPage() {
   const kittens = await getKittens()

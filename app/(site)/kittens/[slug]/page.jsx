@@ -6,6 +6,9 @@ import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getKitten, getKittenSlugs } from '@/lib/api'
 import { urlForImage } from '@/sanity/image'
 
+export const revalidate = 60
+export const dynamicParams = true
+
 const statusMap = {
   available: { label: 'Свободен', cls: 'bg-pine text-parchment' },
   reserved: { label: 'Резерв', cls: 'bg-golddim text-ink' },

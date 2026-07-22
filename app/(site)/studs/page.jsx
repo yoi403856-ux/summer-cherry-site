@@ -6,6 +6,7 @@ import { getStuds } from '@/lib/api'
 import { urlForImage } from '@/sanity/image'
 
 export const metadata = { title: 'Производители — Summer Cherry' }
+export const revalidate = 60
 
 export default async function StudsPage() {
   const studs = await getStuds()

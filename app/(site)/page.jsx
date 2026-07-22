@@ -7,6 +7,8 @@ import { getStuds, getSettings } from '@/lib/api'
 import { getLocalHeroImages } from '@/lib/heroImages'
 import { urlForImage } from '@/sanity/image'
 
+export const revalidate = 60
+
 export default async function Home() {
   const [studs, settings] = await Promise.all([getStuds(), getSettings()])
   const heroImages =
