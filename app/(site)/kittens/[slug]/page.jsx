@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Check } from 'lucide-react'
 import CatPortrait from '@/components/CatPortrait'
+import KittenGallery from '@/components/KittenGallery'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getKitten, getKittenSlugs } from '@/lib/api'
 import { urlForImage } from '@/sanity/image'
@@ -38,8 +39,9 @@ export default async function KittenDetail({ params }) {
   return (
     <article className="relative">
       {/* header */}
-      <section className="px-5 pt-36 sm:px-8 sm:pt-44">
-        <div className="mx-auto max-w-6xl">
+      <section className="relative px-5 pb-8 pt-28 sm:px-8 sm:pt-32">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-parchment/65 to-transparent" />
+        <div className="relative mx-auto max-w-6xl">
           <Reveal>
             <Link href="/kittens" className="inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink/60 transition-colors hover:text-ink">
               <ArrowLeft size={14} /> Все котята
@@ -47,7 +49,7 @@ export default async function KittenDetail({ params }) {
             <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <Eyebrow>{k.litter ? `Помёт «${k.litter.replace('Помёт ', '')}»` : 'Котёнок'}</Eyebrow>
-                <h1 className="mt-4 font-display text-6xl leading-none text-ink sm:text-8xl">{k.name}</h1>
+                <h1 className="mt-3 font-display text-5xl leading-none text-ink sm:text-7xl">{k.name}</h1>
               </div>
               <span className={`px-4 py-1.5 font-sans text-[11px] uppercase tracking-[0.2em] ${s.cls}`}>{s.label}</span>
             </div>
@@ -56,27 +58,16 @@ export default async function KittenDetail({ params }) {
       </section>
 
       {/* body */}
-      <section className="px-5 py-16 sm:px-8 sm:py-20">
+      <section className="bg-parchment/65 backdrop-blur-md px-5 py-12 sm:px-8 sm:py-16">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.15fr_0.85fr] md:gap-16">
           {/* gallery */}
-          <Reveal className="group">
+          <Reveal>
             {images.length > 0 ? (
-              <div className="space-y-4">
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-coal shadow-card">
-                  <img src={images[0]} alt={k.name} className="h-full w-full object-cover" />
-                </div>
-                {images.length > 1 && (
-                  <div className="grid grid-cols-3 gap-4">
-                    {images.slice(1, 4).map((src, i) => (
-                      <div key={i} className="relative aspect-square overflow-hidden bg-coal">
-                        <img src={src} alt={`${k.name} ${i + 2}`} className="h-full w-full object-cover" />
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <KittenGallery images={images} name={k.name} />
             ) : (
-              <CatPortrait coat={k.coat} alt={k.name} className="aspect-[4/5] w-full shadow-card" />
+              <div className="group">
+                <CatPortrait coat={k.coat} alt={k.name} className="aspect-[4/5] w-full shadow-card" />
+              </div>
             )}
           </Reveal>
 
