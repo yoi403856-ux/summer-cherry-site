@@ -30,7 +30,7 @@ export default async function StudDetail({ params }) {
 
   return (
     <article className="relative">
-      <section className="px-5 pb-2 pt-24 sm:px-8 sm:pt-28">
+      <section className="px-5 pb-2 pt-32 sm:px-8 sm:pt-36">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <Link href="/studs" className="inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink/60 transition-colors hover:text-ink">
