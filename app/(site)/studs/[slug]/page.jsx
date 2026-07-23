@@ -25,7 +25,7 @@ export default async function StudDetail({ params }) {
   if (!c) notFound()
 
   const images = (c.images || [])
-    .map((img) => ({ display: urlForImageCrop(img, 900, 1125), full: urlForImage(img, 1400) }))
+    .map((img) => ({ display: urlForImageCrop(img, 1000, 1000), full: urlForImage(img, 1400) }))
     .filter((x) => x.display)
 
   return (

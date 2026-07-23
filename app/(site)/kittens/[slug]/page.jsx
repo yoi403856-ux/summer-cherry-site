@@ -34,7 +34,7 @@ export default async function KittenDetail({ params }) {
   if (!k) notFound()
 
   const images = (k.images || [])
-    .map((img) => ({ display: urlForImageCrop(img, 900, 1125), full: urlForImage(img, 1400) }))
+    .map((img) => ({ display: urlForImageCrop(img, 1000, 1000), full: urlForImage(img, 1400) }))
     .filter((x) => x.display)
   const s = statusMap[k.status] || statusMap.available
 
