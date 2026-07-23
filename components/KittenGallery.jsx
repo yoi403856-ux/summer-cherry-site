@@ -46,7 +46,7 @@ export default function KittenGallery({ images = [], name = '' }) {
     <div>
       {/* main image — height fits the viewport; click to open fullscreen */}
       <div
-        className="group relative h-[40vh] w-full cursor-zoom-in overflow-hidden bg-coal shadow-card sm:h-[46vh] lg:h-[54vh]"
+        className="group relative h-[44vh] w-full cursor-zoom-in overflow-hidden bg-coal shadow-card sm:h-[52vh] lg:h-[62vh]"
         onClick={() => setOpen(true)}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
