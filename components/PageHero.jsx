@@ -6,7 +6,7 @@ const easeOut = [0.22, 1, 0.36, 1]
 
 export default function PageHero({ eyebrow, title, lead }) {
   return (
-    <section className="relative flex min-h-[62vh] items-end overflow-hidden pb-16 pt-40 sm:min-h-[68vh] sm:pb-24">
+    <section className="relative flex min-h-[48vh] items-end overflow-hidden pb-14 pt-36 sm:min-h-[54vh] sm:pb-20">
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-parchment/90 via-parchment/40 to-transparent" />
       <div className="grain pointer-events-none absolute inset-0" />
 

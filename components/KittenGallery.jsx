@@ -46,12 +46,17 @@ export default function KittenGallery({ images = [], name = '' }) {
     <div>
       {/* main image — height fits the viewport; click to open fullscreen */}
       <div
-        className="group relative h-[38vh] w-full cursor-zoom-in overflow-hidden bg-coal shadow-card sm:h-[42vh] lg:h-[48vh]"
+        className="group relative h-[40vh] w-full cursor-zoom-in overflow-hidden bg-coal shadow-card sm:h-[46vh] lg:h-[54vh]"
         onClick={() => setOpen(true)}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        <img src={images[active]} alt={name} className="h-full w-full object-cover" />
+        {/* blurred fill so the un-cropped portrait photo has no empty side bars */}
+        <div
+          className="absolute inset-0 scale-110 bg-cover bg-center opacity-50 blur-2xl"
+          style={{ backgroundImage: `url(${images[active]})` }}
+        />
+        <img src={images[active]} alt={name} className="relative h-full w-full object-contain" />
         <span className="pointer-events-none absolute right-3 top-3 flex h-9 w-9 items-center justify-center bg-ink/50 text-parchment opacity-0 transition-opacity group-hover:opacity-100">
           <Expand size={16} />
         </span>
