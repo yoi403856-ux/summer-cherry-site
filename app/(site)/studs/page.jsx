@@ -25,11 +25,11 @@ export default async function StudsPage() {
               <Reveal key={c._id}>
                 <article className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
                   {c.slug ? (
-                    <Link href={`/studs/${c.slug}`} className={`group block md:max-w-[420px] ${flip ? 'md:order-2 md:ml-auto' : ''}`}>
+                    <Link href={`/studs/${c.slug}`} className={`group block w-full md:max-w-[420px] ${flip ? 'md:order-2 md:justify-self-end' : ''}`}>
                       <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
                     </Link>
                   ) : (
-                    <div className={`group md:max-w-[420px] ${flip ? 'md:order-2 md:ml-auto' : ''}`}>
+                    <div className={`group w-full md:max-w-[420px] ${flip ? 'md:order-2 md:justify-self-end' : ''}`}>
                       <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
                     </div>
                   )}
