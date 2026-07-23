@@ -31,18 +31,24 @@ export default async function StudsPage() {
                     <h2 className="mt-4 font-serif text-5xl leading-none text-ink">{c.call}</h2>
                     <p className="mt-2 font-sans text-[13px] uppercase tracking-[0.22em] text-ink/45">{c.name}</p>
                     <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
-                      <div>
-                        <dt className="eyebrow text-golddim">Окрас</dt>
-                        <dd className="mt-2 font-serif text-lg text-ink">{c.color}</dd>
-                      </div>
-                      <div>
-                        <dt className="eyebrow text-golddim">Вес</dt>
-                        <dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Weight size={16} className="text-pine" /> {c.weight}</dd>
-                      </div>
-                      <div className="col-span-2">
-                        <dt className="eyebrow text-golddim">Титулы</dt>
-                        <dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Award size={16} className="text-pine" /> {c.titles}</dd>
-                      </div>
+                      {c.color && (
+                        <div>
+                          <dt className="eyebrow text-golddim">Окрас</dt>
+                          <dd className="mt-2 font-serif text-lg text-ink">{c.color}</dd>
+                        </div>
+                      )}
+                      {c.weight && (
+                        <div>
+                          <dt className="eyebrow text-golddim">Вес</dt>
+                          <dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Weight size={16} className="text-pine" /> {c.weight}</dd>
+                        </div>
+                      )}
+                      {c.titles && (
+                        <div className="col-span-2">
+                          <dt className="eyebrow text-golddim">Титулы</dt>
+                          <dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Award size={16} className="text-pine" /> {c.titles}</dd>
+                        </div>
+                      )}
                     </dl>
                     {c.tests?.length > 0 && (
                       <div className="mt-6">
