@@ -51,7 +51,6 @@ export const kitten = {
         layout: 'radio',
       },
     },
-    { name: 'price', title: 'Стоимость (текст)', type: 'string' },
     { name: 'description', title: 'Описание', type: 'text', rows: 4 },
     { name: 'father', title: 'Отец', type: 'reference', to: [{ type: 'stud' }] },
     { name: 'mother', title: 'Мать', type: 'reference', to: [{ type: 'stud' }] },

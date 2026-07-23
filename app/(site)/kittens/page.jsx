@@ -17,7 +17,6 @@ export default async function KittensPage() {
     sex: k.sex,
     born: k.born,
     litter: (k.litter || '').replace('Помёт ', ''),
-    price: k.price,
     status: k.status,
     coat: k.coat || null,
     src: k.images?.[0] ? urlForImageCrop(k.images[0], 640, 800) : null,

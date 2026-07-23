@@ -66,22 +66,19 @@ export default function KittensGrid({ items = [] }) {
                     <CatPortrait coat={k.coat} alt={k.name} src={k.src} className="aspect-[4/5] w-full" />
                     <span className={`absolute left-2 top-2 px-2 py-0.5 font-sans text-[9px] uppercase tracking-[0.16em] sm:left-4 sm:top-4 sm:px-3 sm:py-1 sm:text-[10px] sm:tracking-[0.2em] ${s.cls}`}>{s.label}</span>
                   </div>
-                  <div className="mt-2.5 flex items-start justify-between gap-2 sm:mt-4">
-                    <div>
-                      <h3 className="font-serif text-lg leading-none text-ink sm:text-2xl">{k.name}</h3>
-                      <p className="mt-1.5 font-sans text-[11px] tracking-wide text-ink/55 sm:mt-2 sm:text-[13px]">{k.color}</p>
-                    </div>
+                  <div className="mt-2 flex items-start justify-between gap-2 sm:mt-3">
+                    <h3 className="font-serif text-lg leading-none text-ink sm:text-2xl">{k.name}</h3>
                     <span className="mt-0.5 font-sans text-[10px] uppercase tracking-[0.14em] text-golddim sm:mt-1 sm:text-[12px] sm:tracking-[0.16em]">{k.sex}</span>
                   </div>
                 </Link>
-                <dl className="mt-2.5 space-y-1 border-t border-ink/10 pt-2.5 font-sans text-[11px] text-ink/60 sm:mt-4 sm:space-y-1.5 sm:pt-4 sm:text-[13px]">
+                <dl className="mt-2 space-y-1 border-t border-ink/10 pt-2 font-sans text-[11px] text-ink/60 sm:mt-3 sm:space-y-1 sm:pt-3 sm:text-[13px]">
+                  <div className="flex justify-between"><dt>Окрас</dt><dd className="text-ink/80">{k.color}</dd></div>
                   <div className="flex justify-between"><dt>Дата рождения</dt><dd className="text-ink/80">{fmtDate(k.born)}</dd></div>
                   <div className="flex justify-between"><dt>Помёт</dt><dd className="text-ink/80">{k.litter}</dd></div>
-                  <div className="flex justify-between"><dt>Стоимость</dt><dd className="text-ink/80">{k.price}</dd></div>
                 </dl>
                 <Link
                   href={`/kittens/${k.slug}`}
-                  className="mt-2.5 inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.16em] text-ink transition-colors hover:text-golddim sm:mt-4 sm:text-[12px] sm:tracking-[0.2em]"
+                  className="mt-2 inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.16em] text-ink transition-colors hover:text-golddim sm:mt-3 sm:text-[12px] sm:tracking-[0.2em]"
                 >
                   Узнать подробнее
                   <ArrowRight size={13} className="transition-transform group-hover:translate-x-1 sm:size-[14px]" />

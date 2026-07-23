@@ -78,7 +78,6 @@ export default async function KittenDetail({ params }) {
                 <div><dt className="eyebrow text-golddim">Окрас</dt><dd className="mt-2 font-serif text-lg text-ink">{k.color || '—'}</dd></div>
                 <div><dt className="eyebrow text-golddim">Пол</dt><dd className="mt-2 font-serif text-lg text-ink">{k.sex || '—'}</dd></div>
                 <div><dt className="eyebrow text-golddim">Дата рождения</dt><dd className="mt-2 font-serif text-lg text-ink">{fmtDate(k.born)}</dd></div>
-                <div><dt className="eyebrow text-golddim">Стоимость</dt><dd className="mt-2 font-serif text-lg text-ink">{k.price || 'по запросу'}</dd></div>
               </dl>
 
               {k.description && (
