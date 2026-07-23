@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const easeOut = [0.22, 1, 0.36, 1]
@@ -15,13 +16,15 @@ export default function HeroMosaic({ images = [] }) {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.5 + i * 0.09, ease: easeOut }}
-          className={`group relative overflow-hidden border border-ink/10 shadow-card ${tileOffset[i % tileOffset.length]}`}
+          className={`group relative aspect-[3/4] w-full overflow-hidden border border-ink/10 shadow-card ${tileOffset[i % tileOffset.length]}`}
         >
-          <img
+          <Image
             src={src}
             alt={`Мейн-кун питомника Summer Cherry ${i + 1}`}
-            loading="lazy"
-            className="aspect-[3/4] w-full object-cover grayscale-[0.15] transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:grayscale-0"
+            fill
+            priority={i === 0}
+            sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
+            className="object-cover grayscale-[0.15] transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:grayscale-0"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/25 via-transparent to-transparent" />
         </motion.div>

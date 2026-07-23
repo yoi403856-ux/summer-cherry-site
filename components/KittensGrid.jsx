@@ -49,7 +49,7 @@ export default function KittensGrid({ items = [] }) {
 
       <motion.div layout className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 sm:gap-y-10 md:grid-cols-3 lg:grid-cols-4">
         <AnimatePresence mode="popLayout">
-          {list.map((k) => {
+          {list.map((k, i) => {
             const s = statusMap[k.status] || statusMap.available
             return (
               <motion.article
@@ -63,7 +63,7 @@ export default function KittensGrid({ items = [] }) {
               >
                 <Link href={`/kittens/${k.slug}`} className="block">
                   <div className="relative">
-                    <CatPortrait coat={k.coat} alt={k.name} src={k.src} className="aspect-[4/5] w-full" />
+                    <CatPortrait coat={k.coat} alt={k.name} src={k.src} className="aspect-[4/5] w-full" priority={i < 4} />
                     <span className={`absolute left-2 top-2 px-2 py-0.5 font-sans text-[9px] uppercase tracking-[0.16em] sm:left-4 sm:top-4 sm:px-3 sm:py-1 sm:text-[10px] sm:tracking-[0.2em] ${s.cls}`}>{s.label}</span>
                   </div>
                   <div className="mt-2 flex items-start justify-between gap-2 sm:mt-3">

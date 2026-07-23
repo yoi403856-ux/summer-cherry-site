@@ -67,6 +67,7 @@ export default function KittenGallery({ images = [], name = '' }) {
             key={active}
             src={imgs[active].display}
             alt={name}
+            decoding="async"
             custom={dir}
             variants={slideVariants}
             initial="enter"
@@ -106,7 +107,7 @@ export default function KittenGallery({ images = [], name = '' }) {
                 i === active ? 'ring-2 ring-pine ring-offset-2 ring-offset-parchment' : 'opacity-60 hover:opacity-100'
               }`}
             >
-              <img src={im.display} alt={`${name} ${i + 1}`} className="h-full w-full object-cover" />
+              <img src={im.display} alt={`${name} ${i + 1}`} loading="lazy" decoding="async" className="h-full w-full object-cover" />
             </button>
           ))}
         </div>
