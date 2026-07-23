@@ -2,7 +2,7 @@ import PageHero from '@/components/PageHero'
 import KittensGrid from '@/components/KittensGrid'
 import { Reveal, Eyebrow, Divider } from '@/components/ui'
 import { getKittens } from '@/lib/api'
-import { urlForImage } from '@/sanity/image'
+import { urlForImageCrop } from '@/sanity/image'
 
 export const metadata = { title: 'Котята — Summer Cherry' }
 export const revalidate = 60
@@ -20,14 +20,14 @@ export default async function KittensPage() {
     price: k.price,
     status: k.status,
     coat: k.coat || null,
-    src: k.images?.[0] ? urlForImage(k.images[0], 800) : null,
+    src: k.images?.[0] ? urlForImageCrop(k.images[0], 800, 500) : null,
   }))
 
   return (
     <>
       <PageHero eyebrow="Котята" title="Малыши" lead="Котята Summer Cherry уезжают в новый дом с полным пакетом документов, привитыми и социализированными." />
 
-      <section className="bg-parchment/50 backdrop-blur-md py-20 sm:py-28">
+      <section className="bg-parchment/50 backdrop-blur-md pb-20 pt-5 sm:pb-28 sm:pt-6">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <KittensGrid items={items} />
         </div>
