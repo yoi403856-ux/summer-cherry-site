@@ -2,8 +2,11 @@ import { CalendarDays, MapPin, Sparkles } from 'lucide-react'
 import PageHero from '@/components/PageHero'
 import CatPortrait from '@/components/CatPortrait'
 import { Reveal, Eyebrow, Divider, PineMark } from '@/components/ui'
+import { getSettings } from '@/lib/api'
+import { urlForImageCrop } from '@/sanity/image'
 
 export const metadata = { title: 'О нас — Summer Cherry' }
+export const revalidate = 60
 
 const timeline = [
   { year: '2014', title: 'Первый кун', text: 'Всё началось с одного котёнка из Финляндии — и любви, которая переросла в дело жизни.' },
@@ -12,12 +15,15 @@ const timeline = [
   { year: '2026', title: 'Сегодня', text: 'Небольшой домашний питомник с проверенными линиями и котятами по всему миру.' },
 ]
 
-export default function About() {
+export default async function About() {
+  const settings = await getSettings()
+  const aboutSrc = settings?.aboutPhoto ? urlForImageCrop(settings.aboutPhoto, 800, 1000) : null
+
   return (
     <>
       <PageHero eyebrow="О нас" title={<>Из тумана<br />хвойного леса</>} lead="Семейный питомник, где кошки живут в доме, а не в вольерах." />
 
-      <section className="bg-parchment/50 backdrop-blur-md py-24 sm:py-32">
+      <section className="bg-parchment/50 backdrop-blur-md pb-24 pt-10 sm:pb-32 sm:pt-14">
         <div className="mx-auto grid max-w-6xl gap-14 px-5 sm:px-8 md:grid-cols-[1.1fr_0.9fr] md:gap-20">
           <Reveal>
             <Eyebrow>Наша философия</Eyebrow>
@@ -43,8 +49,8 @@ export default function About() {
             </div>
           </Reveal>
           <Reveal delay={0.12}>
-            <div className="relative">
-              <CatPortrait coat={{ from: '#5b6152', to: '#23271f' }} alt="Кот питомника Summer Cherry" className="aspect-[4/5] w-full" />
+            <div className="relative sm:pb-12">
+              <CatPortrait coat={{ from: '#5b6152', to: '#23271f' }} alt="Кот питомника Summer Cherry" src={aboutSrc} className="aspect-[4/5] w-full" />
               <div className="absolute -bottom-6 -left-6 hidden bg-pinedeep p-6 text-parchment sm:block">
                 <PineMark className="h-6 w-6 text-gold" />
                 <p className="mt-3 max-w-[180px] font-serif text-lg italic leading-snug">«Кошка, которая смотрит на тебя как равная.»</p>

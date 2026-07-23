@@ -23,7 +23,7 @@ export default function PageHero({ eyebrow, title, lead }) {
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.12, ease: easeOut }}
-          className="mt-4 font-display text-5xl leading-[0.95] tracking-tight text-ink sm:text-7xl"
+          className="mt-4 font-display text-5xl leading-tight tracking-tight text-ink sm:text-7xl sm:leading-tight"
         >
           {title}
         </motion.h1>

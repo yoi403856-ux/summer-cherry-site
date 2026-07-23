@@ -19,6 +19,12 @@ export const siteSettings = {
       type: 'image',
       options: { hotspot: true },
     },
+    {
+      name: 'aboutPhoto',
+      title: 'Фото на странице «О нас»',
+      type: 'image',
+      options: { hotspot: true },
+    },
   ],
   preview: { prepare: () => ({ title: 'Настройки сайта' }) },
 }
