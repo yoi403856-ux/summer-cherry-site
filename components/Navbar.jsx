@@ -6,18 +6,21 @@ import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import ContactLink from './ContactLink'
+import LangToggle from './LangToggle'
+import { useDict } from './LocaleProvider'
 
 const links = [
-  { href: '/', label: 'Главная' },
-  { href: '/about', label: 'О нас' },
-  { href: '/kittens', label: 'Котята' },
-  { href: '/studs', label: 'Производители' },
+  { href: '/', key: 'home' },
+  { href: '/about', key: 'about' },
+  { href: '/kittens', key: 'kittens' },
+  { href: '/studs', key: 'studs' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const d = useDict()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -59,21 +62,25 @@ export default function Navbar() {
                   isActive(l.href) ? 'text-golddim' : 'text-ink/75 hover:text-ink'
                 }`}
               >
-                {l.label}
+                {d.nav[l.key]}
               </Link>
             ))}
             <ContactLink className="ml-2 border border-ink/25 px-5 py-2.5 font-sans text-[12px] uppercase tracking-[0.24em] text-ink transition-colors duration-300 hover:bg-ink hover:text-parchment">
-              Связаться
+              {d.nav.contact}
             </ContactLink>
+            <LangToggle className="ml-1" />
           </nav>
 
-          <button
-            className="md:hidden text-ink"
-            onClick={() => setOpen((o) => !o)}
-            aria-label={open ? 'Закрыть меню' : 'Открыть меню'}
-          >
-            {open ? <X size={26} /> : <Menu size={26} />}
-          </button>
+          <div className="flex items-center gap-4 md:hidden">
+            <LangToggle />
+            <button
+              className="text-ink"
+              onClick={() => setOpen((o) => !o)}
+              aria-label={open ? 'Закрыть меню' : 'Открыть меню'}
+            >
+              {open ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -99,7 +106,7 @@ export default function Navbar() {
                     onClick={() => setOpen(false)}
                     className={`font-serif text-3xl ${isActive(l.href) ? 'text-golddim italic' : 'text-ink'}`}
                   >
-                    {l.label}
+                    {d.nav[l.key]}
                   </Link>
                 </motion.div>
               ))}

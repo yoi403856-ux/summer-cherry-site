@@ -8,8 +8,9 @@ import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getStud, getStudSlugs, getKittensByStud } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
+import { getDict, getLocale } from '@/lib/i18n'
+import { roleLabel } from '@/lib/dict'
 
-export const revalidate = 60
 export const dynamicParams = true
 
 export async function generateStaticParams() {
@@ -19,13 +20,15 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const c = await getStud(params.slug)
-  return { title: c ? `${c.call || c.name} — производитель Summer Cherry` : 'Производитель' }
+  return { title: c ? `${c.call || c.name} — Summer Cherry` : 'Summer Cherry' }
 }
 
 export default async function StudDetail({ params }) {
   const c = await getStud(params.slug)
   if (!c) notFound()
 
+  const locale = getLocale()
+  const d = getDict().studDetail
   const images = (c.images || [])
     .map((img) => ({ display: urlForImageCrop(img, 1000, 1000), full: urlForImage(img, 1400) }))
     .filter((x) => x.display)
@@ -37,7 +40,7 @@ export default async function StudDetail({ params }) {
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <Link href="/studs" className="inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink/60 transition-colors hover:text-ink">
-              <ArrowLeft size={14} /> Все производители
+              <ArrowLeft size={14} /> {d.back}
             </Link>
           </Reveal>
         </div>
@@ -57,7 +60,7 @@ export default async function StudDetail({ params }) {
 
           <Reveal delay={0.1}>
             <div>
-              <Eyebrow>{c.role || 'Производитель'}</Eyebrow>
+              <Eyebrow>{roleLabel(locale, c.role)}</Eyebrow>
               <h1 className="mt-3 font-display text-5xl leading-none text-ink sm:text-6xl">{c.call || c.name}</h1>
               {c.name && c.name !== c.call && (
                 <p className="mt-2 font-sans text-[13px] uppercase tracking-[0.22em] text-ink/45">{c.name}</p>
@@ -65,19 +68,19 @@ export default async function StudDetail({ params }) {
 
               <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
                 {c.color && (
-                  <div><dt className="eyebrow text-golddim">Окрас</dt><dd className="mt-2 font-serif text-lg text-ink">{c.color}</dd></div>
+                  <div><dt className="eyebrow text-golddim">{d.color}</dt><dd className="mt-2 font-serif text-lg text-ink">{c.color}</dd></div>
                 )}
                 {c.weight && (
-                  <div><dt className="eyebrow text-golddim">Вес</dt><dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Weight size={16} className="text-pine" /> {c.weight}</dd></div>
+                  <div><dt className="eyebrow text-golddim">{d.weight}</dt><dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Weight size={16} className="text-pine" /> {c.weight}</dd></div>
                 )}
                 {c.titles && (
-                  <div className="col-span-2"><dt className="eyebrow text-golddim">Титулы</dt><dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Award size={16} className="text-pine" /> {c.titles}</dd></div>
+                  <div className="col-span-2"><dt className="eyebrow text-golddim">{d.titles}</dt><dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Award size={16} className="text-pine" /> {c.titles}</dd></div>
                 )}
               </dl>
 
               {c.tests?.length > 0 && (
                 <div className="mt-6">
-                  <p className="eyebrow text-golddim">Здоровье</p>
+                  <p className="eyebrow text-golddim">{d.health}</p>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {c.tests.map((t) => (
                       <li key={t} className="inline-flex items-center gap-1.5 border border-pine/30 bg-pine/5 px-3 py-1.5 font-sans text-[12px] tracking-wide text-pinedeep">
@@ -89,14 +92,14 @@ export default async function StudDetail({ params }) {
               )}
 
               <ContactLink className="mt-10 inline-flex w-full items-center justify-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine">
-                Связаться с питомником
+                {d.contact}
               </ContactLink>
               <div className="mt-6 flex items-center gap-3 text-ink/45">
                 <PineMark className="h-4 w-4 text-golddim" />
-                <span className="font-sans text-[12px] tracking-[0.14em]">Питомник Summer Cherry</span>
+                <span className="font-sans text-[12px] tracking-[0.14em]">{d.cattery}</span>
               </div>
 
-              {kittens.length > 0 && <ScrollHint targetId="offspring" label="Котята ниже" />}
+              {kittens.length > 0 && <ScrollHint targetId="offspring" label={d.offspringHint} />}
             </div>
           </Reveal>
         </div>
@@ -107,8 +110,8 @@ export default async function StudDetail({ params }) {
         <section id="offspring" className="bg-parchment/55 backdrop-blur-md px-5 pb-16 sm:px-8 sm:pb-20">
           <div className="mx-auto max-w-6xl border-t border-ink/10 pt-12">
             <Reveal>
-              <Eyebrow>Потомство</Eyebrow>
-              <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">Котята</h2>
+              <Eyebrow>{d.offspringEyebrow}</Eyebrow>
+              <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">{d.offspring}</h2>
               <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {kittens.map((k) => {
                   const src = k.images?.[0] ? urlForImage(k.images[0], 500) : null

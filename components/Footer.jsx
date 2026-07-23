@@ -1,12 +1,13 @@
 import Link from 'next/link'
-import { Phone, Send } from 'lucide-react'
+import { Phone, Facebook } from 'lucide-react'
 import { PineMark } from './ui'
+import { T } from '@/lib/dict'
 
 const DEFAULTS = {
   phone: '+7 911 732-58-02',
-  tel: 'tel:+79117325802',
-  telegram: 'https://t.me/+79117325802',
   whatsapp: 'https://wa.me/79117325802',
+  facebook: 'https://www.facebook.com/share/19UAQCUcGF/?mibextid=wwXIfr',
+  vk: 'https://vk.ru/summercherryspb',
 }
 
 function WhatsApp({ size = 18, className = '' }) {
@@ -17,11 +18,28 @@ function WhatsApp({ size = 18, className = '' }) {
   )
 }
 
-export default function Footer({ settings }) {
+function Vk({ size = 18, className = '' }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className} aria-hidden="true">
+      <path d="M.53.53C0 1.06 0 1.92 0 3.63v16.74c0 1.71 0 2.57.53 3.1S1.92 24 3.63 24h16.74c1.71 0 2.57 0 3.1-.53s.53-1.39.53-3.1V3.63c0-1.71 0-2.57-.53-3.1S22.08 0 20.37 0H3.63C1.92 0 1.06 0 .53.53Zm3.75 7.13h2.67c.09 4.69 2.17 6.69 3.81 7.1V7.66h2.51v3.86c1.62-.17 3.33-2.02 3.9-3.86h2.51c-.44 2.27-2.29 4.12-3.6 4.88 1.31.62 3.42 2.23 4.22 5.04h-2.76c-.63-1.95-2.19-3.46-4.27-3.66v3.66h-.3c-4.98 0-7.82-3.42-7.94-9.11Z" />
+    </svg>
+  )
+}
+
+export default function Footer({ settings, locale = 'ru' }) {
+  const d = T[locale].footer
+  const nav = T[locale].nav
   const phone = settings?.phone || DEFAULTS.phone
   const tel = `tel:${(settings?.phone || DEFAULTS.phone).replace(/[^\d+]/g, '')}`
-  const telegram = settings?.telegram || DEFAULTS.telegram
   const whatsapp = settings?.whatsapp || DEFAULTS.whatsapp
+  const facebook = settings?.facebook || DEFAULTS.facebook
+  const vk = settings?.vk || DEFAULTS.vk
+
+  const socials = [
+    { icon: Facebook, label: 'Facebook', href: facebook },
+    { icon: Vk, label: 'VK', href: vk },
+    { icon: WhatsApp, label: 'WhatsApp', href: whatsapp },
+  ]
 
   return (
     <footer id="contact" className="relative overflow-hidden bg-ink/85 backdrop-blur-md text-birch">
@@ -33,37 +51,38 @@ export default function Footer({ settings }) {
               <PineMark className="w-6 h-6 text-gold" />
               <span className="font-display text-2xl tracking-[0.2em]">SUMMER CHERRY</span>
             </div>
-            <p className="mt-6 max-w-sm font-serif text-xl italic leading-relaxed text-birch/80">
-              Питомник мейн-кунов родом из туманного северного леса. Крупные,
-              статные, с характером — и всегда с родословной.
-            </p>
+            <p className="mt-6 max-w-sm font-serif text-xl italic leading-relaxed text-birch/80">{d.blurb}</p>
             <div className="mt-8 flex gap-4">
-              {[
-                { icon: Send, label: 'Telegram', href: telegram, ext: true },
-                { icon: WhatsApp, label: 'WhatsApp', href: whatsapp, ext: true },
-                { icon: Phone, label: 'Телефон', href: tel, ext: false },
-              ].map(({ icon: Icon, label, href, ext }) => (
+              {socials.map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
                   href={href}
                   aria-label={label}
-                  {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-11 w-11 items-center justify-center border border-birch/25 text-birch/80 transition-colors duration-300 hover:border-gold hover:text-gold"
                 >
                   <Icon size={18} />
                 </a>
               ))}
+              <a
+                href={tel}
+                aria-label={phone}
+                className="flex h-11 w-11 items-center justify-center border border-birch/25 text-birch/80 transition-colors duration-300 hover:border-gold hover:text-gold"
+              >
+                <Phone size={18} />
+              </a>
             </div>
           </div>
 
           <div>
-            <h4 className="eyebrow text-gold">Разделы</h4>
+            <h4 className="eyebrow text-gold">{d.sections}</h4>
             <ul className="mt-6 space-y-3 font-sans text-sm tracking-[0.12em] text-birch/75">
               {[
-                { href: '/', label: 'Главная' },
-                { href: '/about', label: 'О нас' },
-                { href: '/kittens', label: 'Котята' },
-                { href: '/studs', label: 'Производители' },
+                { href: '/', label: nav.home },
+                { href: '/about', label: nav.about },
+                { href: '/kittens', label: nav.kittens },
+                { href: '/studs', label: nav.studs },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="link-underline transition-colors hover:text-gold">
@@ -75,7 +94,7 @@ export default function Footer({ settings }) {
           </div>
 
           <div>
-            <h4 className="eyebrow text-gold">Контакты</h4>
+            <h4 className="eyebrow text-gold">{d.contacts}</h4>
             <ul className="mt-6 space-y-4 font-sans text-sm tracking-[0.08em] text-birch/75">
               <li>
                 <a href={tel} className="flex items-center gap-3 transition-colors hover:text-gold">
@@ -83,13 +102,18 @@ export default function Footer({ settings }) {
                 </a>
               </li>
               <li>
-                <a href={telegram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-gold">
-                  <Send size={16} className="text-gold" /> Telegram
+                <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-gold">
+                  <WhatsApp size={16} className="text-gold" /> WhatsApp
                 </a>
               </li>
               <li>
-                <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-gold">
-                  <WhatsApp size={16} className="text-gold" /> WhatsApp
+                <a href={facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-gold">
+                  <Facebook size={16} className="text-gold" /> Facebook
+                </a>
+              </li>
+              <li>
+                <a href={vk} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-gold">
+                  <Vk size={16} className="text-gold" /> VK
                 </a>
               </li>
             </ul>
@@ -97,8 +121,8 @@ export default function Footer({ settings }) {
         </div>
 
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-birch/15 pt-8 text-[11px] tracking-[0.2em] text-birch/45 sm:flex-row">
-          <span>© {new Date().getFullYear()} SUMMER CHERRY · Питомник мейн-кунов</span>
-          <span className="uppercase">Разведение по стандарту WCF</span>
+          <span>© {new Date().getFullYear()} SUMMER CHERRY · {d.rights}</span>
+          <span className="uppercase">{d.standard}</span>
         </div>
       </div>
     </footer>

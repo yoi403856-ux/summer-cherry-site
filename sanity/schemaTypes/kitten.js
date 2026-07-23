@@ -29,6 +29,7 @@ export const kitten = {
       validation: (r) => r.required(),
     },
     { name: 'litter', title: 'Помёт', type: 'string' },
+    { name: 'litterEn', title: 'Помёт (English)', type: 'string' },
     { name: 'color', title: 'Окрас', type: 'string' },
     {
       name: 'sex',
@@ -52,6 +53,7 @@ export const kitten = {
       },
     },
     { name: 'description', title: 'Описание', type: 'text', rows: 4 },
+    { name: 'descriptionEn', title: 'Описание (English)', type: 'text', rows: 4 },
     { name: 'father', title: 'Отец', type: 'reference', to: [{ type: 'stud' }] },
     { name: 'mother', title: 'Мать', type: 'reference', to: [{ type: 'stud' }] },
     {

@@ -4,8 +4,9 @@ export const siteSettings = {
   type: 'document',
   fields: [
     { name: 'phone', title: 'Телефон', type: 'string' },
-    { name: 'telegram', title: 'Telegram (ссылка)', type: 'url' },
     { name: 'whatsapp', title: 'WhatsApp (ссылка)', type: 'url' },
+    { name: 'facebook', title: 'Facebook (ссылка)', type: 'url' },
+    { name: 'vk', title: 'ВКонтакте (ссылка)', type: 'url' },
     { name: 'email', title: 'E-mail', type: 'string' },
     {
       name: 'heroImages',

@@ -8,18 +8,10 @@ import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getKitten, getKittenSlugs } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
+import { getDict, getLocale } from '@/lib/i18n'
+import { statusMap, sexLabel, pick, dateLocale } from '@/lib/dict'
 
-export const revalidate = 60
 export const dynamicParams = true
-
-const statusMap = {
-  available: { label: 'Свободен', cls: 'bg-pine text-parchment' },
-  reserved: { label: 'Резерв', cls: 'bg-golddim text-ink' },
-  sold: { label: 'В новом доме', cls: 'bg-ink/70 text-parchment' },
-}
-
-const fmtDate = (iso) =>
-  iso ? new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) : '—'
 
 export async function generateStaticParams() {
   const slugs = await getKittenSlugs()
@@ -28,17 +20,23 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const k = await getKitten(params.slug)
-  return { title: k ? `${k.name} — котёнок Summer Cherry` : 'Котёнок' }
+  return { title: k ? `${k.name} — Summer Cherry` : 'Summer Cherry' }
 }
 
 export default async function KittenDetail({ params }) {
   const k = await getKitten(params.slug)
   if (!k) notFound()
 
+  const locale = getLocale()
+  const d = getDict().kittenDetail
   const images = (k.images || [])
     .map((img) => ({ display: urlForImageCrop(img, 1000, 1000), full: urlForImage(img, 1400) }))
     .filter((x) => x.display)
-  const s = statusMap[k.status] || statusMap.available
+  const s = statusMap[locale][k.status] || statusMap[locale].available
+  const litter = pick(locale, k.litter, k.litterEn)
+  const description = pick(locale, k.description, k.descriptionEn)
+  const fmtDate = (iso) =>
+    iso ? new Date(iso).toLocaleDateString(dateLocale[locale], { day: 'numeric', month: 'long', year: 'numeric' }) : '—'
 
   return (
     <article className="relative">
@@ -47,7 +45,7 @@ export default async function KittenDetail({ params }) {
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <Link href="/kittens" className="inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink/60 transition-colors hover:text-ink">
-              <ArrowLeft size={14} /> Все котята
+              <ArrowLeft size={14} /> {d.back}
             </Link>
           </Reveal>
         </div>
@@ -70,23 +68,23 @@ export default async function KittenDetail({ params }) {
           {/* info */}
           <Reveal delay={0.1}>
             <div>
-              <Eyebrow>{k.litter ? `Помёт «${k.litter.replace('Помёт ', '')}»` : 'Котёнок'}</Eyebrow>
+              <Eyebrow>{litter ? d.litterOf(litter.replace('Помёт ', '')) : d.kitten}</Eyebrow>
               <div className="mt-3 flex flex-wrap items-center gap-3">
                 <h1 className="font-display text-5xl leading-none text-ink sm:text-6xl">{k.name}</h1>
                 <span className={`px-3 py-1 font-sans text-[11px] uppercase tracking-[0.2em] ${s.cls}`}>{s.label}</span>
               </div>
               <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
-                <div><dt className="eyebrow text-golddim">Окрас</dt><dd className="mt-2 font-serif text-lg text-ink">{k.color || '—'}</dd></div>
-                <div><dt className="eyebrow text-golddim">Пол</dt><dd className="mt-2 font-serif text-lg text-ink">{k.sex || '—'}</dd></div>
-                <div><dt className="eyebrow text-golddim">Дата рождения</dt><dd className="mt-2 font-serif text-lg text-ink">{fmtDate(k.born)}</dd></div>
+                <div><dt className="eyebrow text-golddim">{d.color}</dt><dd className="mt-2 font-serif text-lg text-ink">{k.color || '—'}</dd></div>
+                <div><dt className="eyebrow text-golddim">{d.sex}</dt><dd className="mt-2 font-serif text-lg text-ink">{sexLabel(locale, k.sex) || '—'}</dd></div>
+                <div><dt className="eyebrow text-golddim">{d.born}</dt><dd className="mt-2 font-serif text-lg text-ink">{fmtDate(k.born)}</dd></div>
               </dl>
 
-              {k.description && (
-                <p className="mt-6 font-serif text-xl italic leading-relaxed text-ink/80">{k.description}</p>
+              {description && (
+                <p className="mt-6 font-serif text-xl italic leading-relaxed text-ink/80">{description}</p>
               )}
 
               <ul className="mt-8 space-y-2">
-                {['Привит по возрасту', 'Приучён к лотку и когтеточке', 'Ветпаспорт и родословная WCF', 'Договор купли-продажи'].map((t) => (
+                {d.checklist.map((t) => (
                   <li key={t} className="flex items-center gap-2 font-sans text-[14px] text-pinedeep">
                     <Check size={15} className="text-pine" /> {t}
                   </li>
@@ -95,15 +93,15 @@ export default async function KittenDetail({ params }) {
 
               {k.status !== 'sold' && (
                 <ContactLink className="mt-10 inline-flex w-full items-center justify-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine">
-                  Забронировать
+                  {d.book}
                 </ContactLink>
               )}
               <div className="mt-6 flex items-center gap-3 text-ink/45">
                 <PineMark className="h-4 w-4 text-golddim" />
-                <span className="font-sans text-[12px] tracking-[0.14em]">Питомник Summer Cherry</span>
+                <span className="font-sans text-[12px] tracking-[0.14em]">{d.cattery}</span>
               </div>
 
-              {(k.father || k.mother) && <ScrollHint targetId="parents" label="Родители ниже" />}
+              {(k.father || k.mother) && <ScrollHint targetId="parents" label={d.parentsHint} />}
             </div>
           </Reveal>
         </div>
@@ -114,10 +112,10 @@ export default async function KittenDetail({ params }) {
         <section id="parents" className="bg-parchment/55 backdrop-blur-md px-5 pb-16 sm:px-8 sm:pb-20">
           <div className="mx-auto max-w-6xl border-t border-ink/10 pt-12">
             <Reveal>
-              <Eyebrow>Родословная</Eyebrow>
-              <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">Родители</h2>
+              <Eyebrow>{d.pedigree}</Eyebrow>
+              <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">{d.parents}</h2>
               <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                {[{ p: k.father, role: 'Отец' }, { p: k.mother, role: 'Мать' }]
+                {[{ p: k.father, role: d.father }, { p: k.mother, role: d.mother }]
                   .filter((x) => x.p)
                   .map(({ p, role }) => {
                     const src = p.images?.[0] ? urlForImage(p.images[0], 500) : null
