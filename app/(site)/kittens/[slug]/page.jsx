@@ -94,7 +94,7 @@ export default async function KittenDetail({ params }) {
 
               {k.status !== 'sold' && (
                 <a href="#contact" className="mt-10 inline-flex w-full items-center justify-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine">
-                  Забронировать {k.name}
+                  Забронировать
                 </a>
               )}
               <div className="mt-6 flex items-center gap-3 text-ink/45">
