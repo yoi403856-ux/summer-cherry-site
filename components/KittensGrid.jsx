@@ -47,7 +47,7 @@ export default function KittensGrid({ items = [] }) {
         </p>
       </div>
 
-      <motion.div layout className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.div layout className="grid gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <AnimatePresence mode="popLayout">
           {list.map((k) => {
             const s = statusMap[k.status] || statusMap.available
@@ -63,10 +63,10 @@ export default function KittensGrid({ items = [] }) {
               >
                 <Link href={`/kittens/${k.slug}`} className="block">
                   <div className="relative">
-                    <CatPortrait coat={k.coat} alt={k.name} src={k.src} className="aspect-[8/5] w-full" />
+                    <CatPortrait coat={k.coat} alt={k.name} src={k.src} className="aspect-[4/5] w-full" />
                     <span className={`absolute left-4 top-4 px-3 py-1 font-sans text-[10px] uppercase tracking-[0.2em] ${s.cls}`}>{s.label}</span>
                   </div>
-                  <div className="mt-3 flex items-start justify-between gap-3">
+                  <div className="mt-4 flex items-start justify-between gap-3">
                     <div>
                       <h3 className="font-serif text-2xl leading-none text-ink">{k.name}</h3>
                       <p className="mt-2 font-sans text-[13px] tracking-wide text-ink/55">{k.color}</p>
@@ -74,14 +74,14 @@ export default function KittensGrid({ items = [] }) {
                     <span className="mt-1 font-sans text-[12px] uppercase tracking-[0.16em] text-golddim">{k.sex}</span>
                   </div>
                 </Link>
-                <dl className="mt-3 space-y-1 border-t border-ink/10 pt-3 font-sans text-[13px] text-ink/60">
+                <dl className="mt-4 space-y-1.5 border-t border-ink/10 pt-4 font-sans text-[13px] text-ink/60">
                   <div className="flex justify-between"><dt>Дата рождения</dt><dd className="text-ink/80">{fmtDate(k.born)}</dd></div>
                   <div className="flex justify-between"><dt>Помёт</dt><dd className="text-ink/80">{k.litter}</dd></div>
                   <div className="flex justify-between"><dt>Стоимость</dt><dd className="text-ink/80">{k.price}</dd></div>
                 </dl>
                 <Link
                   href={`/kittens/${k.slug}`}
-                  className="mt-3 inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.2em] text-ink transition-colors hover:text-golddim"
+                  className="mt-4 inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.2em] text-ink transition-colors hover:text-golddim"
                 >
                   Узнать подробнее
                   <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />

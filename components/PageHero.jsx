@@ -6,7 +6,7 @@ const easeOut = [0.22, 1, 0.36, 1]
 
 export default function PageHero({ eyebrow, title, lead }) {
   return (
-    <section className="relative flex min-h-[18vh] items-end overflow-hidden pb-4 pt-20 sm:min-h-[20vh] sm:pb-4 sm:pt-20">
+    <section className="relative flex min-h-[24vh] items-end overflow-hidden pb-6 pt-24 sm:min-h-[27vh] sm:pb-8 sm:pt-28">
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-parchment/90 via-parchment/40 to-transparent" />
       <div className="grain pointer-events-none absolute inset-0" />
 
@@ -23,7 +23,7 @@ export default function PageHero({ eyebrow, title, lead }) {
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.12, ease: easeOut }}
-          className="mt-4 font-display text-6xl leading-[0.9] tracking-tight text-ink sm:text-8xl"
+          className="mt-4 font-display text-5xl leading-[0.95] tracking-tight text-ink sm:text-7xl"
         >
           {title}
         </motion.h1>

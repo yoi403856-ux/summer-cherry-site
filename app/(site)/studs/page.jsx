@@ -4,7 +4,7 @@ import PageHero from '@/components/PageHero'
 import CatPortrait from '@/components/CatPortrait'
 import { Reveal, Eyebrow } from '@/components/ui'
 import { getStuds } from '@/lib/api'
-import { urlForImage } from '@/sanity/image'
+import { urlForImageCrop } from '@/sanity/image'
 
 export const metadata = { title: 'Производители — Summer Cherry' }
 export const revalidate = 60
@@ -20,17 +20,17 @@ export default async function StudsPage() {
         <div className="mx-auto max-w-6xl space-y-16 px-5 sm:space-y-24 sm:px-8">
           {studs.map((c, i) => {
             const flip = i % 2 === 1
-            const src = c.images?.[0] ? urlForImage(c.images[0], 900) : null
+            const src = c.images?.[0] ? urlForImageCrop(c.images[0], 720, 900) : null
             return (
               <Reveal key={c._id}>
                 <article className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
                   {c.slug ? (
                     <Link href={`/studs/${c.slug}`} className={`group block ${flip ? 'md:order-2' : ''}`}>
-                      <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card md:aspect-auto md:h-[52vh]" />
+                      <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
                     </Link>
                   ) : (
                     <div className={`group ${flip ? 'md:order-2' : ''}`}>
-                      <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card md:aspect-auto md:h-[52vh]" />
+                      <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
                     </div>
                   )}
                   <div className={flip ? 'md:order-1' : ''}>

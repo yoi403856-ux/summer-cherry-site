@@ -20,7 +20,7 @@ export default async function KittensPage() {
     price: k.price,
     status: k.status,
     coat: k.coat || null,
-    src: k.images?.[0] ? urlForImageCrop(k.images[0], 800, 500) : null,
+    src: k.images?.[0] ? urlForImageCrop(k.images[0], 640, 800) : null,
   }))
 
   return (
