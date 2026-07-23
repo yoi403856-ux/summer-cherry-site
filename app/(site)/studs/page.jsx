@@ -16,8 +16,8 @@ export default async function StudsPage() {
     <>
       <PageHero eyebrow="Производители" title="Наши линии" lead="Проверенные, титулованные и здоровые кошки — основа каждого помёта Summer Cherry." />
 
-      <section className="bg-parchment/50 backdrop-blur-md pb-20 pt-8 sm:pb-28 sm:pt-10">
-        <div className="mx-auto max-w-6xl space-y-16 px-5 sm:space-y-24 sm:px-8">
+      <section className="bg-parchment/50 backdrop-blur-md pb-20 pt-4 sm:pb-28 sm:pt-6">
+        <div className="mx-auto max-w-6xl space-y-14 px-5 sm:space-y-20 sm:px-8">
           {studs.map((c, i) => {
             const flip = i % 2 === 1
             const src = c.images?.[0] ? urlForImageCrop(c.images[0], 720, 900) : null
@@ -25,11 +25,11 @@ export default async function StudsPage() {
               <Reveal key={c._id}>
                 <article className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
                   {c.slug ? (
-                    <Link href={`/studs/${c.slug}`} className={`group block ${flip ? 'md:order-2' : ''}`}>
+                    <Link href={`/studs/${c.slug}`} className={`group block md:max-w-[420px] ${flip ? 'md:order-2 md:ml-auto' : ''}`}>
                       <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
                     </Link>
                   ) : (
-                    <div className={`group ${flip ? 'md:order-2' : ''}`}>
+                    <div className={`group md:max-w-[420px] ${flip ? 'md:order-2 md:ml-auto' : ''}`}>
                       <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
                     </div>
                   )}

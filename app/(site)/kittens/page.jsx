@@ -27,7 +27,7 @@ export default async function KittensPage() {
     <>
       <PageHero eyebrow="Котята" title="Малыши" lead="Котята Summer Cherry уезжают в новый дом с полным пакетом документов, привитыми и социализированными." />
 
-      <section className="bg-parchment/50 backdrop-blur-md pb-20 pt-5 sm:pb-28 sm:pt-6">
+      <section className="bg-parchment/50 backdrop-blur-md pb-20 pt-4 sm:pb-28 sm:pt-5">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <KittensGrid items={items} />
         </div>
