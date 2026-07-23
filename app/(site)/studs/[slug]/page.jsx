@@ -4,8 +4,9 @@ import { ArrowLeft, Check, Weight, Award } from 'lucide-react'
 import CatPortrait from '@/components/CatPortrait'
 import KittenGallery from '@/components/KittenGallery'
 import ContactLink from '@/components/ContactLink'
+import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
-import { getStud, getStudSlugs } from '@/lib/api'
+import { getStud, getStudSlugs, getKittensByStud } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
 
 export const revalidate = 60
@@ -28,6 +29,7 @@ export default async function StudDetail({ params }) {
   const images = (c.images || [])
     .map((img) => ({ display: urlForImageCrop(img, 1000, 1000), full: urlForImage(img, 1400) }))
     .filter((x) => x.display)
+  const kittens = await getKittensByStud(c._id)
 
   return (
     <article className="relative">
@@ -41,7 +43,7 @@ export default async function StudDetail({ params }) {
         </div>
       </section>
 
-      <section className="bg-parchment/65 backdrop-blur-md px-5 py-8 sm:px-8 sm:py-12">
+      <section className="bg-parchment/55 backdrop-blur-md px-5 py-8 sm:px-8 sm:py-12">
         <div className="mx-auto grid max-w-6xl items-start gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
           <Reveal>
             {images.length > 0 ? (
@@ -93,10 +95,44 @@ export default async function StudDetail({ params }) {
                 <PineMark className="h-4 w-4 text-golddim" />
                 <span className="font-sans text-[12px] tracking-[0.14em]">Питомник Summer Cherry</span>
               </div>
+
+              {kittens.length > 0 && <ScrollHint targetId="offspring" label="Котята ниже" />}
             </div>
           </Reveal>
         </div>
       </section>
+
+      {/* offspring */}
+      {kittens.length > 0 && (
+        <section id="offspring" className="bg-parchment/55 backdrop-blur-md px-5 pb-16 sm:px-8 sm:pb-20">
+          <div className="mx-auto max-w-6xl border-t border-ink/10 pt-12">
+            <Reveal>
+              <Eyebrow>Потомство</Eyebrow>
+              <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">Котята</h2>
+              <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {kittens.map((k) => {
+                  const src = k.images?.[0] ? urlForImage(k.images[0], 500) : null
+                  return (
+                    <Link
+                      key={k._id}
+                      href={`/kittens/${k.slug}`}
+                      className="group flex items-center gap-5 border border-ink/10 bg-parchment/40 p-4 transition-colors hover:border-pine/40"
+                    >
+                      <div className="h-24 w-24 shrink-0 overflow-hidden">
+                        <CatPortrait src={src} alt={k.name} className="h-full w-full" />
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-2xl text-ink">{k.name}</h3>
+                        <p className="mt-1 font-sans text-[13px] text-ink/55">{k.color || ''}</p>
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
     </article>
   )
 }

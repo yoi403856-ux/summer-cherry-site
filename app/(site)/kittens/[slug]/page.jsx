@@ -4,6 +4,7 @@ import { ArrowLeft, Check } from 'lucide-react'
 import CatPortrait from '@/components/CatPortrait'
 import KittenGallery from '@/components/KittenGallery'
 import ContactLink from '@/components/ContactLink'
+import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getKitten, getKittenSlugs } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
@@ -53,7 +54,7 @@ export default async function KittenDetail({ params }) {
       </section>
 
       {/* body */}
-      <section className="bg-parchment/65 backdrop-blur-md px-5 py-8 sm:px-8 sm:py-12">
+      <section className="bg-parchment/55 backdrop-blur-md px-5 py-8 sm:px-8 sm:py-12">
         <div className="mx-auto grid max-w-6xl items-start gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
           {/* gallery */}
           <Reveal>
@@ -101,6 +102,8 @@ export default async function KittenDetail({ params }) {
                 <PineMark className="h-4 w-4 text-golddim" />
                 <span className="font-sans text-[12px] tracking-[0.14em]">Питомник Summer Cherry</span>
               </div>
+
+              {(k.father || k.mother) && <ScrollHint targetId="parents" label="Родители ниже" />}
             </div>
           </Reveal>
         </div>
@@ -108,7 +111,7 @@ export default async function KittenDetail({ params }) {
 
       {/* parents */}
       {(k.father || k.mother) && (
-        <section className="bg-parchment/65 backdrop-blur-md px-5 pb-16 sm:px-8 sm:pb-20">
+        <section id="parents" className="bg-parchment/55 backdrop-blur-md px-5 pb-16 sm:px-8 sm:pb-20">
           <div className="mx-auto max-w-6xl border-t border-ink/10 pt-12">
             <Reveal>
               <Eyebrow>Родословная</Eyebrow>
