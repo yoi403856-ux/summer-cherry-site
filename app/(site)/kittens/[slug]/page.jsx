@@ -38,28 +38,20 @@ export default async function KittenDetail({ params }) {
 
   return (
     <article className="relative">
-      {/* header */}
-      <section className="relative px-5 pb-6 pt-24 sm:px-8 sm:pt-28">
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-parchment/65 to-transparent" />
-        <div className="relative mx-auto max-w-6xl">
+      {/* slim top bar */}
+      <section className="px-5 pb-2 pt-24 sm:px-8 sm:pt-28">
+        <div className="mx-auto max-w-6xl">
           <Reveal>
             <Link href="/kittens" className="inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink/60 transition-colors hover:text-ink">
               <ArrowLeft size={14} /> Все котята
             </Link>
-            <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <Eyebrow>{k.litter ? `Помёт «${k.litter.replace('Помёт ', '')}»` : 'Котёнок'}</Eyebrow>
-                <h1 className="mt-3 font-display text-4xl leading-none text-ink sm:text-6xl">{k.name}</h1>
-              </div>
-              <span className={`px-4 py-1.5 font-sans text-[11px] uppercase tracking-[0.2em] ${s.cls}`}>{s.label}</span>
-            </div>
           </Reveal>
         </div>
       </section>
 
       {/* body */}
       <section className="bg-parchment/65 backdrop-blur-md px-5 py-8 sm:px-8 sm:py-12">
-        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.15fr_0.85fr] md:gap-16">
+        <div className="mx-auto grid max-w-6xl items-start gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
           {/* gallery */}
           <Reveal>
             {images.length > 0 ? (
@@ -73,8 +65,13 @@ export default async function KittenDetail({ params }) {
 
           {/* info */}
           <Reveal delay={0.1}>
-            <div className="md:sticky md:top-28">
-              <dl className="grid grid-cols-2 gap-y-6 border-y border-ink/10 py-8">
+            <div>
+              <Eyebrow>{k.litter ? `Помёт «${k.litter.replace('Помёт ', '')}»` : 'Котёнок'}</Eyebrow>
+              <div className="mt-3 flex flex-wrap items-center gap-3">
+                <h1 className="font-display text-5xl leading-none text-ink sm:text-6xl">{k.name}</h1>
+                <span className={`px-3 py-1 font-sans text-[11px] uppercase tracking-[0.2em] ${s.cls}`}>{s.label}</span>
+              </div>
+              <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
                 <div><dt className="eyebrow text-golddim">Окрас</dt><dd className="mt-2 font-serif text-lg text-ink">{k.color || '—'}</dd></div>
                 <div><dt className="eyebrow text-golddim">Пол</dt><dd className="mt-2 font-serif text-lg text-ink">{k.sex || '—'}</dd></div>
                 <div><dt className="eyebrow text-golddim">Дата рождения</dt><dd className="mt-2 font-serif text-lg text-ink">{fmtDate(k.born)}</dd></div>
@@ -82,7 +79,7 @@ export default async function KittenDetail({ params }) {
               </dl>
 
               {k.description && (
-                <p className="mt-8 font-sans text-[16px] leading-[1.85] text-ink/75">{k.description}</p>
+                <p className="mt-6 font-serif text-xl italic leading-relaxed text-ink/80">{k.description}</p>
               )}
 
               <ul className="mt-8 space-y-2">
