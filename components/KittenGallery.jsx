@@ -9,6 +9,8 @@ export default function KittenGallery({ images = [], name = '' }) {
   const [open, setOpen] = useState(false)
   const touchX = useRef(null)
 
+  // accept either plain url strings or { display, full } objects
+  const imgs = images.map((x) => (typeof x === 'string' ? { display: x, full: x } : x))
   const multi = images.length > 1
   const prev = useCallback(() => setActive((a) => (a - 1 + images.length) % images.length), [images.length])
   const next = useCallback(() => setActive((a) => (a + 1) % images.length), [images.length])
@@ -46,17 +48,12 @@ export default function KittenGallery({ images = [], name = '' }) {
     <div>
       {/* main image — height fits the viewport; click to open fullscreen */}
       <div
-        className="group relative h-[44vh] w-full cursor-zoom-in overflow-hidden bg-coal shadow-card sm:h-[52vh] lg:h-[62vh]"
+        className="group relative aspect-[4/5] w-full cursor-zoom-in overflow-hidden bg-coal shadow-card"
         onClick={() => setOpen(true)}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        {/* blurred fill so the un-cropped portrait photo has no empty side bars */}
-        <div
-          className="absolute inset-0 scale-110 bg-cover bg-center opacity-50 blur-2xl"
-          style={{ backgroundImage: `url(${images[active]})` }}
-        />
-        <img src={images[active]} alt={name} className="relative h-full w-full object-contain" />
+        <img src={imgs[active].display} alt={name} className="h-full w-full object-cover" />
         <span className="pointer-events-none absolute right-3 top-3 flex h-9 w-9 items-center justify-center bg-ink/50 text-parchment opacity-0 transition-opacity group-hover:opacity-100">
           <Expand size={16} />
         </span>
@@ -78,7 +75,7 @@ export default function KittenGallery({ images = [], name = '' }) {
       {/* thumbnails */}
       {multi && (
         <div className="mt-4 grid grid-cols-5 gap-2 sm:gap-3">
-          {images.map((src, i) => (
+          {imgs.map((im, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
@@ -87,7 +84,7 @@ export default function KittenGallery({ images = [], name = '' }) {
                 i === active ? 'ring-2 ring-pine ring-offset-2 ring-offset-parchment' : 'opacity-60 hover:opacity-100'
               }`}
             >
-              <img src={src} alt={`${name} ${i + 1}`} className="h-full w-full object-cover" />
+              <img src={im.display} alt={`${name} ${i + 1}`} className="h-full w-full object-cover" />
             </button>
           ))}
         </div>
@@ -105,7 +102,7 @@ export default function KittenGallery({ images = [], name = '' }) {
             <X size={30} />
           </button>
           <img
-            src={images[active]}
+            src={imgs[active].full}
             alt={name}
             className="max-h-[88vh] max-w-[92vw] object-contain"
             onClick={(e) => e.stopPropagation()}

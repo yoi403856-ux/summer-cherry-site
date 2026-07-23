@@ -1,4 +1,5 @@
-import { Check, Weight, Award } from 'lucide-react'
+import Link from 'next/link'
+import { Check, Weight, Award, ArrowRight } from 'lucide-react'
 import PageHero from '@/components/PageHero'
 import CatPortrait from '@/components/CatPortrait'
 import { Reveal, Eyebrow } from '@/components/ui'
@@ -23,12 +24,22 @@ export default async function StudsPage() {
             return (
               <Reveal key={c._id}>
                 <article className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-                  <div className={`group ${flip ? 'md:order-2' : ''}`}>
-                    <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
-                  </div>
+                  {c.slug ? (
+                    <Link href={`/studs/${c.slug}`} className={`group block ${flip ? 'md:order-2' : ''}`}>
+                      <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
+                    </Link>
+                  ) : (
+                    <div className={`group ${flip ? 'md:order-2' : ''}`}>
+                      <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
+                    </div>
+                  )}
                   <div className={flip ? 'md:order-1' : ''}>
                     <Eyebrow>{c.role}</Eyebrow>
-                    <h2 className="mt-4 font-serif text-5xl leading-none text-ink">{c.call}</h2>
+                    {c.slug ? (
+                      <Link href={`/studs/${c.slug}`} className="mt-4 block font-serif text-5xl leading-none text-ink transition-colors hover:text-pine">{c.call}</Link>
+                    ) : (
+                      <h2 className="mt-4 font-serif text-5xl leading-none text-ink">{c.call}</h2>
+                    )}
                     <p className="mt-2 font-sans text-[13px] uppercase tracking-[0.22em] text-ink/45">{c.name}</p>
                     <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
                       {c.color && (
@@ -61,6 +72,12 @@ export default async function StudsPage() {
                           ))}
                         </ul>
                       </div>
+                    )}
+                    {c.slug && (
+                      <Link href={`/studs/${c.slug}`} className="group mt-8 inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink transition-colors hover:text-golddim">
+                        Смотреть профиль
+                        <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                      </Link>
                     )}
                   </div>
                 </article>

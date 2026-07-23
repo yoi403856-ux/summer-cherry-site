@@ -5,7 +5,7 @@ import CatPortrait from '@/components/CatPortrait'
 import KittenGallery from '@/components/KittenGallery'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getKitten, getKittenSlugs } from '@/lib/api'
-import { urlForImage } from '@/sanity/image'
+import { urlForImage, urlForImageCrop } from '@/sanity/image'
 
 export const revalidate = 60
 export const dynamicParams = true
@@ -33,7 +33,9 @@ export default async function KittenDetail({ params }) {
   const k = await getKitten(params.slug)
   if (!k) notFound()
 
-  const images = (k.images || []).map((img) => urlForImage(img, 1100)).filter(Boolean)
+  const images = (k.images || [])
+    .map((img) => ({ display: urlForImageCrop(img, 900, 1125), full: urlForImage(img, 1400) }))
+    .filter((x) => x.display)
   const s = statusMap[k.status] || statusMap.available
 
   return (
@@ -110,14 +112,14 @@ export default async function KittenDetail({ params }) {
           <div className="mx-auto max-w-6xl border-t border-ink/10 pt-12">
             <Reveal>
               <Eyebrow>Родословная</Eyebrow>
-              <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">Родители {k.name}</h2>
+              <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">Родители</h2>
               <div className="mt-8 grid gap-6 sm:grid-cols-2">
                 {[{ p: k.father, role: 'Отец' }, { p: k.mother, role: 'Мать' }]
                   .filter((x) => x.p)
                   .map(({ p, role }) => {
                     const src = p.images?.[0] ? urlForImage(p.images[0], 500) : null
-                    return (
-                      <div key={p._id} className="group flex items-center gap-5 border border-ink/10 bg-parchment/40 p-4">
+                    const inner = (
+                      <>
                         <div className="h-24 w-24 shrink-0 overflow-hidden">
                           <CatPortrait src={src} alt={p.call || p.name} className="h-full w-full" />
                         </div>
@@ -126,7 +128,13 @@ export default async function KittenDetail({ params }) {
                           <h3 className="mt-1 font-serif text-2xl text-ink">{p.call || p.name}</h3>
                           <p className="mt-1 font-sans text-[13px] text-ink/55">{p.color || ''}</p>
                         </div>
-                      </div>
+                      </>
+                    )
+                    const cls = 'group flex items-center gap-5 border border-ink/10 bg-parchment/40 p-4 transition-colors'
+                    return p.slug ? (
+                      <Link key={p._id} href={`/studs/${p.slug}`} className={`${cls} hover:border-pine/40`}>{inner}</Link>
+                    ) : (
+                      <div key={p._id} className={cls}>{inner}</div>
                     )
                   })}
               </div>

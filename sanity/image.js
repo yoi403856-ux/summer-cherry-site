@@ -10,3 +10,9 @@ export function urlForImage(source, width) {
   if (width) img = img.width(width)
   return img.url()
 }
+
+// cropped to an exact aspect using the editor's crop + hotspot from the panel
+export function urlForImageCrop(source, w, h) {
+  if (!builder || !source) return null
+  return builder.image(source).width(w).height(h).fit('crop').auto('format').url()
+}
