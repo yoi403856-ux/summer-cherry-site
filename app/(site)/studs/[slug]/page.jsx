@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, Check, Weight, Award } from 'lucide-react'
 import CatPortrait from '@/components/CatPortrait'
 import KittenGallery from '@/components/KittenGallery'
+import ContactLink from '@/components/ContactLink'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getStud, getStudSlugs } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
@@ -85,9 +86,9 @@ export default async function StudDetail({ params }) {
                 </div>
               )}
 
-              <a href="#contact" className="mt-10 inline-flex w-full items-center justify-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine">
+              <ContactLink className="mt-10 inline-flex w-full items-center justify-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine">
                 Связаться с питомником
-              </a>
+              </ContactLink>
               <div className="mt-6 flex items-center gap-3 text-ink/45">
                 <PineMark className="h-4 w-4 text-golddim" />
                 <span className="font-sans text-[12px] tracking-[0.14em]">Питомник Summer Cherry</span>

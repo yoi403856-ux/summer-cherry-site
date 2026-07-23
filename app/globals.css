@@ -6,9 +6,13 @@
   color-scheme: light;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/*
+  Global scroll-behavior:smooth was removed — it makes mouse-wheel scrolling
+  choppy (every wheel tick restarts its own scroll animation, and rapid
+  ticks fight each other). Anchor links get an explicit smooth scroll via
+  JS in components/ContactLink.jsx instead, so wheel scrolling stays native
+  and jank-free while "Связаться" links still glide smoothly.
+*/
 
 body {
   margin: 0;

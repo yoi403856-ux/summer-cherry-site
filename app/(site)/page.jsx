@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowRight, ShieldCheck, HeartHandshake, Trees, Award } from 'lucide-react'
 import CatPortrait from '@/components/CatPortrait'
 import HeroMosaic from '@/components/HeroMosaic'
+import ContactLink from '@/components/ContactLink'
 import { Reveal, Eyebrow, Divider, PineMark } from '@/components/ui'
 import { getStuds, getSettings } from '@/lib/api'
 import { getLocalHeroImages } from '@/lib/heroImages'
@@ -203,9 +204,9 @@ export default async function Home() {
                 Смотреть котят
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Link>
-              <a href="#contact" className="border border-ink/25 px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-ink transition-colors duration-300 hover:bg-ink hover:text-parchment">
+              <ContactLink className="border border-ink/25 px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-ink transition-colors duration-300 hover:bg-ink hover:text-parchment">
                 Написать нам
-              </a>
+              </ContactLink>
             </div>
           </Reveal>
         </div>

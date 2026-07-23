@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import ContactLink from './ContactLink'
 
 const links = [
   { href: '/', label: 'Главная' },
@@ -61,12 +62,9 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <a
-              href="#contact"
-              className="ml-2 border border-ink/25 px-5 py-2.5 font-sans text-[12px] uppercase tracking-[0.24em] text-ink transition-colors duration-300 hover:bg-ink hover:text-parchment"
-            >
+            <ContactLink className="ml-2 border border-ink/25 px-5 py-2.5 font-sans text-[12px] uppercase tracking-[0.24em] text-ink transition-colors duration-300 hover:bg-ink hover:text-parchment">
               Связаться
-            </a>
+            </ContactLink>
           </nav>
 
           <button
