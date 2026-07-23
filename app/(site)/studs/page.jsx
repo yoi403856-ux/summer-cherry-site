@@ -16,7 +16,7 @@ export default async function StudsPage() {
     <>
       <PageHero eyebrow="Производители" title="Наши линии" lead="Проверенные, титулованные и здоровые кошки — основа каждого помёта Summer Cherry." />
 
-      <section className="bg-parchment/50 backdrop-blur-md pb-20 pt-4 sm:pb-28 sm:pt-6">
+      <section className="bg-parchment/50 backdrop-blur-md py-10 sm:py-14">
         <div className="mx-auto max-w-6xl space-y-14 px-5 sm:space-y-20 sm:px-8">
           {studs.map((c, i) => {
             const flip = i % 2 === 1
