@@ -39,7 +39,7 @@ export default async function KittenDetail({ params }) {
   return (
     <article className="relative">
       {/* header */}
-      <section className="relative px-5 pb-8 pt-28 sm:px-8 sm:pt-32">
+      <section className="relative px-5 pb-6 pt-24 sm:px-8 sm:pt-28">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-parchment/65 to-transparent" />
         <div className="relative mx-auto max-w-6xl">
           <Reveal>
@@ -49,7 +49,7 @@ export default async function KittenDetail({ params }) {
             <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <Eyebrow>{k.litter ? `Помёт «${k.litter.replace('Помёт ', '')}»` : 'Котёнок'}</Eyebrow>
-                <h1 className="mt-3 font-display text-5xl leading-none text-ink sm:text-7xl">{k.name}</h1>
+                <h1 className="mt-3 font-display text-4xl leading-none text-ink sm:text-6xl">{k.name}</h1>
               </div>
               <span className={`px-4 py-1.5 font-sans text-[11px] uppercase tracking-[0.2em] ${s.cls}`}>{s.label}</span>
             </div>
@@ -58,7 +58,7 @@ export default async function KittenDetail({ params }) {
       </section>
 
       {/* body */}
-      <section className="bg-parchment/65 backdrop-blur-md px-5 py-12 sm:px-8 sm:py-16">
+      <section className="bg-parchment/65 backdrop-blur-md px-5 py-8 sm:px-8 sm:py-12">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.15fr_0.85fr] md:gap-16">
           {/* gallery */}
           <Reveal>
