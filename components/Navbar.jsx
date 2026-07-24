@@ -7,20 +7,26 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import ContactLink from './ContactLink'
 import LangToggle from './LangToggle'
-import { useDict } from './LocaleProvider'
+import { useDict, useLocale } from './LocaleProvider'
+import { pick } from '@/lib/dict'
 
 const links = [
-  { href: '/', key: 'home' },
-  { href: '/about', key: 'about' },
-  { href: '/kittens', key: 'kittens' },
-  { href: '/studs', key: 'studs' },
+  { href: '/', key: 'home', settingsKey: 'navHome' },
+  { href: '/about', key: 'about', settingsKey: 'navAbout' },
+  { href: '/kittens', key: 'kittens', settingsKey: 'navKittens' },
+  { href: '/studs', key: 'studs', settingsKey: 'navStuds' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ settings }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const locale = useLocale()
   const d = useDict()
+
+  const navLabel = (key, settingsKey) =>
+    pick(locale, settings?.[settingsKey], settings?.[`${settingsKey}En`]) || d.nav[key]
+  const contactLabel = pick(locale, settings?.navContact, settings?.navContactEn) || d.nav.contact
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -62,11 +68,11 @@ export default function Navbar() {
                   isActive(l.href) ? 'text-golddim' : 'text-ink/75 hover:text-ink'
                 }`}
               >
-                {d.nav[l.key]}
+                {navLabel(l.key, l.settingsKey)}
               </Link>
             ))}
             <ContactLink className="ml-2 border border-ink/25 px-5 py-2.5 font-sans text-[12px] uppercase tracking-[0.24em] text-ink transition-colors duration-300 hover:bg-ink hover:text-parchment">
-              {d.nav.contact}
+              {contactLabel}
             </ContactLink>
             <LangToggle className="ml-1" />
           </nav>
@@ -106,7 +112,7 @@ export default function Navbar() {
                     onClick={() => setOpen(false)}
                     className={`font-serif text-3xl ${isActive(l.href) ? 'text-golddim italic' : 'text-ink'}`}
                   >
-                    {d.nav[l.key]}
+                    {navLabel(l.key, l.settingsKey)}
                   </Link>
                 </motion.div>
               ))}

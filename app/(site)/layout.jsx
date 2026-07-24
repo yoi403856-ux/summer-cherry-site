@@ -13,7 +13,7 @@ export default async function SiteLayout({ children }) {
   return (
     <LocaleProvider locale={locale}>
       <SiteBackground photoUrl={forest} />
-      <Navbar />
+      <Navbar settings={settings} />
       <main>{children}</main>
       <Footer settings={settings} locale={locale} />
     </LocaleProvider>

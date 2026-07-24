@@ -1,3 +1,8 @@
+const bilingual = (name, title, type = 'string', extra = {}) => [
+  { name, title: `${title}`, type, ...extra },
+  { name: `${name}En`, title: `${title} (English)`, type, ...extra },
+]
+
 export const siteSettings = {
   name: 'siteSettings',
   title: 'Настройки сайта',
@@ -8,6 +13,15 @@ export const siteSettings = {
     { name: 'facebook', title: 'Facebook (ссылка)', type: 'url' },
     { name: 'vk', title: 'ВКонтакте (ссылка)', type: 'url' },
     { name: 'email', title: 'E-mail', type: 'string' },
+
+    ...bilingual('navHome', 'Меню — «Главная»'),
+    ...bilingual('navAbout', 'Меню — «О нас»'),
+    ...bilingual('navKittens', 'Меню — «Котята»'),
+    ...bilingual('navStuds', 'Меню — «Производители»'),
+    ...bilingual('navContact', 'Меню — кнопка «Связаться»'),
+
+    ...bilingual('footerBlurb', 'Подвал — текст под логотипом', 'text', { rows: 3 }),
+
     {
       name: 'heroImages',
       title: 'Фото для мозаики на главной',

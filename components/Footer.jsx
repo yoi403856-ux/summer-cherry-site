@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Phone, Facebook } from 'lucide-react'
 import { PineMark } from './ui'
 import { WhatsApp, Vk } from './icons'
-import { T } from '@/lib/dict'
+import { T, pick } from '@/lib/dict'
 
 const DEFAULTS = {
   phone: '+7 911 732-58-02',
@@ -14,6 +14,8 @@ const DEFAULTS = {
 export default function Footer({ settings, locale = 'ru' }) {
   const d = T[locale].footer
   const nav = T[locale].nav
+  const blurb = pick(locale, settings?.footerBlurb, settings?.footerBlurbEn) || d.blurb
+  const navLabel = (key, settingsKey) => pick(locale, settings?.[settingsKey], settings?.[`${settingsKey}En`]) || nav[key]
   const phone = settings?.phone || DEFAULTS.phone
   const tel = `tel:${(settings?.phone || DEFAULTS.phone).replace(/[^\d+]/g, '')}`
   const whatsapp = settings?.whatsapp || DEFAULTS.whatsapp
@@ -36,7 +38,7 @@ export default function Footer({ settings, locale = 'ru' }) {
               <PineMark className="w-6 h-6 text-gold" />
               <span className="font-display text-2xl tracking-[0.2em]">SUMMER CHERRY</span>
             </div>
-            <p className="mt-6 max-w-sm font-serif text-xl italic leading-relaxed text-birch/80">{d.blurb}</p>
+            <p className="mt-6 max-w-sm font-serif text-xl italic leading-relaxed text-birch/80">{blurb}</p>
             <div className="mt-8 flex gap-4">
               {socials.map(({ icon: Icon, label, href }) => (
                 <a
@@ -64,10 +66,10 @@ export default function Footer({ settings, locale = 'ru' }) {
             <h4 className="eyebrow text-gold">{d.sections}</h4>
             <ul className="mt-6 space-y-3 font-sans text-sm tracking-[0.12em] text-birch/75">
               {[
-                { href: '/', label: nav.home },
-                { href: '/about', label: nav.about },
-                { href: '/kittens', label: nav.kittens },
-                { href: '/studs', label: nav.studs },
+                { href: '/', label: navLabel('home', 'navHome') },
+                { href: '/about', label: navLabel('about', 'navAbout') },
+                { href: '/kittens', label: navLabel('kittens', 'navKittens') },
+                { href: '/studs', label: navLabel('studs', 'navStuds') },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="link-underline transition-colors hover:text-gold">
