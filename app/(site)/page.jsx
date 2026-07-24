@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, ShieldCheck, HeartHandshake, Trees, Award } from 'lucide-react'
+import { ArrowRight, ShieldCheck, HeartHandshake, Trees, Award, Globe } from 'lucide-react'
 import CatPortrait from '@/components/CatPortrait'
 import HeroMosaic from '@/components/HeroMosaic'
 import ContactPopover from '@/components/ContactPopover'
@@ -87,7 +87,11 @@ export default async function Home() {
           {d.stats.map((s, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <div className="flex flex-col items-center py-12">
-                <span className="font-display text-5xl text-pine sm:text-6xl">{s.n}</span>
+                {s.n ? (
+                  <span className="font-display text-5xl text-pine sm:text-6xl">{s.n}</span>
+                ) : (
+                  <Globe className="h-10 w-10 text-pine sm:h-12 sm:w-12" strokeWidth={1.3} />
+                )}
                 <span className="mt-3 eyebrow text-center text-golddim">{s.l}</span>
               </div>
             </Reveal>
