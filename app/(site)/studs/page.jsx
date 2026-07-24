@@ -5,15 +5,15 @@ import CatPortrait from '@/components/CatPortrait'
 import { Reveal, Eyebrow } from '@/components/ui'
 import { getStuds } from '@/lib/api'
 import { urlForImageCrop } from '@/sanity/image'
-import { getDict, getLocale } from '@/lib/i18n'
+import { getLocale } from '@/lib/i18n'
 import { roleLabel, pick, pickList } from '@/lib/dict'
+import { getStudsContent } from '@/lib/content'
 
 export const metadata = { title: 'Производители — Summer Cherry' }
 
 export default async function StudsPage() {
-  const studs = await getStuds()
   const locale = getLocale()
-  const d = getDict().studs
+  const [studs, d] = await Promise.all([getStuds(), getStudsContent(locale)])
 
   return (
     <>

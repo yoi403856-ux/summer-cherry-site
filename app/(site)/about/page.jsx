@@ -4,16 +4,17 @@ import CatPortrait from '@/components/CatPortrait'
 import { Reveal, Eyebrow, Divider, PineMark } from '@/components/ui'
 import { getSettings } from '@/lib/api'
 import { urlForImageCrop } from '@/sanity/image'
-import { getDict } from '@/lib/i18n'
+import { getDict, getLocale } from '@/lib/i18n'
+import { getAboutContent } from '@/lib/content'
 
 export const metadata = { title: 'О нас — Summer Cherry' }
 
 const featureIcons = [MapPin, CalendarDays, Sparkles]
 
 export default async function About() {
-  const settings = await getSettings()
+  const locale = getLocale()
+  const [settings, d] = await Promise.all([getSettings(), getAboutContent(locale)])
   const dict = getDict()
-  const d = dict.about
   const aboutSrc = settings?.aboutPhoto ? urlForImageCrop(settings.aboutPhoto, 800, 1000) : null
 
   return (

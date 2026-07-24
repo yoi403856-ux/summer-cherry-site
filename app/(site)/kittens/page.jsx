@@ -3,15 +3,15 @@ import KittensGrid from '@/components/KittensGrid'
 import { Reveal, Eyebrow, Divider } from '@/components/ui'
 import { getKittens } from '@/lib/api'
 import { urlForImageCrop } from '@/sanity/image'
-import { getDict, getLocale } from '@/lib/i18n'
+import { getLocale } from '@/lib/i18n'
 import { pick } from '@/lib/dict'
+import { getKittensContent } from '@/lib/content'
 
 export const metadata = { title: 'Котята — Summer Cherry' }
 
 export default async function KittensPage() {
-  const kittens = await getKittens()
   const locale = getLocale()
-  const d = getDict().kittens
+  const [kittens, d] = await Promise.all([getKittens(), getKittensContent(locale)])
   const items = kittens.map((k) => ({
     _id: k._id,
     slug: k.slug,
