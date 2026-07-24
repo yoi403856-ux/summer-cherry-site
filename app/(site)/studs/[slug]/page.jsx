@@ -9,7 +9,7 @@ import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getStud, getStudSlugs, getKittensByStud } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
 import { getDict, getLocale } from '@/lib/i18n'
-import { roleLabel } from '@/lib/dict'
+import { roleLabel, pick } from '@/lib/dict'
 
 export const dynamicParams = true
 
@@ -115,6 +115,7 @@ export default async function StudDetail({ params }) {
               <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {kittens.map((k) => {
                   const src = k.images?.[0] ? urlForImage(k.images[0], 500) : null
+                  const kName = pick(locale, k.name, k.nameEn)
                   return (
                     <Link
                       key={k._id}
@@ -122,10 +123,10 @@ export default async function StudDetail({ params }) {
                       className="group flex items-center gap-5 border border-ink/10 bg-parchment/40 p-4 transition-colors hover:border-pine/40"
                     >
                       <div className="h-24 w-24 shrink-0 overflow-hidden">
-                        <CatPortrait src={src} alt={k.name} className="h-full w-full" />
+                        <CatPortrait src={src} alt={kName} className="h-full w-full" />
                       </div>
                       <div>
-                        <h3 className="font-serif text-2xl text-ink">{k.name}</h3>
+                        <h3 className="font-serif text-2xl text-ink">{kName}</h3>
                         <p className="mt-1 font-sans text-[13px] text-ink/55">{k.color || ''}</p>
                       </div>
                     </Link>

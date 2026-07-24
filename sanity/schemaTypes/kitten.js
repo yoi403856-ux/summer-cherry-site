@@ -21,6 +21,7 @@ export const kitten = {
   type: 'document',
   fields: [
     { name: 'name', title: 'Кличка', type: 'string', validation: (r) => r.required() },
+    { name: 'nameEn', title: 'Кличка (English)', type: 'string' },
     {
       name: 'slug',
       title: 'Адрес страницы (slug)',

@@ -15,7 +15,7 @@ export default async function KittensPage() {
   const items = kittens.map((k) => ({
     _id: k._id,
     slug: k.slug,
-    name: k.name,
+    name: pick(locale, k.name, k.nameEn),
     color: k.color,
     sex: k.sex,
     born: k.born,

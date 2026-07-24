@@ -33,6 +33,7 @@ export default async function KittenDetail({ params }) {
     .map((img) => ({ display: urlForImageCrop(img, 1000, 1000), full: urlForImage(img, 1400) }))
     .filter((x) => x.display)
   const s = statusMap[locale][k.status] || statusMap[locale].available
+  const name = pick(locale, k.name, k.nameEn)
   const litter = pick(locale, k.litter, k.litterEn)
   const description = pick(locale, k.description, k.descriptionEn)
   const fmtDate = (iso) =>
@@ -57,10 +58,10 @@ export default async function KittenDetail({ params }) {
           {/* gallery */}
           <Reveal>
             {images.length > 0 ? (
-              <KittenGallery images={images} name={k.name} />
+              <KittenGallery images={images} name={name} />
             ) : (
               <div className="group">
-                <CatPortrait coat={k.coat} alt={k.name} className="aspect-[4/5] w-full shadow-card" />
+                <CatPortrait coat={k.coat} alt={name} className="aspect-[4/5] w-full shadow-card" />
               </div>
             )}
           </Reveal>
@@ -70,7 +71,7 @@ export default async function KittenDetail({ params }) {
             <div>
               <Eyebrow>{litter ? d.litterOf(litter.replace('Помёт ', '')) : d.kitten}</Eyebrow>
               <div className="mt-3 flex flex-wrap items-center gap-3">
-                <h1 className="font-display text-5xl leading-none text-ink sm:text-6xl">{k.name}</h1>
+                <h1 className="font-display text-5xl leading-none text-ink sm:text-6xl">{name}</h1>
                 <span className={`px-3 py-1 font-sans text-[11px] uppercase tracking-[0.2em] ${s.cls}`}>{s.label}</span>
               </div>
               <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
