@@ -126,7 +126,7 @@ export default async function KittenDetail({ params }) {
                 {[{ p: k.father, role: d.father }, { p: k.mother, role: d.mother }]
                   .filter((x) => x.p)
                   .map(({ p, role }) => {
-                    const src = p.images?.[0] ? urlForImage(p.images[0], 500) : null
+                    const src = p.images?.[0] ? urlForImageCrop(p.images[0], 200, 200) : null
                     const pName = pick(locale, p.call, p.callEn) || pick(locale, p.name, p.nameEn)
                     const inner = (
                       <>

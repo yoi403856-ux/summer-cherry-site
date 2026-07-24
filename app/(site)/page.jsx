@@ -5,7 +5,7 @@ import HeroMosaic from '@/components/HeroMosaic'
 import ContactPopover from '@/components/ContactPopover'
 import { Reveal, Eyebrow, Divider, PineMark } from '@/components/ui'
 import { getStuds, getSettings } from '@/lib/api'
-import { urlForImage } from '@/sanity/image'
+import { urlForImage, urlForImageCrop } from '@/sanity/image'
 import { getLocale } from '@/lib/i18n'
 import { roleLabel, pick } from '@/lib/dict'
 import { getHomeContent } from '@/lib/content'
@@ -17,7 +17,12 @@ export default async function Home() {
   const locale = getLocale()
   const [studs, settings, d] = await Promise.all([getStuds(), getSettings(), getHomeContent(locale)])
   const contacts = resolveContacts(settings)
-  const heroImages = settings?.heroImages?.length ? settings.heroImages.map((img) => urlForImage(img, 900)) : []
+  // mosaic tiles are a fixed 3:4 box (see HeroMosaic) — crop server-side to
+  // that ratio so the editor's hotspot/crop is respected, instead of letting
+  // the browser's generic object-cover center-crop the raw image
+  const heroImages = settings?.heroImages?.length
+    ? settings.heroImages.map((img) => urlForImageCrop(img, 900, 1200))
+    : []
 
   return (
     <>
@@ -115,7 +120,7 @@ export default async function Home() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {studs.slice(0, 4).map((c, i) => {
-              const src = c.images?.[0] ? urlForImage(c.images[0], 700) : null
+              const src = c.images?.[0] ? urlForImageCrop(c.images[0], 700, 934) : null
               const call = pick(locale, c.call, c.callEn) || pick(locale, c.name, c.nameEn)
               return (
                 <Reveal key={c._id} delay={i * 0.08}>

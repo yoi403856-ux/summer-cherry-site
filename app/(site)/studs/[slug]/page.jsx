@@ -128,7 +128,7 @@ export default async function StudDetail({ params }) {
               <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">{d.offspring}</h2>
               <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {kittens.map((k) => {
-                  const src = k.images?.[0] ? urlForImage(k.images[0], 500) : null
+                  const src = k.images?.[0] ? urlForImageCrop(k.images[0], 200, 200) : null
                   const kName = pick(locale, k.name, k.nameEn)
                   return (
                     <Link
