@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ArrowRight, ShieldCheck, HeartHandshake, Trees, Award } from 'lucide-react'
 import CatPortrait from '@/components/CatPortrait'
 import HeroMosaic from '@/components/HeroMosaic'
-import ContactLink from '@/components/ContactLink'
+import ContactPopover from '@/components/ContactPopover'
 import { Reveal, Eyebrow, Divider, PineMark } from '@/components/ui'
 import { getStuds, getSettings } from '@/lib/api'
 import { getLocalHeroImages } from '@/lib/heroImages'
@@ -10,12 +10,14 @@ import { urlForImage } from '@/sanity/image'
 import { getLocale } from '@/lib/i18n'
 import { roleLabel, pick } from '@/lib/dict'
 import { getHomeContent } from '@/lib/content'
+import { resolveContacts } from '@/lib/contacts'
 
 const valueIcons = [ShieldCheck, HeartHandshake, Award, Trees]
 
 export default async function Home() {
   const locale = getLocale()
   const [studs, settings, d] = await Promise.all([getStuds(), getSettings(), getHomeContent(locale)])
+  const contacts = resolveContacts(settings)
   const heroImages =
     settings?.heroImages?.length
       ? settings.heroImages.map((img) => urlForImage(img, 900))
@@ -183,9 +185,11 @@ export default async function Home() {
                 {d.ctaKittens}
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Link>
-              <ContactLink className="border border-ink/25 px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-ink transition-colors duration-300 hover:bg-ink hover:text-parchment">
-                {d.ctaWrite}
-              </ContactLink>
+              <ContactPopover
+                contacts={contacts}
+                label={d.ctaWrite}
+                className="border border-ink/25 px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-ink transition-colors duration-300 hover:bg-ink hover:text-parchment"
+              />
             </div>
           </Reveal>
         </div>

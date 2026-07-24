@@ -3,13 +3,14 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, Check } from 'lucide-react'
 import CatPortrait from '@/components/CatPortrait'
 import KittenGallery from '@/components/KittenGallery'
-import ContactLink from '@/components/ContactLink'
+import ContactPopover from '@/components/ContactPopover'
 import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
-import { getKitten, getKittenSlugs } from '@/lib/api'
+import { getKitten, getKittenSlugs, getSettings } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
 import { getDict, getLocale } from '@/lib/i18n'
 import { statusMap, sexLabel, pick, dateLocale } from '@/lib/dict'
+import { resolveContacts } from '@/lib/contacts'
 
 export const dynamicParams = true
 
@@ -24,11 +25,12 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function KittenDetail({ params }) {
-  const k = await getKitten(params.slug)
+  const [k, settings] = await Promise.all([getKitten(params.slug), getSettings()])
   if (!k) notFound()
 
   const locale = getLocale()
   const d = getDict().kittenDetail
+  const contacts = resolveContacts(settings)
   const images = (k.images || [])
     .map((img) => ({ display: urlForImageCrop(img, 1000, 1000), full: urlForImage(img, 1400) }))
     .filter((x) => x.display)
@@ -95,9 +97,12 @@ export default async function KittenDetail({ params }) {
               </ul>
 
               {k.status !== 'sold' && (
-                <ContactLink className="mt-10 inline-flex w-full items-center justify-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine">
-                  {d.book}
-                </ContactLink>
+                <ContactPopover
+                  contacts={contacts}
+                  label={d.book}
+                  fullWidth
+                  className="mt-10 flex items-center justify-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine"
+                />
               )}
               <div className="mt-6 flex items-center gap-3 text-ink/45">
                 <PineMark className="h-4 w-4 text-golddim" />

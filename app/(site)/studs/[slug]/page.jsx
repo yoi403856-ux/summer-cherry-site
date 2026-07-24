@@ -3,13 +3,14 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, Check, Weight, Award } from 'lucide-react'
 import CatPortrait from '@/components/CatPortrait'
 import KittenGallery from '@/components/KittenGallery'
-import ContactLink from '@/components/ContactLink'
+import ContactPopover from '@/components/ContactPopover'
 import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
-import { getStud, getStudSlugs, getKittensByStud } from '@/lib/api'
+import { getStud, getStudSlugs, getKittensByStud, getSettings } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
 import { getDict, getLocale } from '@/lib/i18n'
 import { roleLabel, pick, pickList } from '@/lib/dict'
+import { resolveContacts } from '@/lib/contacts'
 
 export const dynamicParams = true
 
@@ -24,11 +25,12 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function StudDetail({ params }) {
-  const c = await getStud(params.slug)
+  const [c, settings] = await Promise.all([getStud(params.slug), getSettings()])
   if (!c) notFound()
 
   const locale = getLocale()
   const d = getDict().studDetail
+  const contacts = resolveContacts(settings)
   const images = (c.images || [])
     .map((img) => ({ display: urlForImageCrop(img, 1000, 1000), full: urlForImage(img, 1400) }))
     .filter((x) => x.display)
@@ -100,9 +102,12 @@ export default async function StudDetail({ params }) {
                 </div>
               )}
 
-              <ContactLink className="mt-10 inline-flex w-full items-center justify-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine">
-                {d.contact}
-              </ContactLink>
+              <ContactPopover
+                contacts={contacts}
+                label={d.contact}
+                fullWidth
+                className="mt-10 flex items-center justify-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine"
+              />
               <div className="mt-6 flex items-center gap-3 text-ink/45">
                 <PineMark className="h-4 w-4 text-golddim" />
                 <span className="font-sans text-[12px] tracking-[0.14em]">{d.cattery}</span>
