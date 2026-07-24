@@ -9,7 +9,7 @@ import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getStud, getStudSlugs, getKittensByStud } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
 import { getDict, getLocale } from '@/lib/i18n'
-import { roleLabel, pick } from '@/lib/dict'
+import { roleLabel, pick, pickList } from '@/lib/dict'
 
 export const dynamicParams = true
 
@@ -33,6 +33,11 @@ export default async function StudDetail({ params }) {
     .map((img) => ({ display: urlForImageCrop(img, 1000, 1000), full: urlForImage(img, 1400) }))
     .filter((x) => x.display)
   const kittens = await getKittensByStud(c._id)
+  const call = pick(locale, c.call, c.callEn)
+  const fullName = pick(locale, c.name, c.nameEn)
+  const weight = pick(locale, c.weight, c.weightEn)
+  const titles = pick(locale, c.titles, c.titlesEn)
+  const tests = pickList(locale, c.tests, c.testsEn)
 
   return (
     <article className="relative">
@@ -50,10 +55,10 @@ export default async function StudDetail({ params }) {
         <div className="mx-auto grid max-w-6xl items-start gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
           <Reveal>
             {images.length > 0 ? (
-              <KittenGallery images={images} name={c.call || c.name} />
+              <KittenGallery images={images} name={call || fullName} />
             ) : (
               <div className="group">
-                <CatPortrait coat={c.coat} alt={c.call || c.name} className="aspect-[4/5] w-full shadow-card" />
+                <CatPortrait coat={c.coat} alt={call || fullName} className="aspect-[4/5] w-full shadow-card" />
               </div>
             )}
           </Reveal>
@@ -61,28 +66,28 @@ export default async function StudDetail({ params }) {
           <Reveal delay={0.1}>
             <div>
               <Eyebrow>{roleLabel(locale, c.role)}</Eyebrow>
-              <h1 className="mt-3 font-display text-5xl leading-none text-ink sm:text-6xl">{c.call || c.name}</h1>
-              {c.name && c.name !== c.call && (
-                <p className="mt-2 font-sans text-[13px] uppercase tracking-[0.22em] text-ink/45">{c.name}</p>
+              <h1 className="mt-3 font-display text-5xl leading-none text-ink sm:text-6xl">{call || fullName}</h1>
+              {fullName && fullName !== call && (
+                <p className="mt-2 font-sans text-[13px] uppercase tracking-[0.22em] text-ink/45">{fullName}</p>
               )}
 
               <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
                 {c.color && (
                   <div><dt className="eyebrow text-golddim">{d.color}</dt><dd className="mt-2 font-serif text-lg text-ink">{c.color}</dd></div>
                 )}
-                {c.weight && (
-                  <div><dt className="eyebrow text-golddim">{d.weight}</dt><dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Weight size={16} className="text-pine" /> {c.weight}</dd></div>
+                {weight && (
+                  <div><dt className="eyebrow text-golddim">{d.weight}</dt><dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Weight size={16} className="text-pine" /> {weight}</dd></div>
                 )}
-                {c.titles && (
-                  <div className="col-span-2"><dt className="eyebrow text-golddim">{d.titles}</dt><dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Award size={16} className="text-pine" /> {c.titles}</dd></div>
+                {titles && (
+                  <div className="col-span-2"><dt className="eyebrow text-golddim">{d.titles}</dt><dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Award size={16} className="text-pine" /> {titles}</dd></div>
                 )}
               </dl>
 
-              {c.tests?.length > 0 && (
+              {tests?.length > 0 && (
                 <div className="mt-6">
                   <p className="eyebrow text-golddim">{d.health}</p>
                   <ul className="mt-3 flex flex-wrap gap-2">
-                    {c.tests.map((t) => (
+                    {tests.map((t) => (
                       <li key={t} className="inline-flex items-center gap-1.5 border border-pine/30 bg-pine/5 px-3 py-1.5 font-sans text-[12px] tracking-wide text-pinedeep">
                         <Check size={13} className="text-pine" /> {t}
                       </li>

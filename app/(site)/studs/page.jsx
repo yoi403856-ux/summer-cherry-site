@@ -6,7 +6,7 @@ import { Reveal, Eyebrow } from '@/components/ui'
 import { getStuds } from '@/lib/api'
 import { urlForImageCrop } from '@/sanity/image'
 import { getDict, getLocale } from '@/lib/i18n'
-import { roleLabel } from '@/lib/dict'
+import { roleLabel, pick, pickList } from '@/lib/dict'
 
 export const metadata = { title: 'Производители — Summer Cherry' }
 
@@ -24,26 +24,31 @@ export default async function StudsPage() {
           {studs.map((c, i) => {
             const flip = i % 2 === 1
             const src = c.images?.[0] ? urlForImageCrop(c.images[0], 720, 900) : null
+            const call = pick(locale, c.call, c.callEn)
+            const fullName = pick(locale, c.name, c.nameEn)
+            const weight = pick(locale, c.weight, c.weightEn)
+            const titles = pick(locale, c.titles, c.titlesEn)
+            const tests = pickList(locale, c.tests, c.testsEn)
             return (
               <Reveal key={c._id}>
                 <article className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
                   {c.slug ? (
                     <Link href={`/studs/${c.slug}`} className={`group block w-full md:max-w-[420px] ${flip ? 'md:order-2 md:justify-self-end' : ''}`}>
-                      <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
+                      <CatPortrait coat={c.coat} alt={call} src={src} className="aspect-[4/5] w-full shadow-card" />
                     </Link>
                   ) : (
                     <div className={`group w-full md:max-w-[420px] ${flip ? 'md:order-2 md:justify-self-end' : ''}`}>
-                      <CatPortrait coat={c.coat} alt={c.name} src={src} className="aspect-[4/5] w-full shadow-card" />
+                      <CatPortrait coat={c.coat} alt={call} src={src} className="aspect-[4/5] w-full shadow-card" />
                     </div>
                   )}
                   <div className={flip ? 'md:order-1' : ''}>
                     <Eyebrow>{roleLabel(locale, c.role)}</Eyebrow>
                     {c.slug ? (
-                      <Link href={`/studs/${c.slug}`} className="mt-4 block font-serif text-5xl leading-none text-ink transition-colors hover:text-pine">{c.call}</Link>
+                      <Link href={`/studs/${c.slug}`} className="mt-4 block font-serif text-5xl leading-none text-ink transition-colors hover:text-pine">{call}</Link>
                     ) : (
-                      <h2 className="mt-4 font-serif text-5xl leading-none text-ink">{c.call}</h2>
+                      <h2 className="mt-4 font-serif text-5xl leading-none text-ink">{call}</h2>
                     )}
-                    <p className="mt-2 font-sans text-[13px] uppercase tracking-[0.22em] text-ink/45">{c.name}</p>
+                    <p className="mt-2 font-sans text-[13px] uppercase tracking-[0.22em] text-ink/45">{fullName}</p>
                     <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
                       {c.color && (
                         <div>
@@ -51,24 +56,24 @@ export default async function StudsPage() {
                           <dd className="mt-2 font-serif text-lg text-ink">{c.color}</dd>
                         </div>
                       )}
-                      {c.weight && (
+                      {weight && (
                         <div>
                           <dt className="eyebrow text-golddim">{d.weight}</dt>
-                          <dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Weight size={16} className="text-pine" /> {c.weight}</dd>
+                          <dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Weight size={16} className="text-pine" /> {weight}</dd>
                         </div>
                       )}
-                      {c.titles && (
+                      {titles && (
                         <div className="col-span-2">
                           <dt className="eyebrow text-golddim">{d.titles}</dt>
-                          <dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Award size={16} className="text-pine" /> {c.titles}</dd>
+                          <dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Award size={16} className="text-pine" /> {titles}</dd>
                         </div>
                       )}
                     </dl>
-                    {c.tests?.length > 0 && (
+                    {tests?.length > 0 && (
                       <div className="mt-6">
                         <p className="eyebrow text-golddim">{d.health}</p>
                         <ul className="mt-3 flex flex-wrap gap-2">
-                          {c.tests.map((t) => (
+                          {tests.map((t) => (
                             <li key={t} className="inline-flex items-center gap-1.5 border border-pine/30 bg-pine/5 px-3 py-1.5 font-sans text-[12px] tracking-wide text-pinedeep">
                               <Check size={13} className="text-pine" /> {t}
                             </li>

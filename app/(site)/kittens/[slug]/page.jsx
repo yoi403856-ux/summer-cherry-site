@@ -120,14 +120,15 @@ export default async function KittenDetail({ params }) {
                   .filter((x) => x.p)
                   .map(({ p, role }) => {
                     const src = p.images?.[0] ? urlForImage(p.images[0], 500) : null
+                    const pName = pick(locale, p.call, p.callEn) || pick(locale, p.name, p.nameEn)
                     const inner = (
                       <>
                         <div className="h-24 w-24 shrink-0 overflow-hidden">
-                          <CatPortrait src={src} alt={p.call || p.name} className="h-full w-full" />
+                          <CatPortrait src={src} alt={pName} className="h-full w-full" />
                         </div>
                         <div>
                           <p className="eyebrow text-golddim">{role}</p>
-                          <h3 className="mt-1 font-serif text-2xl text-ink">{p.call || p.name}</h3>
+                          <h3 className="mt-1 font-serif text-2xl text-ink">{pName}</h3>
                           <p className="mt-1 font-sans text-[13px] text-ink/55">{p.color || ''}</p>
                         </div>
                       </>

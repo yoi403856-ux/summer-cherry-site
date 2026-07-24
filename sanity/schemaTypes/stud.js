@@ -6,7 +6,9 @@ export const stud = {
   type: 'document',
   fields: [
     { name: 'name', title: 'Полное имя (с приставкой)', type: 'string', validation: (r) => r.required() },
+    { name: 'nameEn', title: 'Полное имя (English)', type: 'string' },
     { name: 'call', title: 'Домашняя кличка', type: 'string' },
+    { name: 'callEn', title: 'Домашняя кличка (English)', type: 'string' },
     {
       name: 'slug',
       title: 'Адрес страницы (slug)',
@@ -27,10 +29,18 @@ export const stud = {
     },
     { name: 'color', title: 'Окрас', type: 'string' },
     { name: 'weight', title: 'Вес', type: 'string' },
+    { name: 'weightEn', title: 'Вес (English)', type: 'string' },
     { name: 'titles', title: 'Титулы', type: 'string' },
+    { name: 'titlesEn', title: 'Титулы (English)', type: 'string' },
     {
       name: 'tests',
       title: 'Тесты здоровья',
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    {
+      name: 'testsEn',
+      title: 'Тесты здоровья (English)',
       type: 'array',
       of: [{ type: 'string' }],
     },

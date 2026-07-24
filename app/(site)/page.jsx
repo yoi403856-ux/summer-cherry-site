@@ -8,7 +8,7 @@ import { getStuds, getSettings } from '@/lib/api'
 import { getLocalHeroImages } from '@/lib/heroImages'
 import { urlForImage } from '@/sanity/image'
 import { getDict, getLocale } from '@/lib/i18n'
-import { roleLabel } from '@/lib/dict'
+import { roleLabel, pick } from '@/lib/dict'
 
 const valueIcons = [ShieldCheck, HeartHandshake, Award, Trees]
 
@@ -114,13 +114,14 @@ export default async function Home() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {studs.slice(0, 4).map((c, i) => {
               const src = c.images?.[0] ? urlForImage(c.images[0], 700) : null
+              const call = pick(locale, c.call, c.callEn) || pick(locale, c.name, c.nameEn)
               return (
                 <Reveal key={c._id} delay={i * 0.08}>
                   <Link href={c.slug ? `/studs/${c.slug}` : '/studs'} className="group block">
-                    <CatPortrait coat={c.coat} alt={c.call || c.name} src={src} className="aspect-[3/4] w-full" />
+                    <CatPortrait coat={c.coat} alt={call} src={src} className="aspect-[3/4] w-full" />
                     <div className="mt-4">
                       <p className="eyebrow text-golddim">{roleLabel(locale, c.role)}</p>
-                      <h3 className="mt-1.5 font-serif text-2xl text-ink">{c.call}</h3>
+                      <h3 className="mt-1.5 font-serif text-2xl text-ink">{call}</h3>
                       <p className="mt-1 font-sans text-[13px] tracking-wide text-ink/55">{c.color}</p>
                     </div>
                   </Link>
