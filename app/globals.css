@@ -72,6 +72,23 @@ body {
   .hairline { border-color: rgba(20, 22, 26, 0.14); }
 }
 
+/*
+  Live backdrop-blur over the fixed forest photo has to be recomputed every
+  scroll frame — on touch devices this can't keep up with a quick flick,
+  which shows up as the panel visibly "catching up" a frame late (jitter).
+  Touch/coarse-pointer devices keep the tinted glass panels but drop the
+  live blur sampling — desktop (mouse/trackpad) keeps the full blur.
+*/
+@media (hover: none) and (pointer: coarse) {
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
