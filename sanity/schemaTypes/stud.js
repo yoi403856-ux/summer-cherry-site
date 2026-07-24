@@ -28,6 +28,8 @@ export const stud = {
       },
     },
     { name: 'color', title: 'Окрас', type: 'string' },
+    { name: 'polydactyl', title: 'Полидактилия', type: 'string', description: 'Оставьте пустым, если не применимо — тогда поле не появится на карточке' },
+    { name: 'polydactylEn', title: 'Полидактилия (English)', type: 'string' },
     { name: 'weight', title: 'Вес', type: 'string' },
     { name: 'weightEn', title: 'Вес (English)', type: 'string' },
     { name: 'titles', title: 'Титулы', type: 'string' },

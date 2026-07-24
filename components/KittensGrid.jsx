@@ -63,6 +63,7 @@ export default function KittensGrid({ items = [] }) {
                 </Link>
                 <dl className="mt-2 space-y-1 border-t border-ink/10 pt-2 font-sans text-[11px] text-ink/60 sm:mt-3 sm:space-y-1 sm:pt-3 sm:text-[13px]">
                   <div className="flex justify-between"><dt>{d.color}</dt><dd className="text-ink/80">{k.color}</dd></div>
+                  {k.polydactyl && <div className="flex justify-between"><dt>{d.polydactyl}</dt><dd className="text-ink/80">{k.polydactyl}</dd></div>}
                   <div className="flex justify-between"><dt>{d.born}</dt><dd className="text-ink/80">{fmtDate(k.born)}</dd></div>
                   <div className="flex justify-between"><dt>{d.litter}</dt><dd className="text-ink/80">{k.litter}</dd></div>
                 </dl>

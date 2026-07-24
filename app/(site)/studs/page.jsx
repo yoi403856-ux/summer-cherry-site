@@ -29,6 +29,7 @@ export default async function StudsPage() {
             const weight = pick(locale, c.weight, c.weightEn)
             const titles = pick(locale, c.titles, c.titlesEn)
             const tests = pickList(locale, c.tests, c.testsEn)
+            const polydactyl = pick(locale, c.polydactyl, c.polydactylEn)
             return (
               <Reveal key={c._id}>
                 <article className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
@@ -54,6 +55,12 @@ export default async function StudsPage() {
                         <div>
                           <dt className="eyebrow text-golddim">{d.color}</dt>
                           <dd className="mt-2 font-serif text-lg text-ink">{c.color}</dd>
+                        </div>
+                      )}
+                      {polydactyl && (
+                        <div>
+                          <dt className="eyebrow text-golddim">{d.polydactyl}</dt>
+                          <dd className="mt-2 font-serif text-lg text-ink">{polydactyl}</dd>
                         </div>
                       )}
                       {weight && (

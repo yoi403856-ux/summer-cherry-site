@@ -36,6 +36,7 @@ export default async function KittenDetail({ params }) {
   const name = pick(locale, k.name, k.nameEn)
   const litter = pick(locale, k.litter, k.litterEn)
   const description = pick(locale, k.description, k.descriptionEn)
+  const polydactyl = pick(locale, k.polydactyl, k.polydactylEn)
   const fmtDate = (iso) =>
     iso ? new Date(iso).toLocaleDateString(dateLocale[locale], { day: 'numeric', month: 'long', year: 'numeric' }) : '—'
 
@@ -77,6 +78,7 @@ export default async function KittenDetail({ params }) {
               <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
                 <div><dt className="eyebrow text-golddim">{d.color}</dt><dd className="mt-2 font-serif text-lg text-ink">{k.color || '—'}</dd></div>
                 <div><dt className="eyebrow text-golddim">{d.sex}</dt><dd className="mt-2 font-serif text-lg text-ink">{sexLabel(locale, k.sex) || '—'}</dd></div>
+                {polydactyl && <div><dt className="eyebrow text-golddim">{d.polydactyl}</dt><dd className="mt-2 font-serif text-lg text-ink">{polydactyl}</dd></div>}
                 <div><dt className="eyebrow text-golddim">{d.born}</dt><dd className="mt-2 font-serif text-lg text-ink">{fmtDate(k.born)}</dd></div>
               </dl>
 

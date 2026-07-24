@@ -38,6 +38,7 @@ export default async function StudDetail({ params }) {
   const weight = pick(locale, c.weight, c.weightEn)
   const titles = pick(locale, c.titles, c.titlesEn)
   const tests = pickList(locale, c.tests, c.testsEn)
+  const polydactyl = pick(locale, c.polydactyl, c.polydactylEn)
 
   return (
     <article className="relative">
@@ -74,6 +75,9 @@ export default async function StudDetail({ params }) {
               <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
                 {c.color && (
                   <div><dt className="eyebrow text-golddim">{d.color}</dt><dd className="mt-2 font-serif text-lg text-ink">{c.color}</dd></div>
+                )}
+                {polydactyl && (
+                  <div><dt className="eyebrow text-golddim">{d.polydactyl}</dt><dd className="mt-2 font-serif text-lg text-ink">{polydactyl}</dd></div>
                 )}
                 {weight && (
                   <div><dt className="eyebrow text-golddim">{d.weight}</dt><dd className="mt-2 flex items-center gap-2 font-serif text-lg text-ink"><Weight size={16} className="text-pine" /> {weight}</dd></div>
