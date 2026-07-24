@@ -29,10 +29,17 @@ export default function ContactPopover({ contacts, label, className = '', fullWi
       const r = btnRef.current?.getBoundingClientRect()
       if (!r) return
       const panelWidth = 256 // w-64
+      // real height once rendered, otherwise a safe estimate (heading + 4 rows)
+      const panelHeight = panelRef.current?.offsetHeight || 260
       const margin = 16
       const centered = r.left + r.width / 2 - panelWidth / 2
       const left = Math.min(Math.max(centered, margin), window.innerWidth - panelWidth - margin)
-      setPos({ top: r.bottom + 12, left })
+      const spaceBelow = window.innerHeight - r.bottom
+      const openUpward = spaceBelow < panelHeight + margin && r.top > panelHeight + margin
+      const top = openUpward
+        ? Math.max(r.top - panelHeight - 12, margin)
+        : Math.min(r.bottom + 12, window.innerHeight - panelHeight - margin)
+      setPos({ top, left })
     }
     place()
     const onKey = (e) => e.key === 'Escape' && setOpen(false)
