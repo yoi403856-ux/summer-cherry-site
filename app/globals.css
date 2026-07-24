@@ -72,17 +72,19 @@ body {
   .hairline { border-color: rgba(20, 22, 26, 0.14); }
 
   /*
-    Stable full-screen height for the fixed background: mobile browsers
-    resize the viewport as the address bar hides/shows on scroll, which
-    made a plain `inset-0` background visibly jump. `svh` always assumes
-    the toolbar is showing (the smallest, most stable size), so the
-    element's height stops tracking that animation. `100vh` is a fallback
-    for browsers that don't support `svh` — browsers ignore a declaration
-    with an unsupported unit and keep the previous line's value.
+    Full-screen height for the fixed background, sized to the LARGEST
+    possible viewport (address bar hidden). Using `svh` (smallest) here
+    left a gap at the bottom once the address bar collapsed on scroll,
+    showing a translucent strip of unpainted page underneath. `lvh` always
+    covers the full height regardless of toolbar state — the element is
+    `fixed`, so covering slightly more than the visible area when the
+    toolbar is shown is harmless. `100vh` is a fallback for browsers that
+    don't support `lvh` — browsers ignore a declaration with an
+    unsupported unit and keep the previous line's value.
   */
   .h-screen-stable {
     height: 100vh;
-    height: 100svh;
+    height: 100lvh;
   }
 }
 

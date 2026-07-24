@@ -5,7 +5,6 @@ import HeroMosaic from '@/components/HeroMosaic'
 import ContactPopover from '@/components/ContactPopover'
 import { Reveal, Eyebrow, Divider, PineMark } from '@/components/ui'
 import { getStuds, getSettings } from '@/lib/api'
-import { getLocalHeroImages } from '@/lib/heroImages'
 import { urlForImage } from '@/sanity/image'
 import { getLocale } from '@/lib/i18n'
 import { roleLabel, pick } from '@/lib/dict'
@@ -18,10 +17,7 @@ export default async function Home() {
   const locale = getLocale()
   const [studs, settings, d] = await Promise.all([getStuds(), getSettings(), getHomeContent(locale)])
   const contacts = resolveContacts(settings)
-  const heroImages =
-    settings?.heroImages?.length
-      ? settings.heroImages.map((img) => urlForImage(img, 900))
-      : getLocalHeroImages()
+  const heroImages = settings?.heroImages?.length ? settings.heroImages.map((img) => urlForImage(img, 900)) : []
 
   return (
     <>

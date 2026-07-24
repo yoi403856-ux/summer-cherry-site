@@ -28,7 +28,11 @@ export default function ContactPopover({ contacts, label, className = '', fullWi
     const place = () => {
       const r = btnRef.current?.getBoundingClientRect()
       if (!r) return
-      setPos({ top: r.bottom + 12, left: r.left + r.width / 2 })
+      const panelWidth = 256 // w-64
+      const margin = 16
+      const centered = r.left + r.width / 2 - panelWidth / 2
+      const left = Math.min(Math.max(centered, margin), window.innerWidth - panelWidth - margin)
+      setPos({ top: r.bottom + 12, left })
     }
     place()
     const onKey = (e) => e.key === 'Escape' && setOpen(false)
@@ -90,7 +94,7 @@ export default function ContactPopover({ contacts, label, className = '', fullWi
             <div
               ref={panelRef}
               style={{ top: pos.top, left: pos.left }}
-              className={`fixed z-[95] w-64 -translate-x-1/2 border border-ink/10 bg-parchment p-4 shadow-soft transition-all duration-200 ease-out ${
+              className={`fixed z-[95] w-64 border border-ink/10 bg-parchment p-4 shadow-soft transition-all duration-200 ease-out ${
                 open ? 'translate-y-0 opacity-100 scale-100' : 'pointer-events-none translate-y-2 opacity-0 scale-95'
               }`}
             >
