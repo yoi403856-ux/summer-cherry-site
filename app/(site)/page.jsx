@@ -102,7 +102,7 @@ export default async function Home() {
       {/* ─────────── RESIDENTS ─────────── */}
       <section className="bg-parchment/50 backdrop-blur-md py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <Reveal className="mb-14 flex flex-col items-end justify-between gap-6 sm:flex-row sm:items-end">
+          <Reveal className="mb-14 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
             <div>
               <Eyebrow>{d.residentsEyebrow}</Eyebrow>
               <h2 className="mt-5 font-serif text-4xl leading-tight text-ink sm:text-5xl">{d.residentsH2}</h2>
