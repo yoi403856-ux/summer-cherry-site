@@ -70,6 +70,20 @@ body {
 
   .text-balance { text-wrap: balance; }
   .hairline { border-color: rgba(20, 22, 26, 0.14); }
+
+  /*
+    Stable full-screen height for the fixed background: mobile browsers
+    resize the viewport as the address bar hides/shows on scroll, which
+    made a plain `inset-0` background visibly jump. `svh` always assumes
+    the toolbar is showing (the smallest, most stable size), so the
+    element's height stops tracking that animation. `100vh` is a fallback
+    for browsers that don't support `svh` — browsers ignore a declaration
+    with an unsupported unit and keep the previous line's value.
+  */
+  .h-screen-stable {
+    height: 100vh;
+    height: 100svh;
+  }
 }
 
 /*
