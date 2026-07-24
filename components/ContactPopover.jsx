@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Phone, Facebook, X } from 'lucide-react'
 import { WhatsApp, Vk } from './icons'
+import { useDict } from './LocaleProvider'
 
 /*
   Contact button that fans out into messenger options instead of jumping
@@ -16,6 +17,7 @@ import { WhatsApp, Vk } from './icons'
   proved unreliable once recreated inside a portal on every parent re-render.
 */
 export default function ContactPopover({ contacts, label, className = '', fullWidth = false }) {
+  const t = useDict().contactPopover
   const [open, setOpen] = useState(false)
   const [everOpened, setEverOpened] = useState(false)
   const [pos, setPos] = useState(null)
@@ -108,12 +110,12 @@ export default function ContactPopover({ contacts, label, className = '', fullWi
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                aria-label="Закрыть"
+                aria-label={t.close}
                 className="absolute right-2 top-2 text-ink/40 transition-colors hover:text-ink"
               >
                 <X size={15} />
               </button>
-              <p className="eyebrow pr-6 text-golddim">Написать нам</p>
+              <p className="eyebrow pr-6 text-golddim">{t.title}</p>
               <div className="mt-3 flex flex-col gap-1.5">
                 {options.map((o) => (
                   <a
