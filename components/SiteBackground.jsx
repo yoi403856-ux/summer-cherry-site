@@ -13,7 +13,10 @@ import Image from 'next/image'
 export default function SiteBackground({ photoUrl }) {
   const src = photoUrl || '/forest.jpg'
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-birch" aria-hidden="true">
+    <div
+      className="fixed inset-0 -z-10 overflow-hidden bg-birch [transform:translateZ(0)] [-webkit-transform:translateZ(0)] [backface-visibility:hidden] [will-change:transform]"
+      aria-hidden="true"
+    >
       <Image src={src} alt="" fill priority quality={65} sizes="100vw" className="object-cover object-center" />
       <div className="absolute inset-0 bg-gradient-to-b from-birch/35 via-birch/15 to-birch/45" />
       <div className="absolute inset-0 bg-slatefog/10 mix-blend-luminosity" />

@@ -38,7 +38,7 @@ export default function KittensGrid({ items = [] }) {
       </div>
 
       <motion.div layout className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 sm:gap-y-10 md:grid-cols-3 lg:grid-cols-4">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="popLayout" initial={false}>
           {list.map((k, i) => {
             const s = statusMap[locale][k.status] || statusMap[locale].available
             return (
