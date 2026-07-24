@@ -26,7 +26,7 @@ export default async function Home() {
         <div className="grain pointer-events-none absolute inset-0" />
         <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center">
           <Reveal>
-            <p className="eyebrow text-golddim">{d.eyebrow}</p>
+            <p className="eyebrow text-center text-golddim tracking-[0.2em] sm:tracking-[0.42em]">{d.eyebrow}</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="mt-5 text-center font-display text-[15vw] leading-[0.88] tracking-[0.03em] text-ink sm:text-[11vw] md:text-[104px]">
