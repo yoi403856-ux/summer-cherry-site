@@ -10,9 +10,9 @@
     "semantic_hash": "e25462693add767ce6147b622d29a3c0"
   },
   "app/(site)/kittens/page.jsx": {
-    "mtime": 1785046936.6078756,
-    "ast_hash": "d4373f07366436846e4585bc657c1bc4",
-    "semantic_hash": "d4373f07366436846e4585bc657c1bc4"
+    "mtime": 1785048098.7103055,
+    "ast_hash": "a66b1a6bdf2ac79f03ae85a36c70ffb6",
+    "semantic_hash": ""
   },
   "app/(site)/layout.jsx": {
     "mtime": 1784912590.5017216,

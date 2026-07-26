@@ -11,7 +11,9 @@ export const metadata = { title: 'Котята — Summer Cherry' }
 
 export default async function KittensPage() {
   const locale = getLocale()
-  const [kittens, d] = await Promise.all([getKittens(), getKittensContent(locale)])
+  const [allKittens, d] = await Promise.all([getKittens(), getKittensContent(locale)])
+  // a kitten with no uploaded photo isn't ready to show on the site yet
+  const kittens = allKittens.filter((k) => k.images?.length)
   const items = kittens.map((k) => ({
     _id: k._id,
     slug: k.slug,
