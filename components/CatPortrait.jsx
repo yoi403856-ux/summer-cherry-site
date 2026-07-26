@@ -3,8 +3,10 @@ import Image from 'next/image'
 /*
   Portrait frame. Shows a photo if `src` given, otherwise a coat-toned
   Maine Coon silhouette so layouts never look broken before photos exist.
+  Pass `blank` to leave it empty instead (e.g. the kittens grid, where a
+  repeated silhouette across many un-photographed cards reads as a bug).
 */
-export default function CatPortrait({ src, alt, coat, className = '', priority = false }) {
+export default function CatPortrait({ src, alt, coat, className = '', priority = false, blank = false }) {
   return (
     <div className={`relative overflow-hidden bg-coal ${className}`}>
       {src ? (
@@ -16,9 +18,9 @@ export default function CatPortrait({ src, alt, coat, className = '', priority =
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
           className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
         />
-      ) : (
+      ) : !blank ? (
         <Placeholder coat={coat} />
-      )}
+      ) : null}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
     </div>
   )
