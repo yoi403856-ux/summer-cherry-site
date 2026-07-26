@@ -61,6 +61,10 @@ export default async function About() {
                 <p className="mt-3 max-w-[180px] font-serif text-lg italic leading-snug">{d.quote}</p>
               </div>
             </div>
+            <div className="bg-pinedeep p-6 text-parchment sm:hidden">
+              <PineMark className="h-6 w-6 text-gold" />
+              <p className="mt-3 font-serif text-lg italic leading-snug">{d.quote}</p>
+            </div>
           </Reveal>
         </div>
       </section>
