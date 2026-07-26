@@ -19,6 +19,10 @@ export default function KittensGrid({ items = [] }) {
   const fmtDate = (iso) =>
     iso ? new Date(iso).toLocaleDateString(dateLocale[locale], { day: 'numeric', month: 'long', year: 'numeric' }) : '—'
 
+  if (!items.length) {
+    return <p className="py-16 text-center font-serif text-xl italic text-ink/60">{d.empty}</p>
+  }
+
   return (
     <>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-4">

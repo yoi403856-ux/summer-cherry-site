@@ -656,7 +656,7 @@
       "label": "LangToggle()",
       "file_type": "code",
       "source_file": "components/LangToggle.jsx",
-      "source_location": "L10",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "components_langtoggle_langtoggle",
       "community": 2,
@@ -3038,7 +3038,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/LangToggle.jsx",
-      "source_location": "L10",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_langtoggle",
@@ -3050,7 +3050,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "components/LangToggle.jsx",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_langtoggle",
@@ -3062,7 +3062,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "components/LangToggle.jsx",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_langtoggle",
@@ -3087,7 +3087,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "components/LangToggle.jsx",
-      "source_location": "L11",
+      "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_langtoggle_langtoggle",
@@ -5109,5 +5109,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a2640ae5c7f46f89dc6215736756434bc8c5b3b1"
+  "built_at_commit": "e0f0122dabaf24df30f7311a6e22ae2c3f753220"
 }
