@@ -10,9 +10,9 @@
     "semantic_hash": "e25462693add767ce6147b622d29a3c0"
   },
   "app/(site)/kittens/page.jsx": {
-    "mtime": 1785046936.6078756,
-    "ast_hash": "d4373f07366436846e4585bc657c1bc4",
-    "semantic_hash": "d4373f07366436846e4585bc657c1bc4"
+    "mtime": 1785048098.7103055,
+    "ast_hash": "a66b1a6bdf2ac79f03ae85a36c70ffb6",
+    "semantic_hash": ""
   },
   "app/(site)/layout.jsx": {
     "mtime": 1784912590.5017216,
@@ -45,9 +45,9 @@
     "semantic_hash": "4a0ff58e4f606ef0a9b2257bae22ec26"
   },
   "components/CatPortrait.jsx": {
-    "mtime": 1784813718.9260938,
-    "ast_hash": "69d8fa4bd0416930a7a044b90bbd3f77",
-    "semantic_hash": "69d8fa4bd0416930a7a044b90bbd3f77"
+    "mtime": 1785047806.8812912,
+    "ast_hash": "936bd9ad1772431cc231b104b8123e6c",
+    "semantic_hash": ""
   },
   "components/ContactLink.jsx": {
     "mtime": 1784779259.2523222,
@@ -75,9 +75,9 @@
     "semantic_hash": "97dadfb8b4c659af0dc2d196a368a346"
   },
   "components/KittensGrid.jsx": {
-    "mtime": 1784898030.159931,
-    "ast_hash": "19af1098b4d52a0a362401dbf5230a79",
-    "semantic_hash": "19af1098b4d52a0a362401dbf5230a79"
+    "mtime": 1785047814.6223526,
+    "ast_hash": "3876bceb8c8343290124d2bae288101a",
+    "semantic_hash": ""
   },
   "components/LangToggle.jsx": {
     "mtime": 1784841060.009772,
@@ -238,5 +238,50 @@
     "mtime": 1784742403.635039,
     "ast_hash": "30ac4f2496f1169230730dc91ad1f008",
     "semantic_hash": "30ac4f2496f1169230730dc91ad1f008"
+  },
+  "app/apple-icon.png": {
+    "mtime": 1784918204.948259,
+    "ast_hash": "d0f3f7897bbb13cffeb33ed9915fcf7d",
+    "semantic_hash": ""
+  },
+  "app/icon.png": {
+    "mtime": 1784918204.853083,
+    "ast_hash": "49d20ca591619800c30ce75a3cbb0571",
+    "semantic_hash": ""
+  },
+  "public/forest.jpg": {
+    "mtime": 1784742914.025662,
+    "ast_hash": "89acc9e93b12f0eb5ded5d3fdf7f36e5",
+    "semantic_hash": ""
+  },
+  "public/hero/cat-1.jpg": {
+    "mtime": 1784742914.0792296,
+    "ast_hash": "2f60de00567d0475507f79c500a580a3",
+    "semantic_hash": ""
+  },
+  "public/hero/cat-2.jpg": {
+    "mtime": 1784742914.1151128,
+    "ast_hash": "b4157023bcfde00fe6e16fd0997d5b1a",
+    "semantic_hash": ""
+  },
+  "public/hero/cat-3.jpg": {
+    "mtime": 1784742914.1391137,
+    "ast_hash": "e0a32207e68a5f250410aa74285c0da0",
+    "semantic_hash": ""
+  },
+  "public/hero/cat-4.jpg": {
+    "mtime": 1784742914.163367,
+    "ast_hash": "0145571bcbfa9d53033b78cd10916921",
+    "semantic_hash": ""
+  },
+  "public/hero/cat-5.jpg": {
+    "mtime": 1784742914.1803658,
+    "ast_hash": "a81aabdb743f691328353455ebdeff2f",
+    "semantic_hash": ""
+  },
+  "public/hero/cat-6.jpg": {
+    "mtime": 1784742914.198367,
+    "ast_hash": "3c53e5eb12a541224f97a4a81f123341",
+    "semantic_hash": ""
   }
 }

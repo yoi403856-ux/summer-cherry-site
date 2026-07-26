@@ -3,11 +3,17 @@ import KittensGrid from '@/components/KittensGrid'
 import { Reveal, Eyebrow, Divider } from '@/components/ui'
 import { getKittens } from '@/lib/api'
 import { urlForImageCrop } from '@/sanity/image'
-import { getLocale } from '@/lib/i18n'
+import { getLocale, hreflangAlternates } from '@/lib/i18n'
 import { pick } from '@/lib/dict'
 import { getKittensContent } from '@/lib/content'
 
-export const metadata = { title: 'Котята — Summer Cherry' }
+export async function generateMetadata() {
+  const locale = getLocale()
+  return {
+    title: locale === 'en' ? 'Kittens — Summer Cherry' : 'Котята — Summer Cherry',
+    alternates: hreflangAlternates('/kittens', locale),
+  }
+}
 
 export default async function KittensPage() {
   const locale = getLocale()

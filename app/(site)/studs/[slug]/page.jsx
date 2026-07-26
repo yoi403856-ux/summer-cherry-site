@@ -8,7 +8,8 @@ import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getStud, getStudSlugs, getKittensByStud, getSettings } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
-import { getDict, getLocale } from '@/lib/i18n'
+import { getDict, getLocale, hreflangAlternates } from '@/lib/i18n'
+import { withLocale } from '@/lib/locale'
 import { roleLabel, pick, pickList } from '@/lib/dict'
 import { resolveContacts } from '@/lib/contacts'
 
@@ -21,7 +22,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const c = await getStud(params.slug)
-  return { title: c ? `${c.call || c.name} — Summer Cherry` : 'Summer Cherry' }
+  const locale = getLocale()
+  const call = c ? pick(locale, c.call, c.callEn) || pick(locale, c.name, c.nameEn) : null
+  return {
+    title: call ? `${call} — Summer Cherry` : 'Summer Cherry',
+    alternates: hreflangAlternates(`/studs/${params.slug}`, locale),
+  }
 }
 
 export default async function StudDetail({ params }) {
@@ -48,7 +54,7 @@ export default async function StudDetail({ params }) {
       <section className="px-5 pb-2 pt-32 sm:px-8 sm:pt-36">
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            <Link href="/studs" className="inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink/60 transition-colors hover:text-ink">
+            <Link href={withLocale('/studs', locale)} className="inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink/60 transition-colors hover:text-ink">
               <ArrowLeft size={14} /> {d.back}
             </Link>
           </Reveal>
@@ -135,7 +141,7 @@ export default async function StudDetail({ params }) {
                   return (
                     <Link
                       key={k._id}
-                      href={`/kittens/${k.slug}`}
+                      href={withLocale(`/kittens/${k.slug}`, locale)}
                       className="group flex items-center gap-5 border border-ink/10 bg-parchment/40 p-4 transition-colors hover:border-pine/40"
                     >
                       <div className="h-24 w-24 shrink-0 overflow-hidden">

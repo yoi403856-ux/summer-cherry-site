@@ -1,17 +1,17 @@
 {
   "app/(site)/about/page.jsx": {
-    "mtime": 1784894772.704927,
-    "ast_hash": "6f12ea1fbe0dd22851562022867ab6e0",
-    "semantic_hash": "6f12ea1fbe0dd22851562022867ab6e0"
+    "mtime": 1785049220.5235586,
+    "ast_hash": "f825ab9043a0cb12428f6ef8b0eba69f",
+    "semantic_hash": ""
   },
   "app/(site)/kittens/[slug]/page.jsx": {
-    "mtime": 1785046916.5691361,
-    "ast_hash": "e25462693add767ce6147b622d29a3c0",
-    "semantic_hash": "e25462693add767ce6147b622d29a3c0"
+    "mtime": 1785049254.4146943,
+    "ast_hash": "e165fede776b3cb042c75dd8d504dd9b",
+    "semantic_hash": ""
   },
   "app/(site)/kittens/page.jsx": {
-    "mtime": 1785048098.7103055,
-    "ast_hash": "a66b1a6bdf2ac79f03ae85a36c70ffb6",
+    "mtime": 1785049230.1359904,
+    "ast_hash": "fed8c2f24e53d490b22cb0abae566f38",
     "semantic_hash": ""
   },
   "app/(site)/layout.jsx": {
@@ -20,24 +20,24 @@
     "semantic_hash": "82c9fc6556ec5802190a5e8a059db044"
   },
   "app/(site)/page.jsx": {
-    "mtime": 1785046928.5207794,
-    "ast_hash": "52a14712f0817c1d0121585adfcf4a1d",
-    "semantic_hash": "52a14712f0817c1d0121585adfcf4a1d"
+    "mtime": 1785049275.8574421,
+    "ast_hash": "d78ea2b09034f3ac47e0444969cfb4e6",
+    "semantic_hash": ""
   },
   "app/(site)/studs/[slug]/page.jsx": {
-    "mtime": 1785046881.0747237,
-    "ast_hash": "7ba5c9d3d1f6138101be4633c0f25c80",
-    "semantic_hash": "7ba5c9d3d1f6138101be4633c0f25c80"
+    "mtime": 1785049261.559415,
+    "ast_hash": "ae96ed676b4579c8233e4a06ebd8472f",
+    "semantic_hash": ""
   },
   "app/(site)/studs/page.jsx": {
-    "mtime": 1785046844.3048806,
-    "ast_hash": "66129d4cb754860ead7ce23d21a18006",
-    "semantic_hash": "66129d4cb754860ead7ce23d21a18006"
+    "mtime": 1785049241.9254358,
+    "ast_hash": "e91d3063d9471202d01bb7f2fb3f8f0e",
+    "semantic_hash": ""
   },
   "app/layout.jsx": {
-    "mtime": 1784742721.3657591,
-    "ast_hash": "89106b5d4377752248d0ba127c13f524",
-    "semantic_hash": "89106b5d4377752248d0ba127c13f524"
+    "mtime": 1785048739.6963787,
+    "ast_hash": "83e7274140ed41572ec7ad958d18f163",
+    "semantic_hash": ""
   },
   "app/studio/[[...tool]]/page.jsx": {
     "mtime": 1784742609.4074793,
@@ -60,9 +60,9 @@
     "semantic_hash": "d493b0afbd20da519baa87ff82e2199b"
   },
   "components/Footer.jsx": {
-    "mtime": 1784912607.3860226,
-    "ast_hash": "ac1420b3618798d4dd95a0b2ce37d776",
-    "semantic_hash": "ac1420b3618798d4dd95a0b2ce37d776"
+    "mtime": 1785048833.7392423,
+    "ast_hash": "a6683846b6a68f552a1151321bad6290",
+    "semantic_hash": ""
   },
   "components/HeroMosaic.jsx": {
     "mtime": 1784813673.646261,
@@ -75,24 +75,24 @@
     "semantic_hash": "97dadfb8b4c659af0dc2d196a368a346"
   },
   "components/KittensGrid.jsx": {
-    "mtime": 1785047814.6223526,
-    "ast_hash": "3876bceb8c8343290124d2bae288101a",
+    "mtime": 1785048904.6937642,
+    "ast_hash": "e7e186a69e946427230f5ad9f5ac554e",
     "semantic_hash": ""
   },
   "components/LangToggle.jsx": {
-    "mtime": 1784841060.009772,
-    "ast_hash": "f7b353122c6fcd6a63008c1d3fda3b5d",
-    "semantic_hash": "f7b353122c6fcd6a63008c1d3fda3b5d"
+    "mtime": 1785048756.8619623,
+    "ast_hash": "1637ddb97c87ffdb73490b267b29dd77",
+    "semantic_hash": ""
   },
   "components/LocaleProvider.jsx": {
-    "mtime": 1784841045.7259958,
-    "ast_hash": "878d243b16adb6bb6a1b2f54ddaa4925",
-    "semantic_hash": "878d243b16adb6bb6a1b2f54ddaa4925"
+    "mtime": 1785049041.4347267,
+    "ast_hash": "9f1255042313839784eb5b276acddedd",
+    "semantic_hash": ""
   },
   "components/Navbar.jsx": {
-    "mtime": 1784912587.0121524,
-    "ast_hash": "9153ed23e97217acdcc1c102f8031e22",
-    "semantic_hash": "9153ed23e97217acdcc1c102f8031e22"
+    "mtime": 1785048819.1997404,
+    "ast_hash": "786fb719302f9a3fa3b40f8bf5461712",
+    "semantic_hash": ""
   },
   "components/PageHero.jsx": {
     "mtime": 1784835636.2552056,
@@ -145,9 +145,9 @@
     "semantic_hash": "ba1d219a6a998e1e61e0f7f1f75f373a"
   },
   "lib/i18n.js": {
-    "mtime": 1784841031.4947112,
-    "ast_hash": "1589f48621cc31f621bc363189625081",
-    "semantic_hash": "1589f48621cc31f621bc363189625081"
+    "mtime": 1785048792.3102937,
+    "ast_hash": "7ac22b7233812da26fba8121cd8f4b4e",
+    "semantic_hash": ""
   },
   "lib/sampleData.js": {
     "mtime": 1784811327.3750272,
@@ -282,6 +282,31 @@
   "public/hero/cat-6.jpg": {
     "mtime": 1784742914.198367,
     "ast_hash": "3c53e5eb12a541224f97a4a81f123341",
+    "semantic_hash": ""
+  },
+  "app/robots.js": {
+    "mtime": 1785049018.5325408,
+    "ast_hash": "30827f902025b9b640c69714f446115e",
+    "semantic_hash": ""
+  },
+  "app/sitemap.js": {
+    "mtime": 1785049009.102625,
+    "ast_hash": "b9bc43c994af48e299c3c4e0ec984deb",
+    "semantic_hash": ""
+  },
+  "lib/locale.js": {
+    "mtime": 1785048783.8899043,
+    "ast_hash": "b60489275b8162dc6355b51d9415006d",
+    "semantic_hash": ""
+  },
+  "lib/site.js": {
+    "mtime": 1785048728.6833453,
+    "ast_hash": "804710920aa7ea3124c4cb974c10c710",
+    "semantic_hash": ""
+  },
+  "middleware.js": {
+    "mtime": 1785048700.9704819,
+    "ast_hash": "09c802871d22e90855a998b8d1a41e22",
     "semantic_hash": ""
   }
 }

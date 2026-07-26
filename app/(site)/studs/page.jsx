@@ -5,11 +5,18 @@ import CatPortrait from '@/components/CatPortrait'
 import { Reveal, Eyebrow } from '@/components/ui'
 import { getStuds } from '@/lib/api'
 import { urlForImageCrop } from '@/sanity/image'
-import { getLocale } from '@/lib/i18n'
+import { getLocale, hreflangAlternates } from '@/lib/i18n'
+import { withLocale } from '@/lib/locale'
 import { roleLabel, pick, pickList } from '@/lib/dict'
 import { getStudsContent } from '@/lib/content'
 
-export const metadata = { title: 'Производители — Summer Cherry' }
+export async function generateMetadata() {
+  const locale = getLocale()
+  return {
+    title: locale === 'en' ? 'Our Cats — Summer Cherry' : 'Производители — Summer Cherry',
+    alternates: hreflangAlternates('/studs', locale),
+  }
+}
 
 export default async function StudsPage() {
   const locale = getLocale()
@@ -35,7 +42,7 @@ export default async function StudsPage() {
               <Reveal key={c._id}>
                 <article className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
                   {c.slug ? (
-                    <Link href={`/studs/${c.slug}`} className={`group block w-full md:max-w-[420px] ${flip ? 'md:order-2 md:justify-self-end' : ''}`}>
+                    <Link href={withLocale(`/studs/${c.slug}`, locale)} className={`group block w-full md:max-w-[420px] ${flip ? 'md:order-2 md:justify-self-end' : ''}`}>
                       <CatPortrait coat={c.coat} alt={call} src={src} className="aspect-[4/5] w-full shadow-card" />
                     </Link>
                   ) : (
@@ -46,7 +53,7 @@ export default async function StudsPage() {
                   <div className={flip ? 'md:order-1' : ''}>
                     <Eyebrow>{roleLabel(locale, c.role)}</Eyebrow>
                     {c.slug ? (
-                      <Link href={`/studs/${c.slug}`} className="mt-4 block font-serif text-5xl leading-none text-ink transition-colors hover:text-pine">{call}</Link>
+                      <Link href={withLocale(`/studs/${c.slug}`, locale)} className="mt-4 block font-serif text-5xl leading-none text-ink transition-colors hover:text-pine">{call}</Link>
                     ) : (
                       <h2 className="mt-4 font-serif text-5xl leading-none text-ink">{call}</h2>
                     )}
@@ -90,7 +97,7 @@ export default async function StudsPage() {
                       </div>
                     )}
                     {c.slug && (
-                      <Link href={`/studs/${c.slug}`} className="group mt-8 inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink transition-colors hover:text-golddim">
+                      <Link href={withLocale(`/studs/${c.slug}`, locale)} className="group mt-8 inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink transition-colors hover:text-golddim">
                         {d.profile}
                         <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                       </Link>

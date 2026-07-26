@@ -9,6 +9,7 @@ import ContactLink from './ContactLink'
 import LangToggle from './LangToggle'
 import { useDict, useLocale } from './LocaleProvider'
 import { pick } from '@/lib/dict'
+import { withLocale } from '@/lib/locale'
 
 const links = [
   { href: '/', key: 'home', settingsKey: 'navHome' },
@@ -40,7 +41,9 @@ export default function Navbar({ settings }) {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  const isActive = (href) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
+  // strip the /en prefix before comparing against the unprefixed nav hrefs
+  const bare = pathname === '/en' ? '/' : pathname?.startsWith('/en/') ? pathname.slice(3) : pathname
+  const isActive = (href) => (href === '/' ? bare === '/' : bare?.startsWith(href))
 
   return (
     <>
@@ -50,7 +53,7 @@ export default function Navbar({ settings }) {
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
-          <Link href="/" className="group flex flex-col leading-none" onClick={() => setOpen(false)}>
+          <Link href={withLocale('/', locale)} className="group flex flex-col leading-none" onClick={() => setOpen(false)}>
             <span className="font-display text-[19px] sm:text-[22px] font-semibold tracking-[0.22em] text-ink">
               SUMMER&nbsp;CHERRY
             </span>
@@ -63,7 +66,7 @@ export default function Navbar({ settings }) {
             {links.map((l) => (
               <Link
                 key={l.href}
-                href={l.href}
+                href={withLocale(l.href, locale)}
                 className={`link-underline font-sans text-[13px] tracking-[0.24em] uppercase transition-colors duration-300 ${
                   isActive(l.href) ? 'text-golddim' : 'text-ink/75 hover:text-ink'
                 }`}
@@ -108,7 +111,7 @@ export default function Navbar({ settings }) {
                   transition={{ delay: 0.08 * i + 0.1 }}
                 >
                   <Link
-                    href={l.href}
+                    href={withLocale(l.href, locale)}
                     onClick={() => setOpen(false)}
                     className={`font-serif text-3xl ${isActive(l.href) ? 'text-golddim italic' : 'text-ink'}`}
                   >

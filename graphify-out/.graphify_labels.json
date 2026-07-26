@@ -26,5 +26,9 @@
   "24": "Фон сайта",
   "25": "Конфиг Next.js",
   "26": "Конфиг PostCSS",
-  "27": "Конфиг Tailwind"
+  "27": "Конфиг Tailwind",
+  "28": "sitemap.js",
+  "29": "middleware.js",
+  "30": "robots.js",
+  "31": "site.js"
 }

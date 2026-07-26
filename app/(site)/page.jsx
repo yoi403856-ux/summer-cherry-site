@@ -6,12 +6,25 @@ import ContactPopover from '@/components/ContactPopover'
 import { Reveal, Eyebrow, Divider, PineMark } from '@/components/ui'
 import { getStuds, getSettings } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
-import { getLocale } from '@/lib/i18n'
+import { getLocale, hreflangAlternates } from '@/lib/i18n'
+import { withLocale } from '@/lib/locale'
 import { roleLabel, pick } from '@/lib/dict'
 import { getHomeContent } from '@/lib/content'
 import { resolveContacts } from '@/lib/contacts'
 
 const valueIcons = [ShieldCheck, HeartHandshake, Award, Trees]
+
+export async function generateMetadata() {
+  const locale = getLocale()
+  return {
+    title: locale === 'en' ? 'Summer Cherry — Maine Coon cattery' : 'Summer Cherry — питомник мейн-кунов',
+    description:
+      locale === 'en'
+        ? 'Summer Cherry Maine Coon cattery. Large, healthy kittens raised in a misty northern forest. Kittens, sires, and our story.'
+        : 'Summer Cherry — питомник мейн-кунов. Крупные, здоровые котята из тумана северного леса. Котята, производители, история питомника.',
+    alternates: hreflangAlternates('/', locale),
+  }
+}
 
 export default async function Home() {
   const locale = getLocale()
@@ -49,13 +62,13 @@ export default async function Home() {
           <Reveal delay={0.2}>
             <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
               <Link
-                href="/kittens"
+                href={withLocale('/kittens', locale)}
                 className="group inline-flex items-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine"
               >
                 {d.ourKittens}
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
-              <Link href="/about" className="link-underline font-sans text-[13px] uppercase tracking-[0.24em] text-ink/80">
+              <Link href={withLocale('/about', locale)} className="link-underline font-sans text-[13px] uppercase tracking-[0.24em] text-ink/80">
                 {d.history}
               </Link>
             </div>
@@ -112,7 +125,7 @@ export default async function Home() {
               <Eyebrow>{d.residentsEyebrow}</Eyebrow>
               <h2 className="mt-5 font-serif text-4xl leading-tight text-ink sm:text-5xl">{d.residentsH2}</h2>
             </div>
-            <Link href="/studs" className="group inline-flex items-center gap-2 font-sans text-[13px] uppercase tracking-[0.24em] text-ink/70 transition-colors hover:text-ink">
+            <Link href={withLocale('/studs', locale)} className="group inline-flex items-center gap-2 font-sans text-[13px] uppercase tracking-[0.24em] text-ink/70 transition-colors hover:text-ink">
               {d.allStuds}
               <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
             </Link>
@@ -125,7 +138,7 @@ export default async function Home() {
               const color = pick(locale, c.color, c.colorEn)
               return (
                 <Reveal key={c._id} delay={i * 0.08}>
-                  <Link href={c.slug ? `/studs/${c.slug}` : '/studs'} className="group block">
+                  <Link href={withLocale(c.slug ? `/studs/${c.slug}` : '/studs', locale)} className="group block">
                     <CatPortrait coat={c.coat} alt={call} src={src} className="aspect-[3/4] w-full" />
                     <div className="mt-4">
                       <p className="eyebrow text-golddim">{roleLabel(locale, c.role)}</p>
@@ -187,7 +200,7 @@ export default async function Home() {
             </h2>
             <p className="mx-auto mt-6 max-w-xl font-sans text-[16px] leading-relaxed text-ink/70">{d.ctaLead}</p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link href="/kittens" className="group inline-flex items-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine">
+              <Link href={withLocale('/kittens', locale)} className="group inline-flex items-center gap-3 bg-ink px-8 py-4 font-sans text-[13px] uppercase tracking-[0.24em] text-parchment transition-colors duration-300 hover:bg-pine">
                 {d.ctaKittens}
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Link>

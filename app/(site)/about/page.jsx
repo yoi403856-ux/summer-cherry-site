@@ -4,10 +4,16 @@ import CatPortrait from '@/components/CatPortrait'
 import { Reveal, Eyebrow, Divider, PineMark } from '@/components/ui'
 import { getSettings } from '@/lib/api'
 import { urlForImageCrop } from '@/sanity/image'
-import { getDict, getLocale } from '@/lib/i18n'
+import { getDict, getLocale, hreflangAlternates } from '@/lib/i18n'
 import { getAboutContent } from '@/lib/content'
 
-export const metadata = { title: 'О нас — Summer Cherry' }
+export async function generateMetadata() {
+  const locale = getLocale()
+  return {
+    title: locale === 'en' ? 'About — Summer Cherry' : 'О нас — Summer Cherry',
+    alternates: hreflangAlternates('/about', locale),
+  }
+}
 
 const featureIcons = [MapPin, CalendarDays, Sparkles]
 

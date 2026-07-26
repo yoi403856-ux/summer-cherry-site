@@ -7,6 +7,7 @@ import { ArrowRight } from 'lucide-react'
 import CatPortrait from './CatPortrait'
 import { useLocale, useDict } from './LocaleProvider'
 import { statusMap, sexLabel, dateLocale } from '@/lib/dict'
+import { withLocale } from '@/lib/locale'
 
 const filterKeys = ['all', 'available', 'reserved', 'sold']
 
@@ -51,7 +52,7 @@ export default function KittensGrid({ items = [] }) {
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="group"
               >
-                <Link href={`/kittens/${k.slug}`} className="block">
+                <Link href={withLocale(`/kittens/${k.slug}`, locale)} className="block">
                   <div className="relative">
                     <CatPortrait coat={k.coat} alt={k.name} src={k.src} className="aspect-[4/5] w-full" priority={i < 4} blank />
                     <span className={`absolute left-2 top-2 px-2 py-0.5 font-sans text-[9px] uppercase tracking-[0.16em] sm:left-4 sm:top-4 sm:px-3 sm:py-1 sm:text-[10px] sm:tracking-[0.2em] ${s.cls}`}>{s.label}</span>
@@ -68,7 +69,7 @@ export default function KittensGrid({ items = [] }) {
                   <div className="flex justify-between"><dt>{d.litter}</dt><dd className="text-ink/80">{k.litter}</dd></div>
                 </dl>
                 <Link
-                  href={`/kittens/${k.slug}`}
+                  href={withLocale(`/kittens/${k.slug}`, locale)}
                   className="mt-2 inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.16em] text-ink transition-colors hover:text-golddim sm:mt-3 sm:text-[12px] sm:tracking-[0.2em]"
                 >
                   {d.more}

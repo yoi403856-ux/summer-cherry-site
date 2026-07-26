@@ -8,7 +8,8 @@ import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getKitten, getKittenSlugs, getSettings } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
-import { getDict, getLocale } from '@/lib/i18n'
+import { getDict, getLocale, hreflangAlternates } from '@/lib/i18n'
+import { withLocale } from '@/lib/locale'
 import { statusMap, sexLabel, pick, dateLocale } from '@/lib/dict'
 import { resolveContacts } from '@/lib/contacts'
 
@@ -21,7 +22,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const k = await getKitten(params.slug)
-  return { title: k ? `${k.name} — Summer Cherry` : 'Summer Cherry' }
+  const locale = getLocale()
+  const name = k ? pick(locale, k.name, k.nameEn) : null
+  return {
+    title: name ? `${name} — Summer Cherry` : 'Summer Cherry',
+    alternates: hreflangAlternates(`/kittens/${params.slug}`, locale),
+  }
 }
 
 export default async function KittenDetail({ params }) {
@@ -49,7 +55,7 @@ export default async function KittenDetail({ params }) {
       <section className="px-5 pb-2 pt-32 sm:px-8 sm:pt-36">
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            <Link href="/kittens" className="inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink/60 transition-colors hover:text-ink">
+            <Link href={withLocale('/kittens', locale)} className="inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.24em] text-ink/60 transition-colors hover:text-ink">
               <ArrowLeft size={14} /> {d.back}
             </Link>
           </Reveal>
@@ -144,7 +150,7 @@ export default async function KittenDetail({ params }) {
                     )
                     const cls = 'group flex items-center gap-5 border border-ink/10 bg-parchment/40 p-4 transition-colors'
                     return p.slug ? (
-                      <Link key={p._id} href={`/studs/${p.slug}`} className={`${cls} hover:border-pine/40`}>{inner}</Link>
+                      <Link key={p._id} href={withLocale(`/studs/${p.slug}`, locale)} className={`${cls} hover:border-pine/40`}>{inner}</Link>
                     ) : (
                       <div key={p._id} className={cls}>{inner}</div>
                     )

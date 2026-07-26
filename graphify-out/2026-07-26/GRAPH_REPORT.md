@@ -1,13 +1,18 @@
-# Graph Report - .  (2026-07-26)
+# Graph Report - summer-cherry-site  (2026-07-26)
 
 ## Corpus Check
-- 57 files · ~107,841 words
+- 48 files · ~107,872 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
 - 194 nodes · 235 edges · 28 communities (18 shown, 10 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.74)
 - Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `5ad75416`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - Зависимости npm

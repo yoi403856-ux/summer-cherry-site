@@ -3,6 +3,7 @@ import { Phone, Facebook } from 'lucide-react'
 import { PineMark } from './ui'
 import { WhatsApp, Vk } from './icons'
 import { T, pick } from '@/lib/dict'
+import { withLocale } from '@/lib/locale'
 
 const DEFAULTS = {
   phone: '+7 911 732-58-02',
@@ -72,7 +73,7 @@ export default function Footer({ settings, locale = 'ru' }) {
                 { href: '/studs', label: navLabel('studs', 'navStuds') },
               ].map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="link-underline transition-colors hover:text-gold">
+                  <Link href={withLocale(l.href, locale)} className="link-underline transition-colors hover:text-gold">
                     {l.label}
                   </Link>
                 </li>
