@@ -136,10 +136,21 @@
       "norm_label": "(site)/layout.jsx"
     },
     {
+      "label": "generateMetadata()",
+      "file_type": "code",
+      "source_file": "app/(site)/layout.jsx",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "app_site_layout_generatemetadata",
+      "community": 22,
+      "community_name": "Layout \u0441\u0430\u0439\u0442\u0430",
+      "norm_label": "generatemetadata()"
+    },
+    {
       "label": "SiteLayout()",
       "file_type": "code",
       "source_file": "app/(site)/layout.jsx",
-      "source_location": "L9",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "app_site_layout_sitelayout",
       "community": 22,
@@ -1401,14 +1412,47 @@
       "norm_label": "samplestuds"
     },
     {
+      "label": "seo.js",
+      "file_type": "code",
+      "source_file": "lib/seo.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lib_seo",
+      "community": 21,
+      "community_name": "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u043f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e",
+      "norm_label": "seo.js"
+    },
+    {
+      "label": "resolveOgImage()",
+      "file_type": "code",
+      "source_file": "lib/seo.js",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "lib_seo_resolveogimage",
+      "community": 21,
+      "community_name": "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u043f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e",
+      "norm_label": "resolveogimage()"
+    },
+    {
+      "label": "organizationJsonLd()",
+      "file_type": "code",
+      "source_file": "lib/seo.js",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "lib_seo_organizationjsonld",
+      "community": 21,
+      "community_name": "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u043f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e",
+      "norm_label": "organizationjsonld()"
+    },
+    {
       "label": "site.js",
       "file_type": "code",
       "source_file": "lib/site.js",
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_site",
-      "community": 31,
-      "community_name": "site.js",
+      "community": 21,
+      "community_name": "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u043f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e",
       "norm_label": "site.js"
     },
     {
@@ -2374,7 +2418,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/(site)/layout.jsx",
-      "source_location": "L9",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_site_layout",
+      "target": "app_site_layout_generatemetadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(site)/layout.jsx",
+      "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_site_layout",
@@ -3674,6 +3729,42 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/seo.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_seo",
+      "target": "lib_contacts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/seo.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_seo",
+      "target": "lib_contacts_resolvecontacts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/seo.js",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_seo_organizationjsonld",
+      "target": "lib_contacts_resolvecontacts"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/content.js",
@@ -4119,6 +4210,52 @@
       "_origin": "ast",
       "source": "lib_sampledata",
       "target": "lib_sampledata_samplestuds",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/seo.js",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_seo",
+      "target": "lib_seo_organizationjsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/seo.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_seo",
+      "target": "lib_seo_resolveogimage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/seo.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_seo",
+      "target": "lib_site",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/seo.js",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_seo_organizationjsonld",
+      "target": "lib_seo_resolveogimage",
       "confidence_score": 1.0
     },
     {
@@ -5109,5 +5246,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a6cba60b3eef89ad0ed8f4cf794941c30997fe0d"
+  "built_at_commit": "f0099fe6877752369a7206dce3d9e4bb12d3e9a2"
 }

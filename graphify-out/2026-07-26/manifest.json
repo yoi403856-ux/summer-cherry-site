@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "app/(site)/kittens/page.jsx": {
-    "mtime": 1785049230.1359904,
-    "ast_hash": "fed8c2f24e53d490b22cb0abae566f38",
+    "mtime": 1785051640.9526334,
+    "ast_hash": "9e80f0ddddbdb30f2ed0c6f1194fdd94",
     "semantic_hash": ""
   },
   "app/(site)/layout.jsx": {
@@ -75,13 +75,13 @@
     "semantic_hash": "97dadfb8b4c659af0dc2d196a368a346"
   },
   "components/KittensGrid.jsx": {
-    "mtime": 1785048904.6937642,
-    "ast_hash": "e7e186a69e946427230f5ad9f5ac554e",
+    "mtime": 1785051658.2981892,
+    "ast_hash": "52e6cafecedb9515e9200c6fe1389593",
     "semantic_hash": ""
   },
   "components/LangToggle.jsx": {
-    "mtime": 1785049878.2644107,
-    "ast_hash": "f09422a57afca01ae061ddcef2370bc3",
+    "mtime": 1785050194.3139458,
+    "ast_hash": "eeea8f4afafa701f0ac802ea47ef5269",
     "semantic_hash": ""
   },
   "components/LocaleProvider.jsx": {
@@ -140,9 +140,9 @@
     "semantic_hash": "72d5a3473495a51bb455fe0e6847be19"
   },
   "lib/dict.js": {
-    "mtime": 1784915904.4669626,
-    "ast_hash": "ba1d219a6a998e1e61e0f7f1f75f373a",
-    "semantic_hash": "ba1d219a6a998e1e61e0f7f1f75f373a"
+    "mtime": 1785050600.4371603,
+    "ast_hash": "72578f4ec2e927e170cdff1ea7c96672",
+    "semantic_hash": ""
   },
   "lib/i18n.js": {
     "mtime": 1785048792.3102937,

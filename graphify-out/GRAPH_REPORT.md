@@ -1,16 +1,16 @@
 # Graph Report - summer-cherry-site  (2026-07-26)
 
 ## Corpus Check
-- 53 files · ~108,917 words
+- 54 files · ~110,614 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 207 nodes · 247 edges · 32 communities (22 shown, 10 thin omitted)
+- 211 nodes · 255 edges · 31 communities (22 shown, 9 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 6 edges (avg confidence: 0.7)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a6cba60b`
+- Built from commit: `f0099fe6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -64,7 +64,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (32 total, 10 thin omitted)
+## Communities (31 total, 9 thin omitted)
 
 ### Community 0 - "Зависимости npm"
 Cohesion: 0.09
@@ -110,16 +110,20 @@ Nodes (4): cinzel, cormorant, jost, metadata
 Cohesion: 0.50
 Nodes (3): compilerOptions, baseUrl, paths
 
+### Community 21 - "Контакты по умолчанию"
+Cohesion: 0.43
+Nodes (4): CONTACT_DEFAULTS, resolveContacts(), organizationJsonLd(), resolveOgImage()
+
 ## Knowledge Gaps
 - **44 isolated node(s):** `featureIcons`, `valueIcons`, `cinzel`, `cormorant`, `jost` (+39 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `Зависимости npm` to `Инструменты сборки`?**
-  _High betweenness centrality (0.027) - this node is a cross-community bridge._
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
 - **Why does `useDict()` connect `UI-компоненты` to `Кнопки связи и подвал`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `WhatsApp()` (e.g. with `ContactPopover()` and `Footer()`) actually correct?**

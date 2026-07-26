@@ -40,6 +40,13 @@ export const siteSettings = {
       type: 'image',
       options: { hotspot: true },
     },
+    {
+      name: 'ogImage',
+      title: 'Превью для соцсетей и мессенджеров',
+      description: 'Показывается, когда кто-то присылает ссылку на сайт в WhatsApp, Telegram и т.п. Рекомендуемый размер — 1200×630. Если не загружено, используется фото леса по умолчанию.',
+      type: 'image',
+      options: { hotspot: true },
+    },
   ],
   preview: { prepare: () => ({ title: 'Настройки сайта' }) },
 }
