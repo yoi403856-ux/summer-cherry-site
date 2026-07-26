@@ -36,6 +36,7 @@ export default async function KittenDetail({ params }) {
     .filter((x) => x.display)
   const s = statusMap[locale][k.status] || statusMap[locale].available
   const name = pick(locale, k.name, k.nameEn)
+  const color = pick(locale, k.color, k.colorEn)
   const litter = pick(locale, k.litter, k.litterEn)
   const description = pick(locale, k.description, k.descriptionEn)
   const polydactyl = pick(locale, k.polydactyl, k.polydactylEn)
@@ -78,7 +79,7 @@ export default async function KittenDetail({ params }) {
                 <span className={`px-3 py-1 font-sans text-[11px] uppercase tracking-[0.2em] ${s.cls}`}>{s.label}</span>
               </div>
               <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
-                <div><dt className="eyebrow text-golddim">{d.color}</dt><dd className="mt-2 font-serif text-lg text-ink">{k.color || '—'}</dd></div>
+                <div><dt className="eyebrow text-golddim">{d.color}</dt><dd className="mt-2 font-serif text-lg text-ink">{color || '—'}</dd></div>
                 <div><dt className="eyebrow text-golddim">{d.sex}</dt><dd className="mt-2 font-serif text-lg text-ink">{sexLabel(locale, k.sex) || '—'}</dd></div>
                 {polydactyl && <div><dt className="eyebrow text-golddim">{d.polydactyl}</dt><dd className="mt-2 font-serif text-lg text-ink">{polydactyl}</dd></div>}
                 <div><dt className="eyebrow text-golddim">{d.born}</dt><dd className="mt-2 font-serif text-lg text-ink">{fmtDate(k.born)}</dd></div>
@@ -128,6 +129,7 @@ export default async function KittenDetail({ params }) {
                   .map(({ p, role }) => {
                     const src = p.images?.[0] ? urlForImageCrop(p.images[0], 200, 200) : null
                     const pName = pick(locale, p.call, p.callEn) || pick(locale, p.name, p.nameEn)
+                    const pColor = pick(locale, p.color, p.colorEn)
                     const inner = (
                       <>
                         <div className="h-24 w-24 shrink-0 overflow-hidden">
@@ -136,7 +138,7 @@ export default async function KittenDetail({ params }) {
                         <div>
                           <p className="eyebrow text-golddim">{role}</p>
                           <h3 className="mt-1 font-serif text-2xl text-ink">{pName}</h3>
-                          <p className="mt-1 font-sans text-[13px] text-ink/55">{p.color || ''}</p>
+                          <p className="mt-1 font-sans text-[13px] text-ink/55">{pColor || ''}</p>
                         </div>
                       </>
                     )

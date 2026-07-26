@@ -26,6 +26,7 @@ export default async function StudsPage() {
             const src = c.images?.[0] ? urlForImageCrop(c.images[0], 720, 900) : null
             const call = pick(locale, c.call, c.callEn)
             const fullName = pick(locale, c.name, c.nameEn)
+            const color = pick(locale, c.color, c.colorEn)
             const weight = pick(locale, c.weight, c.weightEn)
             const titles = pick(locale, c.titles, c.titlesEn)
             const tests = pickList(locale, c.tests, c.testsEn)
@@ -51,10 +52,10 @@ export default async function StudsPage() {
                     )}
                     <p className="mt-2 font-sans text-[13px] uppercase tracking-[0.22em] text-ink/45">{fullName}</p>
                     <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
-                      {c.color && (
-                        <div>
+                      {color && (
+                        <div className="col-span-2">
                           <dt className="eyebrow text-golddim">{d.color}</dt>
-                          <dd className="mt-2 font-serif text-lg text-ink">{c.color}</dd>
+                          <dd className="mt-2 font-serif text-lg text-ink">{color}</dd>
                         </div>
                       )}
                       {polydactyl && (

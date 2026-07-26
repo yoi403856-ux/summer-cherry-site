@@ -122,6 +122,7 @@ export default async function Home() {
             {studs.slice(0, 4).map((c, i) => {
               const src = c.images?.[0] ? urlForImageCrop(c.images[0], 700, 934) : null
               const call = pick(locale, c.call, c.callEn) || pick(locale, c.name, c.nameEn)
+              const color = pick(locale, c.color, c.colorEn)
               return (
                 <Reveal key={c._id} delay={i * 0.08}>
                   <Link href={c.slug ? `/studs/${c.slug}` : '/studs'} className="group block">
@@ -129,7 +130,7 @@ export default async function Home() {
                     <div className="mt-4">
                       <p className="eyebrow text-golddim">{roleLabel(locale, c.role)}</p>
                       <h3 className="mt-1.5 font-serif text-2xl text-ink">{call}</h3>
-                      <p className="mt-1 font-sans text-[13px] tracking-wide text-ink/55">{c.color}</p>
+                      <p className="mt-1 font-sans text-[13px] tracking-wide text-ink/55">{color}</p>
                     </div>
                   </Link>
                 </Reveal>

@@ -16,7 +16,7 @@ export default async function KittensPage() {
     _id: k._id,
     slug: k.slug,
     name: pick(locale, k.name, k.nameEn),
-    color: k.color,
+    color: pick(locale, k.color, k.colorEn),
     polydactyl: pick(locale, k.polydactyl, k.polydactylEn),
     sex: k.sex,
     born: k.born,

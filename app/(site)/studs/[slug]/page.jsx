@@ -37,6 +37,7 @@ export default async function StudDetail({ params }) {
   const kittens = await getKittensByStud(c._id)
   const call = pick(locale, c.call, c.callEn)
   const fullName = pick(locale, c.name, c.nameEn)
+  const color = pick(locale, c.color, c.colorEn)
   const weight = pick(locale, c.weight, c.weightEn)
   const titles = pick(locale, c.titles, c.titlesEn)
   const tests = pickList(locale, c.tests, c.testsEn)
@@ -75,8 +76,8 @@ export default async function StudDetail({ params }) {
               )}
 
               <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-ink/10 pt-8">
-                {c.color && (
-                  <div><dt className="eyebrow text-golddim">{d.color}</dt><dd className="mt-2 font-serif text-lg text-ink">{c.color}</dd></div>
+                {color && (
+                  <div className="col-span-2"><dt className="eyebrow text-golddim">{d.color}</dt><dd className="mt-2 font-serif text-lg text-ink">{color}</dd></div>
                 )}
                 {polydactyl && (
                   <div><dt className="eyebrow text-golddim">{d.polydactyl}</dt><dd className="mt-2 font-serif text-lg text-ink">{polydactyl}</dd></div>
@@ -130,6 +131,7 @@ export default async function StudDetail({ params }) {
                 {kittens.map((k) => {
                   const src = k.images?.[0] ? urlForImageCrop(k.images[0], 200, 200) : null
                   const kName = pick(locale, k.name, k.nameEn)
+                  const kColor = pick(locale, k.color, k.colorEn)
                   return (
                     <Link
                       key={k._id}
@@ -141,7 +143,7 @@ export default async function StudDetail({ params }) {
                       </div>
                       <div>
                         <h3 className="font-serif text-2xl text-ink">{kName}</h3>
-                        <p className="mt-1 font-sans text-[13px] text-ink/55">{k.color || ''}</p>
+                        <p className="mt-1 font-sans text-[13px] text-ink/55">{kColor || ''}</p>
                       </div>
                     </Link>
                   )
