@@ -1,7 +1,7 @@
 {
   "app/(site)/about/page.jsx": {
-    "mtime": 1785049220.5235586,
-    "ast_hash": "f825ab9043a0cb12428f6ef8b0eba69f",
+    "mtime": 1785052690.5086243,
+    "ast_hash": "718737397bc2335a021a79d06cc8faa8",
     "semantic_hash": ""
   },
   "app/(site)/kittens/[slug]/page.jsx": {

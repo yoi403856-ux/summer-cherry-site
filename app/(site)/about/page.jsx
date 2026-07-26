@@ -27,7 +27,7 @@ export default async function About() {
     <>
       <PageHero
         eyebrow={dict.nav.about}
-        title={<>{d.heroTitle[0]}<br />{d.heroTitle[1]}</>}
+        title={<>{d.heroTitle[0]}<br /><span className="ml-[0.6em] inline-block">{d.heroTitle[1]}</span></>}
         lead={d.heroLead}
       />
 
