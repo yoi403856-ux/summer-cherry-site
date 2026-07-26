@@ -21,11 +21,9 @@ export default function KittensGrid({ items = [] }) {
 
   if (!items.length) {
     return (
-      <div className="flex min-h-[50vh] items-center justify-center">
-        <p className="mx-auto max-w-2xl px-5 text-center font-serif text-2xl italic leading-relaxed text-ink/60 sm:text-3xl">
-          {d.empty}
-        </p>
-      </div>
+      <p className="mx-auto max-w-2xl px-5 py-24 text-center font-serif text-2xl italic leading-relaxed text-ink/60 sm:text-3xl">
+        {d.empty}
+      </p>
     )
   }
 
