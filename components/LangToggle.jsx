@@ -32,7 +32,7 @@ export default function LangToggle({ className = '' }) {
       >
         RU
       </a>
-      <span className="text-ink/25">/</span>
+      <span className="text-ink/25">|</span>
       <a
         href={enHref}
         className={`px-1.5 py-0.5 uppercase transition-colors ${locale === 'en' ? 'text-ink' : 'text-ink/40 hover:text-ink/70'}`}
