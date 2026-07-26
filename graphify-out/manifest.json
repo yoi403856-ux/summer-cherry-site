@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "app/(site)/kittens/page.jsx": {
-    "mtime": 1785049230.1359904,
-    "ast_hash": "fed8c2f24e53d490b22cb0abae566f38",
+    "mtime": 1785051640.9526334,
+    "ast_hash": "9e80f0ddddbdb30f2ed0c6f1194fdd94",
     "semantic_hash": ""
   },
   "app/(site)/layout.jsx": {
@@ -75,8 +75,8 @@
     "semantic_hash": "97dadfb8b4c659af0dc2d196a368a346"
   },
   "components/KittensGrid.jsx": {
-    "mtime": 1785051206.8946097,
-    "ast_hash": "15a1492706f24ae52b3daa6eb9346e79",
+    "mtime": 1785051658.2981892,
+    "ast_hash": "52e6cafecedb9515e9200c6fe1389593",
     "semantic_hash": ""
   },
   "components/LangToggle.jsx": {

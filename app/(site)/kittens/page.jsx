@@ -38,7 +38,11 @@ export default async function KittensPage() {
     <>
       <PageHero eyebrow={d.heroEyebrow} title={d.heroTitle} lead={d.heroLead} />
 
-      <section className="bg-parchment/50 backdrop-blur-md pb-20 pt-4 sm:pb-28 sm:pt-5">
+      <section
+        className={`bg-parchment/50 backdrop-blur-md ${
+          items.length ? 'pb-20 pt-4 sm:pb-28 sm:pt-5' : 'py-12 sm:py-[66px]'
+        }`}
+      >
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <KittensGrid items={items} />
         </div>
