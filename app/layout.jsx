@@ -17,6 +17,9 @@ export const metadata = {
     description: 'Крупные, здоровые котята из тумана северного леса. Котята, производители, история питомника.',
     siteName: 'Summer Cherry',
   },
+  verification: {
+    google: 'qjuGhi8lywjsGdImFxONaPiU7_PKkBfiy76co1RQ4Gk',
+  },
 }
 
 export default function RootLayout({ children }) {
