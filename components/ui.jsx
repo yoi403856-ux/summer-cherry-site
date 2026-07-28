@@ -4,13 +4,21 @@ import { motion } from 'framer-motion'
 
 const easeOut = [0.22, 1, 0.36, 1]
 
+/*
+  Fades content in on mount rather than on scroll-into-view: this used to
+  rely on whileInView (IntersectionObserver-driven), which left content
+  permanently stuck at opacity 0 on some iOS Safari versions — the observer
+  never fired, so sections past the very first screen never revealed.
+  `animate` only depends on the component mounting, which is far more
+  reliable, at the small cost of no longer staggering the reveal by scroll
+  position.
+*/
 export function Reveal({ children, delay = 0, y = 26, className = '' }) {
   return (
     <motion.div
       className={className}
       initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, ease: easeOut, delay }}
     >
       {children}
