@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "app/layout.jsx": {
-    "mtime": 1785190955.1808674,
-    "ast_hash": "35c383d9a1ba6e462b990f319e424e1b",
+    "mtime": 1785252715.1664245,
+    "ast_hash": "2f722395d02e7305b4a5e51d6e1fd8ad",
     "semantic_hash": ""
   },
   "app/studio/[[...tool]]/page.jsx": {
@@ -317,6 +317,11 @@
   "public/og-default.jpg": {
     "mtime": 1785051969.7328417,
     "ast_hash": "72675126aecc211684cda47b46d159de",
+    "semantic_hash": ""
+  },
+  "\u0418\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u0434\u043b\u044f \u0441\u0430\u0439\u0442\u0430.txt": {
+    "mtime": 1785196674.9744089,
+    "ast_hash": "6812d5613e66ef9bd3ac47861f468971",
     "semantic_hash": ""
   }
 }

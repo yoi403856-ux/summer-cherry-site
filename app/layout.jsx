@@ -19,6 +19,7 @@ export const metadata = {
   },
   verification: {
     google: 'qjuGhi8lywjsGdImFxONaPiU7_PKkBfiy76co1RQ4Gk',
+    yandex: 'b832107eb99d231e',
   },
 }
 

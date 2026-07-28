@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "app/layout.jsx": {
-    "mtime": 1785048739.6963787,
-    "ast_hash": "83e7274140ed41572ec7ad958d18f163",
+    "mtime": 1785190955.1808674,
+    "ast_hash": "35c383d9a1ba6e462b990f319e424e1b",
     "semantic_hash": ""
   },
   "app/studio/[[...tool]]/page.jsx": {
