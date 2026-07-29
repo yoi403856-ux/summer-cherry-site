@@ -1,9 +1,23 @@
+/*
+  Self-hosted webfonts. These used to come from next/font/google, which
+  downloads them from fonts.gstatic.com at BUILD time — that request times out
+  from a Russian datacentre, hanging the build indefinitely. The files now live
+  in /public/fonts and are declared in fonts.css, so a build needs no network
+  access to Google at all.
+*/
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   color-scheme: light;
+
+  /* consumed by tailwind.config.js fontFamily (display / serif / sans) */
+  --font-cinzel: 'Cinzel', serif;
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-jost: 'Jost', system-ui, sans-serif;
 }
 
 /*

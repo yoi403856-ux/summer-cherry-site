@@ -1,16 +1,16 @@
-# Graph Report - summer-cherry-site  (2026-07-28)
+# Graph Report - summer-cherry-site  (2026-07-29)
 
 ## Corpus Check
-- 54 files · ~111,233 words
+- 54 files · ~111,192 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 211 nodes · 255 edges · 31 communities (22 shown, 9 thin omitted)
+- 210 nodes · 254 edges · 31 communities (20 shown, 11 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 6 edges (avg confidence: 0.7)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `dc08b827`
+- Built from commit: `cfb7f4bf`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -64,15 +64,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (31 total, 9 thin omitted)
+## Communities (31 total, 11 thin omitted)
 
 ### Community 0 - "Зависимости npm"
-Cohesion: 0.09
-Nodes (23): framer-motion, lucide-react, next, next-sanity, dependencies, framer-motion, lucide-react, next (+15 more)
+Cohesion: 0.08
+Nodes (25): framer-motion, lucide-react, next, next-sanity, dependencies, framer-motion, lucide-react, next (+17 more)
 
 ### Community 1 - "Sanity: схемы контента"
-Cohesion: 0.13
-Nodes (9): aboutContent, homeContent, kitten, RU, slugify(), kittensContent, siteSettings, stud (+1 more)
+Cohesion: 0.11
+Nodes (12): schema, aboutContent, homeContent, kitten, RU, slugify(), kittensContent, siteSettings (+4 more)
 
 ### Community 2 - "UI-компоненты"
 Cohesion: 0.20
@@ -94,17 +94,9 @@ Nodes (11): getKitten(), getKittens(), getKittensByStud(), getKittenSlugs(), get
 Cohesion: 0.19
 Nodes (7): dateLocale, statusMap, T, getDict(), getLocale(), hreflangAlternates(), withLocale()
 
-### Community 7 - "Sanity-клиент и изображения"
-Cohesion: 0.24
-Nodes (4): isSanityConfigured, schema, singleton(), structure()
-
 ### Community 8 - "CMS-контент страниц"
 Cohesion: 0.64
 Nodes (7): f(), fetchDoc(), getAboutContent(), getHomeContent(), getKittensContent(), getStudsContent(), mergeList()
-
-### Community 9 - "Корневой layout"
-Cohesion: 0.33
-Nodes (4): cinzel, cormorant, jost, metadata
 
 ### Community 14 - "Конфигурация путей"
 Cohesion: 0.50
@@ -115,24 +107,24 @@ Cohesion: 0.43
 Nodes (4): CONTACT_DEFAULTS, resolveContacts(), organizationJsonLd(), resolveOgImage()
 
 ## Knowledge Gaps
-- **44 isolated node(s):** `featureIcons`, `valueIcons`, `cinzel`, `cormorant`, `jost` (+39 more)
+- **42 isolated node(s):** `featureIcons`, `valueIcons`, `metadata`, `DEFAULTS`, `easeOut` (+37 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `Зависимости npm` to `Инструменты сборки`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `useDict()` connect `UI-компоненты` to `Кнопки связи и подвал`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `WhatsApp()` (e.g. with `ContactPopover()` and `Footer()`) actually correct?**
   _`WhatsApp()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `featureIcons`, `valueIcons`, `cinzel` to the rest of the system?**
-  _44 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `featureIcons`, `valueIcons`, `metadata` to the rest of the system?**
+  _42 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Зависимости npm` be split into smaller, more focused modules?**
-  _Cohesion score 0.08695652173913043 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
 - **Should `Sanity: схемы контента` be split into smaller, more focused modules?**
-  _Cohesion score 0.12987012987012986 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10826210826210826 - nodes in this community are weakly interconnected._
 - **Should `Инструменты сборки` be split into smaller, more focused modules?**
   _Cohesion score 0.125 - nodes in this community are weakly interconnected._

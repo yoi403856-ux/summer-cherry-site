@@ -5,8 +5,8 @@
     "semantic_hash": ""
   },
   "app/(site)/kittens/[slug]/page.jsx": {
-    "mtime": 1785049254.4146943,
-    "ast_hash": "e165fede776b3cb042c75dd8d504dd9b",
+    "mtime": 1785350374.1590178,
+    "ast_hash": "341cee8ec0290da6165bdbcf17cddc67",
     "semantic_hash": ""
   },
   "app/(site)/kittens/page.jsx": {
@@ -25,8 +25,8 @@
     "semantic_hash": ""
   },
   "app/(site)/studs/[slug]/page.jsx": {
-    "mtime": 1785049261.559415,
-    "ast_hash": "ae96ed676b4579c8233e4a06ebd8472f",
+    "mtime": 1785350433.489802,
+    "ast_hash": "b1266d6c95b20c57a1d76889cbc0b07d",
     "semantic_hash": ""
   },
   "app/(site)/studs/page.jsx": {
@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "app/layout.jsx": {
-    "mtime": 1785252715.1664245,
-    "ast_hash": "2f722395d02e7305b4a5e51d6e1fd8ad",
+    "mtime": 1785306386.6405313,
+    "ast_hash": "c64cd2eb59dd86b42ef3f2f1a3bdbf18",
     "semantic_hash": ""
   },
   "app/studio/[[...tool]]/page.jsx": {
@@ -125,9 +125,9 @@
     "semantic_hash": "1785e71c7510902b04f35784b434ec4b"
   },
   "lib/api.js": {
-    "mtime": 1785046825.0219996,
-    "ast_hash": "cee53db39a5ae4391177b90f87c06304",
-    "semantic_hash": "cee53db39a5ae4391177b90f87c06304"
+    "mtime": 1785337409.890421,
+    "ast_hash": "ff645c3bd1fedc4d0967bdb9792110d9",
+    "semantic_hash": ""
   },
   "lib/contacts.js": {
     "mtime": 1784909706.9485939,
@@ -148,11 +148,6 @@
     "mtime": 1785048792.3102937,
     "ast_hash": "7ac22b7233812da26fba8121cd8f4b4e",
     "semantic_hash": ""
-  },
-  "lib/sampleData.js": {
-    "mtime": 1784811327.3750272,
-    "ast_hash": "d1b3ab86334ba06528cd1058584d0a36",
-    "semantic_hash": "d1b3ab86334ba06528cd1058584d0a36"
   },
   "next.config.js": {
     "mtime": 1784813872.388867,
@@ -325,7 +320,7 @@
     "semantic_hash": ""
   },
   "amvera.yaml": {
-    "mtime": 1785278833.7852564,
+    "mtime": 1785306022.1069295,
     "ast_hash": "172dc5bf98ae8c9430b82fbbf32c0d90",
     "semantic_hash": ""
   }

@@ -6,19 +6,22 @@ import KittenGallery from '@/components/KittenGallery'
 import ContactPopover from '@/components/ContactPopover'
 import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
-import { getKitten, getKittenSlugs, getSettings } from '@/lib/api'
+import { getKitten, getSettings } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
 import { getDict, getLocale, hreflangAlternates } from '@/lib/i18n'
 import { withLocale } from '@/lib/locale'
 import { statusMap, sexLabel, pick, dateLocale } from '@/lib/dict'
 import { resolveContacts } from '@/lib/contacts'
 
-export const dynamicParams = true
-
-export async function generateStaticParams() {
-  const slugs = await getKittenSlugs()
-  return slugs.map((slug) => ({ slug }))
-}
+/*
+  Rendered per request, not pre-generated. The page reads the locale from a
+  request header (see lib/i18n.js), which static generation cannot provide —
+  any slug missing from a build-time list therefore died with
+  DYNAMIC_SERVER_USAGE instead of rendering. That made every newly published
+  kitten a 500 until the next deploy. CMS reads are `no-store` anyway, so
+  pre-rendering bought nothing here.
+*/
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }) {
   const k = await getKitten(params.slug)

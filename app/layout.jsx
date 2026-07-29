@@ -1,11 +1,6 @@
 import './globals.css'
-import { Cinzel, Cormorant_Garamond, Jost } from 'next/font/google'
 import { getLocale } from '@/lib/i18n'
 import { siteUrl } from '@/lib/site'
-
-const cinzel = Cinzel({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-cinzel', display: 'swap' })
-const cormorant = Cormorant_Garamond({ subsets: ['latin', 'cyrillic'], weight: ['400', '500', '600'], style: ['normal', 'italic'], variable: '--font-cormorant', display: 'swap' })
-const jost = Jost({ subsets: ['latin', 'cyrillic'], weight: ['300', '400', '500', '600'], variable: '--font-jost', display: 'swap' })
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -26,7 +21,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const locale = getLocale()
   return (
-    <html lang={locale} className={`${cinzel.variable} ${cormorant.variable} ${jost.variable}`}>
+    <html lang={locale}>
       <body className="font-sans">{children}</body>
     </html>
   )

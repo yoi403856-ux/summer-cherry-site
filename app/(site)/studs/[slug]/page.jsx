@@ -6,19 +6,17 @@ import KittenGallery from '@/components/KittenGallery'
 import ContactPopover from '@/components/ContactPopover'
 import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
-import { getStud, getStudSlugs, getKittensByStud, getSettings } from '@/lib/api'
+import { getStud, getKittensByStud, getSettings } from '@/lib/api'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
 import { getDict, getLocale, hreflangAlternates } from '@/lib/i18n'
 import { withLocale } from '@/lib/locale'
 import { roleLabel, pick, pickList } from '@/lib/dict'
 import { resolveContacts } from '@/lib/contacts'
 
-export const dynamicParams = true
-
-export async function generateStaticParams() {
-  const slugs = await getStudSlugs()
-  return slugs.map((slug) => ({ slug }))
-}
+// Per-request for the same reason as the kitten detail page: the locale comes
+// from a request header, so a slug absent from the build-time list 500s under
+// static generation instead of rendering.
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }) {
   const c = await getStud(params.slug)

@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "app/layout.jsx": {
-    "mtime": 1785252715.1664245,
-    "ast_hash": "2f722395d02e7305b4a5e51d6e1fd8ad",
+    "mtime": 1785306386.6405313,
+    "ast_hash": "c64cd2eb59dd86b42ef3f2f1a3bdbf18",
     "semantic_hash": ""
   },
   "app/studio/[[...tool]]/page.jsx": {
@@ -160,9 +160,9 @@
     "semantic_hash": "2667e66ae3e266caa9cbaadf65ba68f4"
   },
   "package.json": {
-    "mtime": 1784742368.784132,
-    "ast_hash": "4aa7f37695770f5b0095aef9903f98a6",
-    "semantic_hash": "4aa7f37695770f5b0095aef9903f98a6"
+    "mtime": 1785278871.6806839,
+    "ast_hash": "139474feb51421c3547899778a240ebd",
+    "semantic_hash": ""
   },
   "postcss.config.js": {
     "mtime": 1784742415.0292346,
@@ -322,6 +322,11 @@
   "\u0418\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u0434\u043b\u044f \u0441\u0430\u0439\u0442\u0430.txt": {
     "mtime": 1785196674.9744089,
     "ast_hash": "6812d5613e66ef9bd3ac47861f468971",
+    "semantic_hash": ""
+  },
+  "amvera.yaml": {
+    "mtime": 1785306022.1069295,
+    "ast_hash": "172dc5bf98ae8c9430b82fbbf32c0d90",
     "semantic_hash": ""
   }
 }
