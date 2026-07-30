@@ -183,7 +183,7 @@
       "label": "Home()",
       "file_type": "code",
       "source_file": "app/(site)/page.jsx",
-      "source_location": "L30",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "app_site_page_home",
       "community": 16,
@@ -2374,7 +2374,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/(site)/page.jsx",
-      "source_location": "L30",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_site_page",
@@ -5090,5 +5090,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "346dd4c3e79b54324d57937bc9e0127852050496"
+  "built_at_commit": "cfb7f4bf69fc8e9d36d9a03a99d943b0049f49a9"
 }

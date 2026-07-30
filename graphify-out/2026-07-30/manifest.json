@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   "app/(site)/page.jsx": {
-    "mtime": 1785415144.2702506,
-    "ast_hash": "927e1b0a9f8335cecc44459bd357c49c",
+    "mtime": 1785049275.8574421,
+    "ast_hash": "d78ea2b09034f3ac47e0444969cfb4e6",
     "semantic_hash": ""
   },
   "app/(site)/studs/[slug]/page.jsx": {

@@ -1,7 +1,7 @@
-# Graph Report - summer-cherry-site  (2026-07-30)
+# Graph Report - summer-cherry-site  (2026-07-29)
 
 ## Corpus Check
-- 53 files · ~110,812 words
+- 53 files · ~110,805 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `346dd4c3`
+- Built from commit: `cfb7f4bf`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

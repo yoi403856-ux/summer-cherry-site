@@ -16,12 +16,13 @@ const valueIcons = [ShieldCheck, HeartHandshake, Award, Trees]
 
 export async function generateMetadata() {
   const locale = getLocale()
+  // pulled from the same CMS text (Настройки → Тексты: Главная → «Подзаголовок»)
+  // shown under the H1, so the search snippet can't drift out of sync with the
+  // page again the way the old hardcoded copy did
+  const d = await getHomeContent(locale)
   return {
     title: locale === 'en' ? 'Summer Cherry — Maine Coon cattery' : 'Summer Cherry — питомник мейн-кунов',
-    description:
-      locale === 'en'
-        ? 'Summer Cherry Maine Coon cattery. Large, healthy kittens raised in a misty northern forest. Kittens, sires, and our story.'
-        : 'Summer Cherry — питомник мейн-кунов. Крупные, здоровые котята из тумана северного леса. Котята, производители, история питомника.',
+    description: `Summer Cherry. ${d.lead}`,
     alternates: hreflangAlternates('/', locale),
   }
 }
