@@ -22,7 +22,7 @@ export async function generateMetadata() {
   const d = await getHomeContent(locale)
   return {
     title: locale === 'en' ? 'Summer Cherry — Maine Coon cattery' : 'Summer Cherry — питомник мейн-кунов',
-    description: `Summer Cherry. ${d.p1}`,
+    description: `Summer Cherry. ${d.lead}`,
     alternates: hreflangAlternates('/', locale),
   }
 }

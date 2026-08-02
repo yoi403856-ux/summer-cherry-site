@@ -7,6 +7,7 @@ import ContactPopover from '@/components/ContactPopover'
 import ScrollHint from '@/components/ScrollHint'
 import { Reveal, Eyebrow, PineMark } from '@/components/ui'
 import { getStud, getKittensByStud, getSettings } from '@/lib/api'
+import { getStudsContent } from '@/lib/content'
 import { urlForImage, urlForImageCrop } from '@/sanity/image'
 import { getDict, getLocale, hreflangAlternates } from '@/lib/i18n'
 import { withLocale } from '@/lib/locale'
@@ -19,17 +20,12 @@ import { resolveContacts } from '@/lib/contacts'
 export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }) {
-  const c = await getStud(params.slug)
+  const [c, d] = await Promise.all([getStud(params.slug), getStudsContent(getLocale())])
   const locale = getLocale()
   const call = c ? pick(locale, c.call, c.callEn) || pick(locale, c.name, c.nameEn) : null
-  const color = c ? pick(locale, c.color, c.colorEn) : null
-  const titles = c ? pick(locale, c.titles, c.titlesEn) : null
-  const description = c
-    ? `${call} — ${roleLabel(locale, c.role).toLowerCase()} питомника Summer Cherry.${color ? ` Окрас: ${color}.` : ''}${titles ? ` ${titles}.` : ''}`
-    : undefined
   return {
     title: call ? `${call} — Summer Cherry` : 'Summer Cherry',
-    description,
+    description: `Summer Cherry. ${d.heroLead}`,
     alternates: hreflangAlternates(`/studs/${params.slug}`, locale),
   }
 }
