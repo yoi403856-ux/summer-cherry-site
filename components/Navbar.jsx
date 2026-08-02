@@ -56,7 +56,7 @@ export default function Navbar({ settings }) {
           <Link href={withLocale('/', locale)} className="group flex flex-col leading-none" onClick={() => setOpen(false)}>
             <span className="font-display text-[19px] sm:text-[22px] font-semibold tracking-[0.22em] text-ink">
               SUMMER&nbsp;CHERRY
-            </span>
+            </span>{' '}
             <span className="mt-1 font-sans text-[9px] sm:text-[10px] tracking-[0.5em] text-golddim">
               MAINE&nbsp;COON&nbsp;CATTERY
             </span>
@@ -64,15 +64,16 @@ export default function Navbar({ settings }) {
 
           <nav className="hidden items-center gap-9 md:flex">
             {links.map((l) => (
-              <Link
-                key={l.href}
-                href={withLocale(l.href, locale)}
-                className={`link-underline font-sans text-[13px] tracking-[0.24em] uppercase transition-colors duration-300 ${
-                  isActive(l.href) ? 'text-golddim' : 'text-ink/75 hover:text-ink'
-                }`}
-              >
-                {navLabel(l.key, l.settingsKey)}
-              </Link>
+              <span key={l.href}>
+                <Link
+                  href={withLocale(l.href, locale)}
+                  className={`link-underline font-sans text-[13px] tracking-[0.24em] uppercase transition-colors duration-300 ${
+                    isActive(l.href) ? 'text-golddim' : 'text-ink/75 hover:text-ink'
+                  }`}
+                >
+                  {navLabel(l.key, l.settingsKey)}
+                </Link>{' '}
+              </span>
             ))}
             <ContactLink className="ml-2 border border-ink/25 px-5 py-2.5 font-sans text-[12px] uppercase tracking-[0.24em] text-ink transition-colors duration-300 hover:bg-ink hover:text-parchment">
               {contactLabel}
@@ -116,7 +117,7 @@ export default function Navbar({ settings }) {
                     className={`font-serif text-3xl ${isActive(l.href) ? 'text-golddim italic' : 'text-ink'}`}
                   >
                     {navLabel(l.key, l.settingsKey)}
-                  </Link>
+                  </Link>{' '}
                 </motion.div>
               ))}
             </div>
