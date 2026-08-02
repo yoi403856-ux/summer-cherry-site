@@ -27,8 +27,13 @@ export async function generateMetadata({ params }) {
   const k = await getKitten(params.slug)
   const locale = getLocale()
   const name = k ? pick(locale, k.name, k.nameEn) : null
+  const color = k ? pick(locale, k.color, k.colorEn) : null
+  const description = k
+    ? pick(locale, k.description, k.descriptionEn) || `${name} — котёнок мейн-куна питомника Summer Cherry.${color ? ` Окрас: ${color}.` : ''}`
+    : undefined
   return {
     title: name ? `${name} — Summer Cherry` : 'Summer Cherry',
+    description,
     alternates: hreflangAlternates(`/kittens/${params.slug}`, locale),
   }
 }

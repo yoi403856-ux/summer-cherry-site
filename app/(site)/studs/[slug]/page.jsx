@@ -22,8 +22,14 @@ export async function generateMetadata({ params }) {
   const c = await getStud(params.slug)
   const locale = getLocale()
   const call = c ? pick(locale, c.call, c.callEn) || pick(locale, c.name, c.nameEn) : null
+  const color = c ? pick(locale, c.color, c.colorEn) : null
+  const titles = c ? pick(locale, c.titles, c.titlesEn) : null
+  const description = c
+    ? `${call} — ${roleLabel(locale, c.role).toLowerCase()} питомника Summer Cherry.${color ? ` Окрас: ${color}.` : ''}${titles ? ` ${titles}.` : ''}`
+    : undefined
   return {
     title: call ? `${call} — Summer Cherry` : 'Summer Cherry',
+    description,
     alternates: hreflangAlternates(`/studs/${params.slug}`, locale),
   }
 }
