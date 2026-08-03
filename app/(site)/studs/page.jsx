@@ -12,8 +12,10 @@ import { getStudsContent } from '@/lib/content'
 
 export async function generateMetadata() {
   const locale = getLocale()
+  const d = await getStudsContent(locale)
   return {
     title: locale === 'en' ? 'Our Cats — Summer Cherry' : 'Производители — Summer Cherry',
+    description: d.heroLead,
     alternates: hreflangAlternates('/studs', locale),
   }
 }
