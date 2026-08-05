@@ -14,11 +14,6 @@ import { withLocale } from '@/lib/locale'
 import { roleLabel, pick, pickList } from '@/lib/dict'
 import { resolveContacts } from '@/lib/contacts'
 
-// Per-request for the same reason as the kitten detail page: the locale comes
-// from a request header, so a slug absent from the build-time list 500s under
-// static generation instead of rendering.
-export const dynamic = 'force-dynamic'
-
 export async function generateMetadata({ params }) {
   const [c, d] = await Promise.all([getStud(params.slug), getStudsContent(getLocale())])
   const locale = getLocale()
