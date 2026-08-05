@@ -62,7 +62,7 @@ export default function Navbar({ settings }) {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-9 md:flex">
+          <nav className="hidden items-center gap-9 xl:flex">
             {links.map((l) => (
               <span key={l.href}>
                 <Link
@@ -81,7 +81,7 @@ export default function Navbar({ settings }) {
             <LangToggle className="ml-1" />
           </nav>
 
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-4 xl:hidden">
             <LangToggle />
             <button
               className="text-ink"
@@ -101,7 +101,7 @@ export default function Navbar({ settings }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-0 z-40 flex flex-col bg-parchment md:hidden"
+            className="fixed inset-0 top-0 z-40 flex flex-col bg-parchment xl:hidden"
           >
             <div className="mt-28 flex flex-col items-center gap-8 px-8">
               {links.map((l, i) => (
