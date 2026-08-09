@@ -13,16 +13,27 @@ export default function HeroMosaic({ images = [] }) {
       {images.map((src, i) => (
         <motion.div
           key={i}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.5 + i * 0.09, ease: easeOut }}
           className={`group relative aspect-[3/4] w-full overflow-hidden border border-ink/10 shadow-card ${tileOffset[i % tileOffset.length]}`}
         >
+          {/*
+            All six tiles sit in the hero, visible on first paint — none of
+            them are actually "below the fold", so only the first one being
+            `priority` meant the other five queued in behind everything
+            else and decoded late, right as their own entrance animation
+            was running. Every tile now gets priority (they're small crops,
+            not full photos, so the extra weight is minor), and the
+            entrance dropped its translateY — a still image doesn't need
+            to move to read as a reveal, and opacity-only sidesteps
+            animating a box while its photo is still decoding inside it.
+          */}
           <Image
             src={src}
             alt={`Мейн-кун питомника Summer Cherry ${i + 1}`}
             fill
-            priority={i === 0}
+            priority
             sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
             className="object-cover grayscale-[0.15] transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:grayscale-0"
           />
