@@ -166,7 +166,17 @@ export default async function Home() {
               const Icon = valueIcons[i]
               return (
                 <Reveal key={i} delay={i * 0.07}>
-                  <div className="group h-full bg-parchment/70 p-8 transition-colors duration-500 hover:bg-pinedeep">
+                  {/*
+                    The hover fill used to transition background-color directly
+                    (hover:bg-pinedeep), which repaints the whole card every
+                    animation frame — visibly stepping/choppy at 500ms. A
+                    separate absolutely-positioned layer crossfading opacity
+                    achieves the same look as a compositor-only animation
+                    (like transform/opacity), which stays smooth regardless
+                    of duration.
+                  */}
+                  <div className="group relative isolate h-full overflow-hidden bg-parchment/70 p-8">
+                    <div className="absolute inset-0 -z-10 bg-pinedeep opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     <Icon className="h-8 w-8 text-golddim transition-colors duration-500 group-hover:text-gold" strokeWidth={1.4} />
                     <h3 className="mt-6 font-serif text-2xl text-ink transition-colors duration-500 group-hover:text-parchment">{v.t}</h3>
                     <p className="mt-3 font-sans text-[14px] leading-relaxed text-ink/65 transition-colors duration-500 group-hover:text-birch/75">{v.d}</p>

@@ -12,14 +12,23 @@ const easeOut = [0.22, 1, 0.36, 1]
   `animate` only depends on the component mounting, which is far more
   reliable, at the small cost of no longer staggering the reveal by scroll
   position.
+
+  Opacity-only, no translateY: with dozens of these staggered across a
+  page (product grids, stats, etc.), the transform used to visibly step
+  rather than glide — animating transform on text re-triggers the
+  browser's glyph rasterization each frame (a real cost, unlike moving a
+  plain box), and that added up with many instances animating close
+  together. A pure opacity fade never moves anything, so there's nothing
+  to re-rasterize — it's the cheapest animation there is and still reads
+  as a reveal.
 */
-export function Reveal({ children, delay = 0, y = 26, className = '' }) {
+export function Reveal({ children, delay = 0, className = '' }) {
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, ease: easeOut, delay }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.7, ease: easeOut, delay }}
     >
       {children}
     </motion.div>
