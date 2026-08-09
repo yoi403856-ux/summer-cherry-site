@@ -13,8 +13,8 @@ export default function HeroMosaic({ images = [] }) {
       {images.map((src, i) => (
         <motion.div
           key={i}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.5 + i * 0.09, ease: easeOut }}
           className={`group relative aspect-[3/4] w-full overflow-hidden border border-ink/10 shadow-card ${tileOffset[i % tileOffset.length]}`}
         >
@@ -24,10 +24,11 @@ export default function HeroMosaic({ images = [] }) {
             `priority` meant the other five queued in behind everything
             else and decoded late, right as their own entrance animation
             was running. Every tile now gets priority (they're small crops,
-            not full photos, so the extra weight is minor), and the
-            entrance dropped its translateY — a still image doesn't need
-            to move to read as a reveal, and opacity-only sidesteps
-            animating a box while its photo is still decoding inside it.
+            not full photos, so the extra weight is minor) so decoding
+            finishes closer to page load instead of overlapping the
+            animation. The translateY "rise" stays — dropping it read as
+            flat, and the priority fix on its own already cut most of the
+            stutter.
           */}
           <Image
             src={src}
