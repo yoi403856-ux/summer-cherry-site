@@ -47,9 +47,19 @@ export default function Navbar({ settings }) {
 
   return (
     <>
+      {/*
+        transition-colors, not transition-all: this used to animate padding
+        too (py-6 -> py-3), and padding is a layout property — every frame
+        of that 500ms reflowed the whole header, right at the exact moment
+        the user starts scrolling (crossing the 40px threshold). border-b
+        stays constant width and only fades its color in, so there's no
+        border-width jump either. Padding still changes, just snaps
+        instantly instead of animating — imperceptible as a single change,
+        unlike a reflow repeated every frame.
+      */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled ? 'bg-parchment/90 border-b border-ink/10 py-3' : 'bg-transparent py-6'
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-500 ${
+          scrolled ? 'border-ink/10 bg-parchment/90 py-3' : 'border-transparent bg-transparent py-6'
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
