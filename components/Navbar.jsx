@@ -57,9 +57,16 @@ export default function Navbar({ settings }) {
         instantly instead of animating — imperceptible as a single change,
         unlike a reflow repeated every frame.
       */}
+      {/*
+        bg-parchment fully opaque when scrolled (was /90): on long listing
+        pages (studs, kittens) large serif headings scroll up right under
+        the bar, and at 90% they showed through as a faint ghosted
+        duplicate of whatever card was passing underneath — read as broken
+        rather than as the nav simply being translucent.
+      */}
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-500 ${
-          scrolled ? 'border-ink/10 bg-parchment/90 py-3' : 'border-transparent bg-transparent py-6'
+          scrolled ? 'border-ink/10 bg-parchment py-3' : 'border-transparent bg-transparent py-6'
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
