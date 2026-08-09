@@ -41,7 +41,7 @@ export default async function KittensPage() {
       <PageHero eyebrow={d.heroEyebrow} title={d.heroTitle} lead={d.heroLead} />
 
       <section
-        className={`bg-parchment/50 ${
+        className={`bg-parchment/85 ${
           items.length ? 'pb-20 pt-4 sm:pb-28 sm:pt-5' : 'py-12 sm:py-[66px]'
         }`}
       >

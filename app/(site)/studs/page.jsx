@@ -28,7 +28,7 @@ export default async function StudsPage() {
     <>
       <PageHero eyebrow={d.heroEyebrow} title={d.heroTitle} lead={d.heroLead} />
 
-      <section className="bg-parchment/50 py-10 sm:py-14">
+      <section className="bg-parchment/85 py-10 sm:py-14">
         <div className="mx-auto max-w-6xl space-y-14 px-5 sm:space-y-20 sm:px-8">
           {studs.map((c, i) => {
             const flip = i % 2 === 1

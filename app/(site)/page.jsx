@@ -78,7 +78,7 @@ export default async function Home() {
       </section>
 
       {/* ─────────── MANIFESTO ─────────── */}
-      <section className="relative bg-parchment/50 py-24 sm:py-36">
+      <section className="relative bg-parchment/85 py-24 sm:py-36">
         <div className="mx-auto grid max-w-6xl gap-14 px-5 sm:px-8 md:grid-cols-[0.9fr_1.1fr] md:gap-20">
           <Reveal>
             <Eyebrow>{d.aboutEyebrow}</Eyebrow>
@@ -119,7 +119,7 @@ export default async function Home() {
       </section>
 
       {/* ─────────── RESIDENTS ─────────── */}
-      <section className="bg-parchment/50 py-24 sm:py-32">
+      <section className="bg-parchment/85 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal className="mb-14 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
             <div>
@@ -202,7 +202,7 @@ export default async function Home() {
       </section>
 
       {/* ─────────── CTA ─────────── */}
-      <section className="bg-parchment/50 py-24 sm:py-32">
+      <section className="bg-parchment/85 py-24 sm:py-32">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
           <Reveal>
             <Divider className="mb-10" />
