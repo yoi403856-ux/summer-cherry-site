@@ -30,7 +30,7 @@ export default function Footer({ settings, locale = 'ru' }) {
   ]
 
   return (
-    <footer id="contact" className="relative overflow-hidden bg-ink/85 backdrop-blur-md text-birch">
+    <footer id="contact" className="relative overflow-hidden bg-ink/85 text-birch">
       <div className="grain pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <div className="grid gap-14 md:grid-cols-[1.3fr_1fr_1fr]">

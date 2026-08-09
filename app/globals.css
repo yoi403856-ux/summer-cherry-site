@@ -103,11 +103,13 @@ body {
 }
 
 /*
-  Live backdrop-blur over the fixed forest photo has to be recomputed every
-  scroll frame — on touch devices this can't keep up with a quick flick,
-  which shows up as the panel visibly "catching up" a frame late (jitter).
-  Touch/coarse-pointer devices keep the tinted glass panels but drop the
-  live blur sampling — desktop (mouse/trackpad) keeps the full blur.
+  The page panels no longer use live backdrop-blur (the fixed forest photo
+  carries a static blur() of its own now — see SiteBackground.jsx). What's
+  left is the KittenGallery lightbox, a modal that isn't part of normal
+  scrolling, but its blur can still lag a frame behind on a touch flick if
+  the user scrolls the page underneath before it's fully open — dropping
+  live sampling there on coarse pointers costs nothing visually since the
+  scrim is opaque enough (bg-ink/95) to read fine without it.
 */
 @media (hover: none) and (pointer: coarse) {
   .backdrop-blur-sm,

@@ -41,7 +41,7 @@ export default async function KittensPage() {
       <PageHero eyebrow={d.heroEyebrow} title={d.heroTitle} lead={d.heroLead} />
 
       <section
-        className={`bg-parchment/50 backdrop-blur-md ${
+        className={`bg-parchment/50 ${
           items.length ? 'pb-20 pt-4 sm:pb-28 sm:pt-5' : 'py-12 sm:py-[66px]'
         }`}
       >
@@ -50,7 +50,7 @@ export default async function KittensPage() {
         </div>
       </section>
 
-      <section className="bg-birch/45 backdrop-blur-md py-20 sm:py-28">
+      <section className="bg-birch/45 py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
           <Reveal>
             <Eyebrow>{d.howEyebrow}</Eyebrow>

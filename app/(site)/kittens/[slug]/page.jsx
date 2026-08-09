@@ -61,7 +61,7 @@ export default async function KittenDetail({ params }) {
       </section>
 
       {/* body */}
-      <section className="bg-parchment/55 backdrop-blur-md px-5 py-8 sm:px-8 sm:py-12">
+      <section className="bg-parchment/55 px-5 py-8 sm:px-8 sm:py-12">
         <div className="mx-auto grid max-w-6xl items-start gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
           {/* gallery */}
           <Reveal>
@@ -122,7 +122,7 @@ export default async function KittenDetail({ params }) {
 
       {/* parents */}
       {(k.father || k.mother) && (
-        <section id="parents" className="bg-parchment/55 backdrop-blur-md px-5 pb-16 sm:px-8 sm:pb-20">
+        <section id="parents" className="bg-parchment/55 px-5 pb-16 sm:px-8 sm:pb-20">
           <div className="mx-auto max-w-6xl border-t border-ink/10 pt-12">
             <Reveal>
               <Eyebrow>{d.pedigree}</Eyebrow>

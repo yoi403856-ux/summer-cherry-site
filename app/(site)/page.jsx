@@ -78,7 +78,7 @@ export default async function Home() {
       </section>
 
       {/* ─────────── MANIFESTO ─────────── */}
-      <section className="relative bg-parchment/50 backdrop-blur-md py-24 sm:py-36">
+      <section className="relative bg-parchment/50 py-24 sm:py-36">
         <div className="mx-auto grid max-w-6xl gap-14 px-5 sm:px-8 md:grid-cols-[0.9fr_1.1fr] md:gap-20">
           <Reveal>
             <Eyebrow>{d.aboutEyebrow}</Eyebrow>
@@ -101,7 +101,7 @@ export default async function Home() {
       </section>
 
       {/* ─────────── STATS ─────────── */}
-      <section className="border-y border-ink/10 bg-birch/45 backdrop-blur-md">
+      <section className="border-y border-ink/10 bg-birch/45">
         <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-ink/10 px-5 sm:px-8 md:grid-cols-4">
           {d.stats.map((s, i) => (
             <Reveal key={i} delay={i * 0.08}>
@@ -119,7 +119,7 @@ export default async function Home() {
       </section>
 
       {/* ─────────── RESIDENTS ─────────── */}
-      <section className="bg-parchment/50 backdrop-blur-md py-24 sm:py-32">
+      <section className="bg-parchment/50 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal className="mb-14 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
             <div>
@@ -155,7 +155,7 @@ export default async function Home() {
       </section>
 
       {/* ─────────── VALUES ─────────── */}
-      <section className="bg-birch/45 backdrop-blur-md py-24 sm:py-32">
+      <section className="bg-birch/45 py-24 sm:py-32">
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <Reveal className="text-center">
             <Eyebrow>{d.whyEyebrow}</Eyebrow>
@@ -166,7 +166,7 @@ export default async function Home() {
               const Icon = valueIcons[i]
               return (
                 <Reveal key={i} delay={i * 0.07}>
-                  <div className="group h-full bg-parchment/70 backdrop-blur-md p-8 transition-colors duration-500 hover:bg-pinedeep">
+                  <div className="group h-full bg-parchment/70 p-8 transition-colors duration-500 hover:bg-pinedeep">
                     <Icon className="h-8 w-8 text-golddim transition-colors duration-500 group-hover:text-gold" strokeWidth={1.4} />
                     <h3 className="mt-6 font-serif text-2xl text-ink transition-colors duration-500 group-hover:text-parchment">{v.t}</h3>
                     <p className="mt-3 font-sans text-[14px] leading-relaxed text-ink/65 transition-colors duration-500 group-hover:text-birch/75">{v.d}</p>
@@ -192,7 +192,7 @@ export default async function Home() {
       </section>
 
       {/* ─────────── CTA ─────────── */}
-      <section className="bg-parchment/50 backdrop-blur-md py-24 sm:py-32">
+      <section className="bg-parchment/50 py-24 sm:py-32">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
           <Reveal>
             <Divider className="mb-10" />

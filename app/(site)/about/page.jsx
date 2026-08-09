@@ -42,7 +42,7 @@ export default async function About() {
         lead={d.heroLead}
       />
 
-      <section className="bg-parchment/50 backdrop-blur-md pb-24 pt-10 sm:pb-32 sm:pt-14">
+      <section className="bg-parchment/50 pb-24 pt-10 sm:pb-32 sm:pt-14">
         <div className="mx-auto grid max-w-6xl gap-14 px-5 sm:px-8 md:grid-cols-[1.1fr_0.9fr] md:gap-20">
           <Reveal>
             <Eyebrow>{d.philEyebrow}</Eyebrow>
@@ -71,7 +71,7 @@ export default async function About() {
         </div>
       </section>
 
-      <section className="border-y border-ink/10 bg-birch/45 backdrop-blur-md py-16">
+      <section className="border-y border-ink/10 bg-birch/45 py-16">
         <div className="mx-auto grid max-w-5xl gap-10 px-5 sm:grid-cols-3 sm:px-8">
           {d.features.map((f, i) => {
             const Icon = featureIcons[i]
@@ -90,7 +90,7 @@ export default async function About() {
         </div>
       </section>
 
-      <section className="bg-parchment/50 backdrop-blur-md py-24 sm:py-32">
+      <section className="bg-parchment/50 py-24 sm:py-32">
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
           <Reveal className="text-center">
             <Eyebrow>{d.pathEyebrow}</Eyebrow>
