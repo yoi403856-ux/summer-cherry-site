@@ -1,6 +1,7 @@
 import SiteBackground from '@/components/SiteBackground'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import ScrollHoverGuard from '@/components/ScrollHoverGuard'
 import { LocaleProvider } from '@/components/LocaleProvider'
 import { getSettings } from '@/lib/api'
 import { getLocale } from '@/lib/i18n'
@@ -27,6 +28,7 @@ export default async function SiteLayout({ children }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(settings)) }}
       />
       <SiteBackground photoUrl={forest} />
+      <ScrollHoverGuard />
       <Navbar settings={settings} />
       <main>{children}</main>
       <Footer settings={settings} locale={locale} />

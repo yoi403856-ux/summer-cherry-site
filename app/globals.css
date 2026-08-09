@@ -121,6 +121,15 @@ body {
   }
 }
 
+/*
+  Set by ScrollHoverGuard.jsx while a mouse/trackpad scroll is in progress.
+  Blocks the cursor from triggering :hover on whatever slides underneath
+  it mid-scroll — see that file for why this only targets desktop.
+*/
+.is-scrolling * {
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
