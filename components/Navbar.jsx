@@ -59,7 +59,7 @@ export default function Navbar({ settings }) {
       */}
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-500 ${
-          scrolled ? 'border-ink/10 bg-parchment/90 py-3' : 'border-transparent bg-transparent py-6'
+          scrolled ? 'border-ink/10 bg-parchment/90 backdrop-blur-md py-3' : 'border-transparent bg-transparent py-6'
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">

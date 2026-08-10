@@ -8,14 +8,13 @@ import Image from 'next/image'
   Uses next/image so the (locally hosted, ~900KB) forest photo is served
   pre-resized and re-encoded to WebP/AVIF — much less to decode per paint.
 
-  The panels above no longer read this layer through `backdrop-blur` at
-  all (see globals.css / Navbar / Footer) — they're plain tinted
-  backgrounds now, which is what actually fixed the reported 15fps
-  scrolling (live backdrop-filter over a fixed layer recomputes every
-  scroll frame; that cost is gone regardless of what this photo looks
-  like). A `blur-md` was added here for a bit as a stand-in "misty" look,
-  but it softened the photo itself more than intended — removed, this is
-  back to the original sharp photo.
+  Sharp, unblurred photo — the panels above sample and blur it themselves
+  via `backdrop-blur` (see globals.css / Navbar / Footer), which is the
+  original design. That live backdrop-filter is what caused the reported
+  15fps scrolling on a weak/unaccelerated GPU; it was swapped out for a
+  static blur baked into this photo for a while, which fixed performance
+  but left every panel too opaque to show much of the photo through it.
+  Reverted back to live backdrop-blur, accepting that tradeoff again.
 */
 export default function SiteBackground({ photoUrl }) {
   const src = photoUrl || '/forest.jpg'
